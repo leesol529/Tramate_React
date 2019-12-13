@@ -1,0 +1,15 @@
+@import './maincontent';
+
+.divider{
+    margin: 0;
+    border-top: $basic;
+}
+
+.super{
+    width: 90%;
+    margin: 0 auto;
+
+    h3{
+        color: $basic;
+    }
+}

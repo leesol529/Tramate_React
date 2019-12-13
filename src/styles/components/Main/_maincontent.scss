@@ -1,0 +1,26 @@
+.maincontent_wrap{
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px $light;
+}
+
+.img_wrap{
+    height: 30rem;
+    background-size: 100% 100%;
+    .c_names{
+        text-align: center;
+        height: 30rem;
+        line-height: 30rem;
+        font-size: 5rem;
+        color: white;
+        text-shadow: 5px 5px 5px black;
+        h1{
+            margin: 5rem auto;
+        }
+    }
+}
+
+.img_wrap:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}

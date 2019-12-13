@@ -1,9 +1,29 @@
-.logo{
-    width: 60px;   
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_left{
+    display: flex;
+    align-items: center;
+    .logo{
+        margin: 1rem;
+        width: 60px;
+    }
+}
+.header_right{
+    color: $basic;
+}
+.header_list{
+    display: flex;
+    list-style: none;
+    li{
+        padding: 0 2rem;
+        font-size: $s-size;
+    }
 }
 
 //***seach bar의 class name
 .jwfbbd{
     width: 500px;
 }
-
