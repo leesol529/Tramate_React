@@ -1,24 +1,17 @@
-import React from 'react';
+import React from 'react'
+import Africa from '../../img/africa.jpg';
 
-const LookAround = () => (
-    <div>
-        <div>
-            <h1>이미지1</h1>
-            <h2>가이드</h2>
-        </div>
-        <div>
-            <h1>이미지1</h1>
-            <h2>레스토랑</h2>
-        </div>
-        <div>
-            <h1>이미지1</h1>
-            <h2>엑티비티</h2>
-        </div>
-        <div>
-            <h1>이미지1</h1>
-            <h2>관광명소</h2>
-        </div>
-    </div>
-);
+export default class LookAround extends React.Component {
+    render() {
+        return (
+            <div className="flexbox">
+                <div className="lookaround_image" style={{ backgroundImage: `url(${this.props.img})` }}>
 
-export default LookAround
+                </div>
+                <h4 className="title">
+                    {this.props.title}
+                </h4>
+            </div>
+        );
+    }
+}
