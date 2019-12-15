@@ -6,12 +6,13 @@ export default class GuideInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
+            pass: '',
             name: '',
             nat: '',
             spot: '',
             mobile: '',
-            email1: '',
-            email2: '',
+            email: '',
             addr: '',
             content: '',
             img: '',
@@ -28,12 +29,13 @@ export default class GuideInput extends React.Component {
     handleOnSubmit = () => {
 
         axios.post('http://localhost:8080/guide/inputdata', {
+            id: this.state.id,
+            pass: this.state.pass,
             name: this.state.name,
             nat: this.state.nat,
             spot: this.state.spot,
             mobile: this.state.mobile,
-            email1: this.state.email1,
-            email2: this.state.email2,
+            email: this.state.email,
             addr: this.state.addr,
             content: this.state.content,
             img: this.state.pictures[0].name,
@@ -76,6 +78,14 @@ export default class GuideInput extends React.Component {
                     <table>
                         <tbody>
                             <tr>
+                                <th>아이디</th>
+                                <td><input type="text" name="id" onChange={this.handleOnChange} /></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호</th>
+                                <td><input type="password" name="pass" onChange={this.handleOnChange} /></td>
+                            </tr>
+                            <tr>
                                 <th>이름</th>
                                 <td><input type="text" name="name" onChange={this.handleOnChange} /></td>
                             </tr>
@@ -92,12 +102,8 @@ export default class GuideInput extends React.Component {
                                 <td><input type="text" name="mobile" onChange={this.handleOnChange} /></td>
                             </tr>
                             <tr>
-                                <th>email1</th>
-                                <td><input type="text" name="email1" onChange={this.handleOnChange} /></td>
-                            </tr>
-                            <tr>
-                                <th>email2</th>
-                                <td><input type="text" name="email2" onChange={this.handleOnChange} /></td>
+                                <th>email</th>
+                                <td><input type="text" name="email" onChange={this.handleOnChange} /></td>
                             </tr>
                             <tr>
                                 <th>주소</th>
