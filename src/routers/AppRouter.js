@@ -11,6 +11,8 @@ import Australia from '../components/Main/Australia';
 import Europe from '../components/Main/Europe';
 import NorthAmerica from '../components/Main/NorthAmerica';
 import SouthAmerica from '../components/Main/SouthAmerica';
+import GuideLogin from '../components/Login/GuideLogin';
+import TravelerLogin from '../components/Login/TravelerLogin.js';
 import GuideInput from '../components/GuideInput/GuideInput';
 
 const AppRouter = () => (
@@ -28,7 +30,8 @@ const AppRouter = () => (
         <Route path="/europe" component={Europe} />
         <Route path="/north_america" component={NorthAmerica} />
         <Route path="/south_america" component={SouthAmerica} />
-
+        <Route path="/guide/login" component={GuideLogin} />
+        <Route path="/traveler/login" component={TravelerLogin} />
         <Route path="/guide/input" component={GuideInput} />
       </Switch>
     </div>
