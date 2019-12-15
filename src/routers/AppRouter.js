@@ -4,7 +4,6 @@ import Main from '../components/Main/Main';
 import Result from '../components/Result/Result';
 import Header from '../components/Base/Header';
 import GuideProfile from '../components/GuideProfile/GuideProfile';
-<<<<<<< HEAD
 import Asia from '../components/Main/Asia';
 import Africa from '../components/Main/Africa';
 import Antarctica from '../components/Main/Antarctica';
@@ -12,9 +11,7 @@ import Australia from '../components/Main/Australia';
 import Europe from '../components/Main/Europe';
 import NorthAmerica from '../components/Main/NorthAmerica';
 import SouthAmerica from '../components/Main/SouthAmerica';
-=======
 import GuideInput from '../components/GuideInput/GuideInput';
->>>>>>> 702a6596aed2f4a1e602d5f8196c467f62cf266d
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -24,7 +21,6 @@ const AppRouter = () => (
         <Route path="/" component={Main} exact={true} />
         <Route path="/result" component={Result} />
         <Route path="/guide/profile" component={GuideProfile} />
-<<<<<<< HEAD
         <Route path="/asia" component={Asia} />
         <Route path="/africa" component={Africa} />
         <Route path="/antarctica" component={Antarctica} />
@@ -33,9 +29,7 @@ const AppRouter = () => (
         <Route path="/north_america" component={NorthAmerica} />
         <Route path="/south_america" component={SouthAmerica} />
 
-=======
         <Route path="/guide/input" component={GuideInput} />
->>>>>>> 702a6596aed2f4a1e602d5f8196c467f62cf266d
       </Switch>
     </div>
   </BrowserRouter>

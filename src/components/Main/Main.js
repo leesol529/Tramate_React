@@ -14,7 +14,6 @@ export default class Main extends React.Component{
     render(){
         return(
             <div>
-                <Header />
                 <hr className="divider"/>
                 <div className="super">
                     <h3> Tramate 대륙별로 둘러보기 </h3>
