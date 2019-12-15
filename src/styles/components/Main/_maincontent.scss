@@ -1,12 +1,16 @@
 .maincontent_wrap{
     width: 100%;
     margin: 0 auto;
-    box-shadow: 5px 5px 5px $light;
+}
+
+.link{
+    text-decoration: none;
 }
 
 .img_wrap{
     height: 30rem;
     background-size: 100% 100%;
+    border-radius: 2rem;
     .c_names{
         text-align: center;
         height: 30rem;
