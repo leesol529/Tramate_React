@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ImageUploader from 'react-images-upload';
 
 export default class GuideInput extends React.Component {
     constructor(props) {
@@ -14,8 +15,10 @@ export default class GuideInput extends React.Component {
             addr: '',
             content: '',
             img: '',
-            fare: ''
+            fare: 0,
+            pictures: []
         }
+        this.onDrop = this.onDrop.bind(this);
     }
     handleOnChange = (e) => {
         this.setState({
@@ -23,6 +26,7 @@ export default class GuideInput extends React.Component {
         })
     }
     handleOnSubmit = () => {
+
         axios.post('http://localhost:8080/guide/inputdata', {
             name: this.state.name,
             nat: this.state.nat,
@@ -32,19 +36,42 @@ export default class GuideInput extends React.Component {
             email2: this.state.email2,
             addr: this.state.addr,
             content: this.state.content,
-            img: this.state.img,
-            fare: this.state.fare
+            img: this.state.pictures[0].name,
+            fare: this.state.fare,
 
         }).then((Response) => {
 
         }).catch(ex => {
 
+        });
+
+        let frm = new FormData();
+        frm.append('picture', this.state.pictures[0]);
+        axios.post('http://localhost:8080/guide/imageupload', frm)
+
+        axios.post('http://localhost:8080/guide/imageupload', frm, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((Response) => {
+
+        }).catch(ex => {
+
         })
+
+    }
+
+    onDrop(picture) {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+
     }
     render() {
         return (
             <div>
-                <form onSubmit={this.handleOnSubmit}>
+                <hr />
+                <form>
                     <p>아래의 폼을 입력하세요</p>
                     <table>
                         <tbody>
@@ -82,21 +109,30 @@ export default class GuideInput extends React.Component {
                             </tr>
                             <tr>
                                 <th>이미지</th>
-                                <td><input type="text" name="img" onChange={this.handleOnChange} /></td>
+                                <td>
+                                    <ImageUploader
+                                        withIcon={true}
+                                        buttonText='Choose images'
+                                        onChange={this.onDrop}
+                                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                        maxFileSize={5242880}
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <th>요금</th>
-                                <td><input type="text" name="fare" onChange={this.handleOnChange} /></td>
+                                <td><input type="number" name="fare" onChange={this.handleOnChange} /></td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <td colSpan="2" align="center">
-                                    <button>서버로 전송하기</button>
+                                    <button onClick={this.handleOnSubmit}>서버로 전송하기</button>
                                 </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </table>
 
                 </form>
+                <button onClick={this.handleOnSubmit}>서버로 전송하기</button>
             </div>
         );
     }
