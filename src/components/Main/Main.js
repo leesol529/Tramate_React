@@ -8,8 +8,6 @@ import europe from '../../img/europe.jpg';
 import northamerica from '../../img/northamerica.jpg';
 import southamerica from '../../img/southamerica.jpg';
 
-import Header from '../Base/Header';
-
 export default class Main extends React.Component{
     render(){
         return(

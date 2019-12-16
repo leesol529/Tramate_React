@@ -1,0 +1,184 @@
+import React from 'react';
+import axios from 'axios';
+import ImageUpload from '../Image/ImageUpload';
+
+export default class TravlerLogin extends React.Component{
+
+	constructor(props){
+		super(props);
+		this.state={
+			name: "",
+			nat: "",
+			myid: "",
+			pass: "",
+			pass2: "",
+			mobile: "",
+			addr: "",
+			content: "",
+			filename: ""
+		};
+		this.onKeyChange = this.onKeyChange.bind(this);
+		this.onImageUpload = this.onImageUpload.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	onKeyChange=(e)=>{
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    onImageUpload=(e)=>{
+        const uploadFile = e.target.files[0];
+        const filename = e.target.files[0].name;
+        console.log(uploadFile);
+        console.log(filename);
+
+        //state의 file 변경, filename: filename 같을 때 생략 가능 
+        this.setState({
+            filename
+        });
+
+        //아래의 boardfile을 받는 쪽에서 multipart로 받음
+        const boardfile = new FormData();
+        boardfile.append("uploadFile", uploadFile);
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/controller/react/upload",
+            data: boardfile,
+            headers: {"Content-type": "multipart/form-data"}
+        }).then((responseData)=>{
+            console.log(responseData.data);
+        }).catch((error)=>{
+            console.log("이미지 업로드 중 오류");
+        });
+    }
+
+    onSubmit=(e)=>{
+        e.preventDefault();
+        const uploadFile = this.state;
+        var url = "http://localhost:9000/controller/react/save";
+        axios.post(url, uploadFile).then((responseData)=>{
+            console.log("성공");
+        }).catch((error)=>{
+            console.log("이미지 submit fail");
+        });
+    }
+
+    render(){
+        return(
+            <form className="super" onSubmit={this.onSubmit}>
+                <table className="traveler_table">
+					<caption> Join as a Traveler: Tramate와 함께 여행을 떠나보세요 </caption>
+					<tbody>
+						<tr>
+							<td colSpan="2">
+								<hr/>
+							</td>
+						</tr>
+						<tr>
+							<td rowSpan="5">
+								<ImageUpload onImageUpload={this.onImageUpload}/>
+							</td>
+							<td>
+								<input type="text"
+										name="name" placeholder="이름"
+										required="required"
+										autoFocus="autoFocus"
+										className="join_input"
+										onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text"
+										name="nat" placeholder="국적"
+										required="required"
+										className="join_input"
+										onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+								<input type="text" name="myid"
+										id="myid"
+										placeholder="아이디"
+										required="required"
+										className="join_input"
+										onChange={this.onKeyChange}/>
+										{/* <button type="button" id="btnid">
+											입력
+										</button> */}
+								</div>		
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" name="pass"
+									   required="required"
+									   maxLength="10"
+									   placeholder="비밀번호"
+									   className="join_input"
+									   onChange={this.onKeyChange}/>	
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<input type="password" name="pass2"
+									   required="required"
+									   maxLength="10"
+									   placeholder="비밀번호 재확인"
+									   className="join_input"
+									   onChange={this.onKeyChange}/>	
+							</td>
+						</tr>
+						
+						<tr>
+							<td colSpan="2">
+								<input type="text" name="mobile"
+									   required="required"
+									   placeholder="모바일 (-없이 숫자로만 입력)"
+									   pattern="[0-9]{11}"
+									   className="join_input2"
+									   onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td colSpan="2">
+								<input type="text"
+										name="addr" placeholder="주소"
+										required="required"
+										className="join_input2"
+										onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td colSpan="2">
+								<input type="text" name="email"
+									required="required"
+									placeholder="이메일 주소"
+									className="join_input2"
+									onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td colSpan="2">
+								<textarea name="content" placeholder="자유롭게 본인을 소개해 주세요"
+										required="required"
+										onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+						<tr>
+							<td colSpan="2" align="center">
+								<button type="submit" className="join_btn"> 가입하기 </button>
+							</td>
+						</tr>				
+					</tbody>					
+				</table>
+            </form>
+        );
+    }
+}

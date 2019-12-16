@@ -26,8 +26,8 @@ export default class GuideInput extends React.Component {
             [e.target.name]: e.target.value
         })
     }
-    handleOnSubmit = () => {
-
+    handleOnSubmit = (e) => {
+        e.preventDefault();
         axios.post('http://localhost:8080/guide/inputdata', {
             id: this.state.id,
             pass: this.state.pass,
@@ -73,7 +73,7 @@ export default class GuideInput extends React.Component {
         return (
             <div>
                 <hr />
-                <form>
+                <form onSubmit={this.handleOnSubmit}>
                     <p>아래의 폼을 입력하세요</p>
                     <table>
                         <tbody>
@@ -129,16 +129,14 @@ export default class GuideInput extends React.Component {
                                 <th>요금</th>
                                 <td><input type="number" name="fare" onChange={this.handleOnChange} /></td>
                             </tr>
-                            {/* <tr>
+                            <tr>
                                 <td colSpan="2" align="center">
-                                    <button onClick={this.handleOnSubmit}>서버로 전송하기</button>
+                                    <button type="submit">서버로 전송하기</button>
                                 </td>
-                            </tr> */}
+                            </tr>
                         </tbody>
                     </table>
-
                 </form>
-                <button onClick={this.handleOnSubmit}>서버로 전송하기</button>
             </div>
         );
     }

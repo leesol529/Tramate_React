@@ -1,0 +1,50 @@
+.previewComponent{
+    margin-right: 0;
+}
+
+.fileInput{
+    border: 1px solid $light;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 2px;
+    cursor: pointer;
+    width: 200px;
+}
+  
+.imgPreview{
+    text-align: center;
+    margin: 0;
+    height: 250px;
+    width: 200px;
+    border: 1px solid $light;
+    border-radius: 5px;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+  
+.previewText{
+    width: 100%;
+    margin-top: 100px;
+    color: $light;
+}
+  
+.submitButton{
+    padding: 12px;
+    margin-left: 10px;
+    background: white;
+    border: 1px solid $light;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 10pt;
+    cursor: pointer;
+    .submitButton:hover{
+        background: #efefef;
+    }
+}
+
+.centerText{
+    text-align: center;
+    width: 500px;
+}

@@ -1,0 +1,61 @@
+.super{
+    width: 90%;
+}
+
+.traveler_table{
+    width: 500px;
+    margin: 0 auto;
+    caption{
+        line-height: 50px;
+        color: $basic;
+        font-weight: bold;
+        margin: 0 auto;
+        font-size: 2.1rem;
+    }
+    tr>td>hr{
+        border-top: $basic;
+        width: 500px;
+        margin: 0;
+    }
+    td{
+        color: $basic;
+        padding: 5px;
+        //border: 1px solid black;
+        .join_input{
+            width: 285px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 1.7rem;
+            border: 1px solid $light;
+            border-radius: 5px;
+            text-indent: 1rem;
+        }
+        .join_input2{
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 1.7rem;
+            border: 1px solid $light;
+            border-radius: 5px;
+            text-indent: 1rem;
+        }
+        textarea{
+            width: 500px;
+            height: 200px;
+            font-size: 1.7rem;
+            text-indent: 1rem;
+            border: 1px solid $light;
+            border-radius: 5px;
+        }
+        .join_btn{
+            width: 100px;
+            height: 40px;
+            font-size: 1.7rem;
+            color: white;
+            border: none;
+            background-color: $point;
+            border-radius: 5px;
+            text-align: center;
+        }
+    }
+}
