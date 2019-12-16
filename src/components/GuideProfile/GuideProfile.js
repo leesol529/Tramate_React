@@ -1,10 +1,12 @@
 import React from 'react';
+import StarRate from './StarRate';
+import GuideRate from './GuideRate';
 
-export default class GuideProfile extends React.Component{
-    render(){
-        return(
+export default class GuideProfile extends React.Component {
+    render() {
+        return (
             <div>
-                guide profile
+                <GuideRate />
             </div>
         );
     }

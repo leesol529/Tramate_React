@@ -10,6 +10,7 @@ export default class GuideInput extends React.Component {
             pass: '',
             name: '',
             nat: '',
+            continent: '',
             spot: '',
             mobile: '',
             email: '',
@@ -28,10 +29,11 @@ export default class GuideInput extends React.Component {
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/guide/inputdata', {
+        axios.post('http://localhost:9000/guide/inputdata', {
             id: this.state.id,
             pass: this.state.pass,
             name: this.state.name,
+            continent: this.state.continent,
             nat: this.state.nat,
             spot: this.state.spot,
             mobile: this.state.mobile,
@@ -49,9 +51,7 @@ export default class GuideInput extends React.Component {
 
         let frm = new FormData();
         frm.append('picture', this.state.pictures[0]);
-        axios.post('http://localhost:8080/guide/imageupload', frm)
-
-        axios.post('http://localhost:8080/guide/imageupload', frm, {
+        axios.post('http://localhost:9000/guide/imageupload', frm, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -88,6 +88,10 @@ export default class GuideInput extends React.Component {
                             <tr>
                                 <th>이름</th>
                                 <td><input type="text" name="name" onChange={this.handleOnChange} /></td>
+                            </tr>
+                            <tr>
+                                <th>대륙</th>
+                                <td><input type="text" name="continent" onChange={this.handleOnChange} /></td>
                             </tr>
                             <tr>
                                 <th>국적</th>
