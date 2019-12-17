@@ -9,12 +9,13 @@ export default class TravlerLogin extends React.Component{
 		this.state={
 			name: "",
 			nat: "",
-			myid: "",
+			id: "",
 			pass: "",
-			pass2: "",
 			mobile: "",
 			addr: "",
 			content: "",
+			img: "",
+			email: "",
 			filename: ""
 		};
 		this.onKeyChange = this.onKeyChange.bind(this);
@@ -29,25 +30,26 @@ export default class TravlerLogin extends React.Component{
     }
 
     onImageUpload=(e)=>{
-        const uploadFile = e.target.files[0];
-        const filename = e.target.files[0].name;
+        //톰캣 서버에 이미지 업로드하기 
+		const uploadFile = e.target.files[0];
+        const img = e.target.files[0].name;
         console.log(uploadFile);
-        console.log(filename);
+        console.log(img);
 
-        //state의 file 변경, filename: filename 같을 때 생략 가능 
+        //state의 img 변경, img: img 같을 때 생략 가능 
         this.setState({
-            filename
+            img
         });
 
-        //아래의 boardfile을 받는 쪽에서 multipart로 받음
-        const boardfile = new FormData();
-        boardfile.append("uploadFile", uploadFile);
-
+        //아래의 data을 받는 쪽에서 multipart로 받음
+        let data = new FormData();
+        data.append("uploadFile", uploadFile);
+		
         axios({
             method: "post",
-            url: "http://localhost:9000/controller/react/upload",
-            data: boardfile,
-            headers: {"Content-type": "multipart/form-data"}
+            url: "http://localhost:9000/traveler/imageupload",
+            data: data,
+			headers: {"Content-Type": "multipart/form-data"}
         }).then((responseData)=>{
             console.log(responseData.data);
         }).catch((error)=>{
@@ -56,14 +58,25 @@ export default class TravlerLogin extends React.Component{
     }
 
     onSubmit=(e)=>{
-        e.preventDefault();
-        const uploadFile = this.state;
-        var url = "http://localhost:9000/controller/react/save";
-        axios.post(url, uploadFile).then((responseData)=>{
-            console.log("성공");
+		e.preventDefault();
+		
+		//db에 traveler 가입정보 저장 
+        var url = "http://localhost:9000/traveler/join";
+        axios.post(url, {
+			name: this.state.name,
+			nat: this.state.nat,
+			id: this.state.id,
+			pass: this.state.pass,
+			mobile: this.state.mobile,
+			addr: this.state.addr,
+			content: this.state.content,
+			email: this.state.email,
+			img: this.state.img
+		}).then((responseData)=>{
+            console.log("traveler 가입정보 insert success");
         }).catch((error)=>{
-            console.log("이미지 submit fail");
-        });
+            console.log("traveler 가입정보 insert fail");
+		});
     }
 
     render(){
@@ -102,8 +115,7 @@ export default class TravlerLogin extends React.Component{
 						<tr>
 							<td>
 								<div>
-								<input type="text" name="myid"
-										id="myid"
+								<input type="text" name="id"
 										placeholder="아이디"
 										required="required"
 										className="join_input"
@@ -141,7 +153,7 @@ export default class TravlerLogin extends React.Component{
 								<input type="text" name="mobile"
 									   required="required"
 									   placeholder="모바일 (-없이 숫자로만 입력)"
-									   pattern="[0-9]{11}"
+									   //pattern="[0-9]{11}"
 									   className="join_input2"
 									   onChange={this.onKeyChange}/>
 							</td>

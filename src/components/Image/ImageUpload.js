@@ -29,6 +29,8 @@ export default class ImageUpload extends React.Component{
         }
     
         reader.readAsDataURL(filename)
+        
+        this.props.onImageUpload(e);
       }
     
       render() {
@@ -45,7 +47,7 @@ export default class ImageUpload extends React.Component{
             <div className="imgPreview">
                 {$imagePreview}
             </div>
-            <form onSubmit={(e)=>this._handleSubmit(e)}>
+            {/* <form onSubmit={(e)=>this._handleSubmit(e)}> */}
                 <input className="fileInput" 
                        type="file" 
                        onChange={(e)=>this._handleImageChange(e)} />
@@ -55,7 +57,7 @@ export default class ImageUpload extends React.Component{
                         onClick={(e)=>this._handleSubmit(e)}>
                     Upload Image
                 </button> */}
-            </form>
+            {/* </form> */}
           </div>
         )
       }
