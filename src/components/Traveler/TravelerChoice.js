@@ -47,6 +47,7 @@ export default class TravelerChoice extends React.Component {
             console.log("**Traveler choice spot get 오류**");
         });
 
+        //Byte array 이미지를 이미지로 바꾸는 것.
         const url4 = "http://localhost:9000/image";
         axios
             .get(
