@@ -1,5 +1,5 @@
 import React from 'react';
-import StarRate from './StarRate';
+import StarRate from '../Util/StarRate';
 import axios from 'axios';
 
 export default class GuideRate extends React.Component {

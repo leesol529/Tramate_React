@@ -1,22 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-import ImageUpload from '../Image/ImageUpload';
+import ImageUpload from '../Util/ImageUpload';
 
-export default class TravlerLogin extends React.Component{
-
-	constructor(props){
+export default class GuideLogin extends React.Component{
+    constructor(props){
 		super(props);
 		this.state={
-			name: "",
-			nat: "",
-			id: "",
-			pass: "",
-			mobile: "",
-			addr: "",
-			content: "",
-			img: "",
-			email: "",
-			filename: ""
+			id: '',
+            pass: '',
+            name: '',
+            nat: '',
+            spot: '',
+            mobile: '',
+            email: '',
+            addr: '',
+            content: '',
+            img: '',
+            fare: 0,
+            pictures: []
 		};
 		this.onKeyChange = this.onKeyChange.bind(this);
 		this.onImageUpload = this.onImageUpload.bind(this);
@@ -47,7 +48,7 @@ export default class TravlerLogin extends React.Component{
 		
         axios({
             method: "post",
-            url: "http://localhost:9000/traveler/imageupload",
+            url: "http://localhost:9000/guide/imageupload",
             data: data,
 			headers: {"Content-Type": "multipart/form-data"}
         }).then((responseData)=>{
@@ -61,7 +62,7 @@ export default class TravlerLogin extends React.Component{
 		e.preventDefault();
 		
 		//db에 traveler 가입정보 저장 
-        var url = "http://localhost:9000/traveler/join";
+        var url = "http://localhost:9000/guide/join";
         axios.post(url, {
 			name: this.state.name,
 			nat: this.state.nat,
@@ -71,11 +72,13 @@ export default class TravlerLogin extends React.Component{
 			addr: this.state.addr,
 			content: this.state.content,
 			email: this.state.email,
-			img: this.state.img
+            img: this.state.img,
+            fare: this.state.fare,
+            spot: this.state.spot
 		}).then((responseData)=>{
-            console.log("traveler 가입정보 insert success");
+            console.log("guide 가입정보 insert success");
         }).catch((error)=>{
-            console.log("traveler 가입정보 insert fail");
+            console.log("guide 가입정보 insert fail");
 		});
     }
 
@@ -83,7 +86,7 @@ export default class TravlerLogin extends React.Component{
         return(
             <form className="super" onSubmit={this.onSubmit}>
                 <table className="traveler_table">
-					<caption> Join as a Traveler: Tramate와 함께 여행을 떠나보세요 </caption>
+					<caption> Join as a Guide: Tramate의 여행을 인도해 주세요 </caption>
 					<tbody>
 						<tr>
 							<td colSpan="2">
@@ -96,7 +99,7 @@ export default class TravlerLogin extends React.Component{
 							</td>
 							<td>
 								<input type="text"
-										name="name" placeholder="이름"
+										name="name" placeholder="name"
 										required="required"
 										autoFocus="autoFocus"
 										className="join_input"
@@ -106,7 +109,7 @@ export default class TravlerLogin extends React.Component{
 						<tr>
 							<td>
 								<input type="text"
-										name="nat" placeholder="국적"
+										name="nat" placeholder="nationality"
 										required="required"
 										className="join_input"
 										onChange={this.onKeyChange}/>
@@ -116,7 +119,7 @@ export default class TravlerLogin extends React.Component{
 							<td>
 								<div>
 								<input type="text" name="id"
-										placeholder="아이디"
+										placeholder="id"
 										required="required"
 										className="join_input"
 										onChange={this.onKeyChange}/>
@@ -131,7 +134,7 @@ export default class TravlerLogin extends React.Component{
 								<input type="password" name="pass"
 									   required="required"
 									   maxLength="10"
-									   placeholder="비밀번호"
+									   placeholder="password"
 									   className="join_input"
 									   onChange={this.onKeyChange}/>	
 							</td>
@@ -142,17 +145,50 @@ export default class TravlerLogin extends React.Component{
 								<input type="password" name="pass2"
 									   required="required"
 									   maxLength="10"
-									   placeholder="비밀번호 재확인"
+									   placeholder="password check"
 									   className="join_input"
 									   onChange={this.onKeyChange}/>	
 							</td>
 						</tr>
-						
+                        <tr>
+							<td colSpan="2">
+								<select name="continent" className="join_input2" defaultValue>
+                                    <option value="" disabled> Please select the continent </option>
+                                    <option value="asia"> Asia </option>
+                                    <option value="europe"> Europe </option>
+                                    <option value="australia"> Australia </option>
+                                    <option value="africa"> Africa </option>
+                                    <option value="southAmerica"> South America </option>
+                                    <option value="northAmerica"> North America </option>
+                                    <option value="antarctica"> Antarctica </option>
+                                </select>
+							</td>
+						</tr>
+						<tr>
+							<td colSpan="2">
+								<input type="text" name="spot"
+									   required="required"
+									   placeholder="Where would you like to guide?"
+									   //pattern="[0-9]{11}"
+									   className="join_input2"
+									   onChange={this.onKeyChange}/>
+							</td>
+						</tr>
+                        <tr>
+							<td colSpan="2">
+								<input type="text" name="fare"
+									   required="required"
+									   placeholder="Guide price per person"
+									   //pattern="[0-9]{11}"
+									   className="join_input2"
+									   onChange={this.onKeyChange}/>
+							</td>
+						</tr>
 						<tr>
 							<td colSpan="2">
 								<input type="text" name="mobile"
 									   required="required"
-									   placeholder="모바일 (-없이 숫자로만 입력)"
+									   placeholder="mobile (without -)"
 									   //pattern="[0-9]{11}"
 									   className="join_input2"
 									   onChange={this.onKeyChange}/>
@@ -161,7 +197,7 @@ export default class TravlerLogin extends React.Component{
 						<tr>
 							<td colSpan="2">
 								<input type="text"
-										name="addr" placeholder="주소"
+										name="addr" placeholder="address"
 										required="required"
 										className="join_input2"
 										onChange={this.onKeyChange}/>
@@ -171,21 +207,22 @@ export default class TravlerLogin extends React.Component{
 							<td colSpan="2">
 								<input type="text" name="email"
 									required="required"
-									placeholder="이메일 주소"
+									placeholder="e-mail address"
 									className="join_input2"
 									onChange={this.onKeyChange}/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan="2">
-								<textarea name="content" placeholder="자유롭게 본인을 소개해 주세요"
-										required="required"
-										onChange={this.onKeyChange}/>
+                                <textarea name="content" 
+                                          placeholder="Please introduce yourself to Tramates!"
+										  required="required"
+										  onChange={this.onKeyChange}/>
 							</td>
 						</tr>
 						<tr>
 							<td colSpan="2" align="center">
-								<button type="submit" className="join_btn"> 가입하기 </button>
+								<button type="submit" className="join_btn"> Join </button>
 							</td>
 						</tr>				
 					</tbody>					
