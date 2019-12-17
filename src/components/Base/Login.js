@@ -16,7 +16,7 @@ export default class Login extends React.Component {
         axios.get(url).then((responseData) => {
             if (responseData.data == 1) {
                 alert("로그인 성공");
-                localStorage.setItem("loginok", "id");
+                localStorage.setItem("loginok", this.state.id);
                 this.props.history.push("/");
             } else {
                 alert("아이디와 비밀번호가 맞지 않습니다.");
