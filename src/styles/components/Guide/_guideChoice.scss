@@ -17,8 +17,8 @@
            cursor: pointer;
        }
     }
-
-    .form_div{
-        
-    }
+}
+.form_div{
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
 }

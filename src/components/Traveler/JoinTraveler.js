@@ -15,8 +15,7 @@ export default class TravlerLogin extends React.Component{
 			addr: "",
 			content: "",
 			img: "",
-			email: "",
-			filename: ""
+			email: ""
 		};
 		this.onKeyChange = this.onKeyChange.bind(this);
 		this.onImageUpload = this.onImageUpload.bind(this);

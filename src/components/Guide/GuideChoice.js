@@ -4,7 +4,6 @@ import plus from '../../img/plus.png';
 import AttractionForm from './AttractionForm';
 import ActivityForm from './ActivityForm';
 import RestaurantForm from './RestaurantForm';
-import { thisExpression } from '../../../../Library/Caches/typescript/3.6/node_modules/@babel/types/lib';
 
 export default class GuideChoice extends React.Component{
     
@@ -116,13 +115,15 @@ export default class GuideChoice extends React.Component{
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td colSpan="2"> <hr/> </td>
+                        </tr>
                     </tbody>
                 </table>
-                <div className="form_div">
-                    <div>{attraction}</div>
-                    <div>{activity}</div>
-                    <div>{restaurant}</div>
-                </div>
+                {/* form 출력 위치 */}
+                <div className="form_div">{attraction}</div>
+                <div className="form_div">{activity}</div>
+                <div className="form_div">{restaurant}</div>
             </div>
         );
     }

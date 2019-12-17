@@ -26,7 +26,7 @@ export default class Login extends React.Component {
                 })
             }
         }).catch((error) => {
-            console.log("**board list 오류**");
+            console.log("로그인 실패");
         });
 
     }

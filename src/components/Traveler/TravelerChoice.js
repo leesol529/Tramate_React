@@ -1,5 +1,4 @@
 import React from 'react';
-import Spot from '../Result/Spot';
 import axios from 'axios';
 
 export default class TravelerChoice extends React.Component {

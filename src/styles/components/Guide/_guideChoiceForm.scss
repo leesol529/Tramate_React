@@ -1,0 +1,28 @@
+.gchoice_form_table{
+    margin: 20px auto 0 auto;
+    th{
+        width: 200px;
+        color: $basic;
+    }
+    .gchoice_input{
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.7rem;
+        border: 1px solid $light;
+        border-radius: 5px;
+        text-indent: 1rem;
+    }
+    select{
+        color: $basic;
+        padding: 0;
+    }
+    textarea{
+        width: 200px;
+        height: 150px;
+        font-size: 1.7rem;
+        border: 1px solid $light;
+        border-radius: 5px;
+        padding: 1rem;
+    }
+}
