@@ -13,6 +13,7 @@ import NorthAmerica from '../components/Main/NorthAmerica';
 import SouthAmerica from '../components/Main/SouthAmerica';
 import JoinGuide from '../components/Guide/JoinGuide';
 import JoinTraveler from '../components/Traveler/JoinTraveler';
+import TravelerChoice from '../components/Traveler/TravelerChoice';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -31,6 +32,7 @@ const AppRouter = () => (
         <Route path="/south_america" component={SouthAmerica} />
         <Route path="/guide/join" component={JoinGuide} />
         <Route path="/traveler/join" component={JoinTraveler} />
+        <Route path="/traveler/choice" component={TravelerChoice} />
       </Switch>
     </div>
   </BrowserRouter>
