@@ -36,6 +36,7 @@ export default class ImageUpload extends React.Component{
       render() {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
+        //*****join에서 submit할 때 imagePreviewUrl=false; 되도록 하면 이미지도 초기화 할 수 있을듯!
         if (imagePreviewUrl) {
           $imagePreview = (<img src={imagePreviewUrl} alt="img_preview"/>);
         } else {
@@ -47,17 +48,9 @@ export default class ImageUpload extends React.Component{
             <div className="imgPreview">
                 {$imagePreview}
             </div>
-            {/* <form onSubmit={(e)=>this._handleSubmit(e)}> */}
-                <input className="fileInput" 
-                       type="file" 
-                       onChange={(e)=>this._handleImageChange(e)} />
-                <br/>
-                {/* <button className="submitButton" 
-                        type="submit" 
-                        onClick={(e)=>this._handleSubmit(e)}>
-                    Upload Image
-                </button> */}
-            {/* </form> */}
+            <input className="fileInput" 
+                    type="file" 
+                    onChange={(e)=>this._handleImageChange(e)} />
           </div>
         )
       }

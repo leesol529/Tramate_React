@@ -73,7 +73,23 @@ export default class TravlerLogin extends React.Component{
 			email: this.state.email,
 			img: this.state.img
 		}).then((responseData)=>{
-            console.log("traveler 가입정보 insert success");
+			console.log("traveler 가입정보 insert success");
+			
+			this.setState({
+				name: "",
+				nat: "",
+				id: "",
+				pass: "",
+				mobile: "",
+				addr: "",
+				content: "",
+				img: "",
+				email: "",
+				filename: ""
+			});
+
+			document.getElementById("joinFrm").reset();
+
         }).catch((error)=>{
             console.log("traveler 가입정보 insert fail");
 		});
@@ -81,7 +97,7 @@ export default class TravlerLogin extends React.Component{
 
     render(){
         return(
-            <form className="super" onSubmit={this.onSubmit}>
+            <form className="super" onSubmit={this.onSubmit} id="joinFrm">
                 <table className="traveler_table">
 					<caption> Join as a Traveler: Tramate와 함께 여행을 떠나보세요 </caption>
 					<tbody>

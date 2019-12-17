@@ -16,8 +16,8 @@ export default class GuideLogin extends React.Component{
             addr: '',
             content: '',
             img: '',
-            fare: 0,
-            pictures: []
+			fare: 0,
+			continent: ''
 		};
 		this.onKeyChange = this.onKeyChange.bind(this);
 		this.onImageUpload = this.onImageUpload.bind(this);
@@ -26,8 +26,8 @@ export default class GuideLogin extends React.Component{
 
 	onKeyChange=(e)=>{
         this.setState({
-            [e.target.name]: e.target.value
-        });
+			[e.target.name]: e.target.value
+		});
     }
 
     onImageUpload=(e)=>{
@@ -74,18 +74,36 @@ export default class GuideLogin extends React.Component{
 			email: this.state.email,
             img: this.state.img,
             fare: this.state.fare,
-            spot: this.state.spot
+			spot: this.state.spot,
+			continent: this.state.continent
 		}).then((responseData)=>{
-            console.log("guide 가입정보 insert success");
+			console.log("guide 가입정보 insert success");
+			
+			this.setState({
+				id: '',
+				pass: '',
+				name: '',
+				nat: '',
+				spot: '',
+				mobile: '',
+				email: '',
+				addr: '',
+				content: '',
+				img: '',
+				fare: 0,
+				continent: ''
+			});
+
+			document.getElementById("joinFrm").reset();
         }).catch((error)=>{
             console.log("guide 가입정보 insert fail");
 		});
-    }
-
+	}
+	
     render(){
         return(
-            <form className="super" onSubmit={this.onSubmit}>
-                <table className="traveler_table">
+            <form className="super" onSubmit={this.onSubmit} id="joinFrm">
+                <table className="guide_table">
 					<caption> Join as a Guide: Tramate의 여행을 인도해 주세요 </caption>
 					<tbody>
 						<tr>
@@ -152,7 +170,8 @@ export default class GuideLogin extends React.Component{
 						</tr>
                         <tr>
 							<td colSpan="2">
-								<select name="continent" className="join_input2" defaultValue>
+								<select name="continent" className="join_input2" 
+										defaultValue="" onChange={this.onKeyChange}>
                                     <option value="" disabled> Please select the continent </option>
                                     <option value="asia"> Asia </option>
                                     <option value="europe"> Europe </option>

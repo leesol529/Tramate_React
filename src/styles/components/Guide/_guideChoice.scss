@@ -1,0 +1,24 @@
+.gchoice_table{
+    width: 500px;
+    margin: 0 auto;
+    color: $basic;
+    hr{
+        border-top: $basic;
+    }
+    td{
+        .gchoice_flexbox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       img{
+           width: 25px;
+           height: 25px;
+           cursor: pointer;
+       }
+    }
+
+    .form_div{
+        
+    }
+}
