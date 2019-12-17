@@ -111,6 +111,13 @@ export default class GuideChoice extends React.Component{
                                             onImageUpload={this.onImageUpload}/>)
         }
 
+
+        //폼이 1개 이상일 때만 submit 버튼 출력
+        // let btn;
+        // if(this.state.attractionNum>=1||this.state.activityNum>=1||this.state.restaurantNum>=1){
+            
+        // }
+
         return(
             <div className="super">
                 <form>
