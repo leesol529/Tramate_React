@@ -6,7 +6,6 @@ import ActivityForm from './ActivityForm';
 import RestaurantForm from './RestaurantForm';
 import axios from 'axios';
 
-
 export default class GuideChoice extends React.Component{
     
     constructor(props){
@@ -14,57 +13,19 @@ export default class GuideChoice extends React.Component{
         this.state={
             attractionNum: 0,
             activityNum: 0,
-            restaurantNum: 0,
-            attractionInfo: [],
-            activityInfo: [],
-            restaurantInfo: []
+            restaurantNum: 0
         }
         
-        this.onImageUpload = this.onImageUpload.bind(this);
+        //this.onImageUpload = this.onImageUpload.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onImageUpload=(e)=>{
-        //톰캣 서버에 이미지 업로드하기 
-		const uploadFile = e.target.files[0];
-        const img = e.target.files[0].name;
-        console.log(uploadFile);
-        console.log(img);
-
-        //state의 img 변경, img: img 같을 때 생략 가능 
-        this.setState({
-            img
-        });
-
-        //아래의 data을 받는 쪽에서 multipart로 받음
-        let data = new FormData();
-        data.append("uploadFile", uploadFile);
-		
-        axios({
-            method: "post",
-            url: "http://localhost:9000/guide/choice/attraction_img",
-            data: data,
-			headers: {"Content-Type": "multipart/form-data"}
-        }).then((responseData)=>{
-            console.log(responseData.data);
-        }).catch((error)=>{
-            console.log("이미지 업로드 중 오류");
-        });
+    componentWillMount(){
+        console.log(localStorage.getItem("loginok"));
     }
 
     onSubmit=(e)=>{
 		e.preventDefault();
-        
-        //id에 해당하는 gnum 가져오기 
-        const gnumurl = "http://localhost:9000/guide/choice/gnum";
-        const myid = localStorage.getItem("loginok");
-        let gnum;
-        axios.post(gnumurl, {myid: myid}).then((res)=>{
-            gnum = res.data;
-        }).then((err)=>{
-            console.log("gnum 가져오기 실패");
-        });
-        
 
 		//db에 traveler 가입정보 저장 
         var url = "http://localhost:9000/guide/choice/attraction_form";
@@ -72,7 +33,7 @@ export default class GuideChoice extends React.Component{
 			name: this.state.name,
             img: this.state.img,
             content: this.state.content,
-            gnum: gnum
+            //gnum: gnum
 		}).then((responseData)=>{
 			console.log("attraction form insert success");
 			
@@ -90,6 +51,12 @@ export default class GuideChoice extends React.Component{
 		});
     }
 
+    handleInput=(e)=>{
+        this.setState({
+            [e.target.name]: e.target.value.concat
+        })
+    }
+
     render(){
         //state내의 num만큼 Form 출력되도록 for문 작성 후 아래 div에서 출력 
         let attraction = [];
@@ -97,25 +64,22 @@ export default class GuideChoice extends React.Component{
         let restaurant = [];
         for(let i=0; i<this.state.attractionNum; i++){
             attraction.push(<AttractionForm key={i}
-                                            onKeyChange={this.onKeyChange}
-                                            onImageUpload={this.onImageUpload}/>)
+                                            onKeyChange={this.onKeyChange}/>)
         }
         for(let i=0; i<this.state.activityNum; i++){
             activity.push(<ActivityForm key={i+100}
-                                        onKeyChange={this.onKeyChange}
-                                        onImageUpload={this.onImageUpload}/>)
+                                        onKeyChange={this.onKeyChange}/>)
         }
         for(let i=0; i<this.state.restaurantNum; i++){
             restaurant.push(<RestaurantForm key={i+200}
-                                            onKeyChange={this.onKeyChange}
-                                            onImageUpload={this.onImageUpload}/>)
+                                            onKeyChange={this.onKeyChange}/>)
         }
 
 
         //폼이 1개 이상일 때만 submit 버튼 출력
         let btn;
         if(this.state.attractionNum>=1||this.state.activityNum>=1||this.state.restaurantNum>=1){
-            
+            btn = <button type="submit" className="gchoice_submit_btn"> Submit </button>
         }
 
         return(
@@ -212,7 +176,7 @@ export default class GuideChoice extends React.Component{
                     <div className="form_div">{attraction}</div>
                     <div className="form_div">{activity}</div>
                     <div className="form_div">{restaurant}</div>
-                    <div className="gchoice_submit_btn"></div>
+                    <div className="btn_div">{btn}</div>
                 </form>
             </div>
         );
