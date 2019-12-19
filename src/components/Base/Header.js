@@ -4,9 +4,6 @@ import ReactSearchBox from 'react-search-box'
 
 export default class Header extends React.Component{
     render(){
-
-        console.log(localStorage.getItem("loginok"));
-
         return(
             <div className="header">
                 <div className="header_left">

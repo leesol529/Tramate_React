@@ -1,6 +1,8 @@
 import React from 'react'; 
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
+import store from '../../store/store';
+import {addAttraction} from '../../actions/action';
 
 export default class AttractionForm extends React.Component{
 
@@ -9,18 +11,50 @@ export default class AttractionForm extends React.Component{
         this.state = {
             name: "",
             img: "",
-            content: ""
+            content: "",
+            gnum: 1
         }
-
-        this.onKeyChange = this.onKeyChange.bind(this);
-        this.onImageUpload = this.onImageUpload.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
-    
+
+    //id에 해당하는 gnum 가져와 state에 넣어줄 method
+    onMount = () => {
+        const id = localStorage.getItem("loginok");
+        let gnum;
+        var data= new FormData();
+        data.append("id", id)
+        
+        axios({
+            method: "post",
+            url: "http://localhost:9000/guide/choice/gnum",
+            data: data
+        }).then((responseData)=>{
+            gnum = responseData.data;
+            this.setState({
+                gnum
+            });
+            console.log(gnum);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+
+    componentWillMount(){
+        this.onMount();
+    }
+
     onKeyChange=(e)=>{
         this.setState({
             [e.target.name]: e.target.value
         });
+    }
+
+    handleInsert=()=>{
+        store.dispatch(addAttraction({
+            name: this.state.name, 
+            content: this.state.content,
+            img: this.state.img,
+            gnum: this.state.gnum
+        }));
     }
 
     onImageUpload=(e)=>{
@@ -51,69 +85,38 @@ export default class AttractionForm extends React.Component{
         });
     }
 
-    onSubmit=(e)=>{
-		e.preventDefault();
-		
-		//db에 traveler 가입정보 저장 
-        var url = "http://localhost:9000/guide/choice/attraction_form";
-        axios.post(url, {
-			name: this.state.name,
-            img: this.state.img,
-            content: this.state.content
-		}).then((responseData)=>{
-			console.log("traveler 가입정보 insert success");
-			
-			this.setState({
-				name: "",
-				nat: "",
-				id: "",
-				pass: "",
-				mobile: "",
-				addr: "",
-				content: "",
-				img: "",
-				email: "",
-				filename: ""
-			});
-
-			document.getElementById("joinFrm").reset();
-
-        }).catch((error)=>{
-            console.log("traveler 가입정보 insert fail");
-		});
-    }
-
     render(){
         return(
-            <form>
-                <table className="gchoice_form_table">
-                    <thead>
-                        <tr>
-                            <th>Attraction Form</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <ImageUpload onImageUpload={this.onImageUpload}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="name" placeholder="name of attraction"
-                                       onChange={this.onKeyChange}
-                                       className="gchoice_input"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <textarea name="content" placeholder="Please describe the attraction"
-                                          onChange={this.onKeyChange}/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <table className="gchoice_form_table" id="choiceFrm">
+                <thead>
+                    <tr>
+                        <th>
+                            <button type="button" onClick={this.handleInsert}> + </button>
+                            Attraction Form
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <ImageUpload onImageUpload={this.onImageUpload}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="name" placeholder="name of attraction"
+                                   onChange={this.onKeyChange}
+                                   className="gchoice_input"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name="content" placeholder="Please describe the attraction"
+                                      onChange={this.onKeyChange}/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         );
     }
 }

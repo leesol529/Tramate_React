@@ -18,7 +18,23 @@
        }
     }
 }
+
 .form_div{
     display: grid;
     grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
+}
+
+.btn_div{
+    display: flex;
+}
+.gchoice_submit_btn{
+    width: 100px;
+    height: 40px;
+    font-size: 1.7rem;
+    color: white;
+    border: none;
+    background-color: $point;
+    border-radius: 5px;
+    text-align: center;
+    margin: 30px auto;
 }
