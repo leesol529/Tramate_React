@@ -1,15 +1,15 @@
 const addAttraction = ({
+    gnum = 0,
     name = "",
-    content = "",
     img = "",
-    gnum = 0
+    content = ""
 }={})=>({
     type: "ADD_ATTRACTION",
     attraction: {
+        gnum,
         name,
-        content,
         img,
-        gnum
+        content
     }
 });
 

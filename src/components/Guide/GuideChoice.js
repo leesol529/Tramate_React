@@ -28,9 +28,6 @@ export default class GuideChoice extends React.Component{
 
     onSubmit=(e)=>{
 		e.preventDefault();
-
-		//db에 traveler 가입정보 저장 
-        const url = "http://localhost:9000/guide/choice/attraction_input";
         
         //보내줄 attraction data 생성 
         let attdata = new FormData();
@@ -41,7 +38,11 @@ export default class GuideChoice extends React.Component{
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/attraction_input",
-            data: attdata
+            data: attdata,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         }).then((responseData)=>{
 			console.log("attraction form insert success");
 			document.getElementById("choiceFrm").reset();
@@ -83,7 +84,7 @@ export default class GuideChoice extends React.Component{
 
         return(
             <div className="super">
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <table className="gchoice_table">
                         <thead>
                             <tr>
