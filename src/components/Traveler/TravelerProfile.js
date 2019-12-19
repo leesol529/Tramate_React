@@ -17,7 +17,7 @@ export default class TravlerProfile extends React.Component{
 
    data=()=>{
         //spring 에서 json 결과 나오는 url
-        var url="http://localhost:9000/traveler/select?num=1";
+        var url="http://localhost:9000/controller/traveler/select?num=2";
 
         Axios.get(url).then((responseData)=>{
             //spring 서버로부터 받은 데이터로 guestData 수정

@@ -14,7 +14,7 @@ h2{
  
 }
 
-.introduce-traveler{
+.introducebox{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -26,17 +26,17 @@ h2{
 
 }
 
-.toggle-traveler{
+.toggle2{
     line-height: 1.2em;
 }
 
-.detailBack:hover{
+.detailBack-traveler:hover{
     cursor: pointer;
     font-weight: bold;
 }
 
 
-hr{
+.line-travelerIntroduce{
     border:2px solid gray;
     width:100px;
     opacity: 0.5;
