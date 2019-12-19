@@ -16,19 +16,25 @@ export default class AttractionForm extends React.Component{
         }
     }
 
+    //id에 해당하는 gnum 가져와 state에 넣어줄 method
     onMount = () => {
-        //id에 해당하는 gnum 가져오기 
-        const gnumurl = "http://localhost:9000/guide/choice/gnum";
         const id = localStorage.getItem("loginok");
         let gnum;
-        axios.post(gnumurl, {id: id}).then((res)=>{
-            gnum = res.data;
+        var data= new FormData();
+        data.append("id", id)
+        
+        axios({
+            method: "post",
+            url: "http://localhost:9000/guide/choice/gnum",
+            data: data
+        }).then((responseData)=>{
+            gnum = responseData.data;
             this.setState({
                 gnum
             });
             console.log(gnum);
-        }).then((err)=>{
-            console.log("gnum 가져오기 실패");
+        }).catch((error)=>{
+            console.log(error);
         });
     }
 
@@ -49,7 +55,14 @@ export default class AttractionForm extends React.Component{
             img: this.state.img,
             gnum: this.state.gnum
         }));
-        console.log(store.getState());        
+        console.log(store.getState().attractions);  
+        
+        let data = new FormData();
+        let attractions = store.getState().attractions
+        for(let i=0; i<attractions.length; i++){
+            data.append("attractions", attractions[i]);
+        }
+        console.log(data.getAll("attractions").type);
     }
 
     onImageUpload=(e)=>{

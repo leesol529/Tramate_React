@@ -4,6 +4,7 @@ import plus from '../../img/plus.png';
 import AttractionForm from './AttractionForm';
 import ActivityForm from './ActivityForm';
 import RestaurantForm from './RestaurantForm';
+import store from '../../store/store';
 import axios from 'axios';
 
 export default class GuideChoice extends React.Component{
@@ -22,18 +23,18 @@ export default class GuideChoice extends React.Component{
 
     componentWillMount(){
         console.log(localStorage.getItem("loginok"));
+
     }
 
     onSubmit=(e)=>{
 		e.preventDefault();
 
 		//db에 traveler 가입정보 저장 
-        var url = "http://localhost:9000/guide/choice/attraction_form";
+        const url = "http://localhost:9000/guide/choice/attraction_form";
+        const data = new FormData();
+        data.append(store.getState().attractionChoice);
         axios.post(url, {
-			name: this.state.name,
-            img: this.state.img,
-            content: this.state.content,
-            //gnum: gnum
+			
 		}).then((responseData)=>{
 			console.log("attraction form insert success");
 			
