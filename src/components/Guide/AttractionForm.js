@@ -55,14 +55,6 @@ export default class AttractionForm extends React.Component{
             img: this.state.img,
             gnum: this.state.gnum
         }));
-        console.log(store.getState().attractions);  
-        
-        let data = new FormData();
-        let attractions = store.getState().attractions
-        for(let i=0; i<attractions.length; i++){
-            data.append("attractions", attractions[i]);
-        }
-        console.log(data.getAll("attractions").type);
     }
 
     onImageUpload=(e)=>{

@@ -30,23 +30,21 @@ export default class GuideChoice extends React.Component{
 		e.preventDefault();
 
 		//db에 traveler 가입정보 저장 
-        const url = "http://localhost:9000/guide/choice/attraction_form";
-        const data = new FormData();
-        data.append(store.getState().attractionChoice);
-        axios.post(url, {
-			
-		}).then((responseData)=>{
+        const url = "http://localhost:9000/guide/choice/attraction_input";
+        
+        //보내줄 attraction data 생성 
+        let attdata = new FormData();
+        attdata.append('data', JSON.stringify(store.getState().attractions));
+
+        console.log(attdata.get('data'));
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/guide/choice/attraction_input",
+            data: attdata
+        }).then((responseData)=>{
 			console.log("attraction form insert success");
-			
-			this.setState({
-				name: "",
-                img: "",
-                content: "",
-                gnum: this.state.gnum
-			});
-
 			document.getElementById("choiceFrm").reset();
-
         }).catch((error)=>{
             console.log("attraction form insert fail");
 		});
