@@ -21,34 +21,32 @@ export default class GuideChoice extends React.Component{
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    componentWillMount(){
-        console.log(localStorage.getItem("loginok"));
-
-    }
-
     onSubmit=(e)=>{
 		e.preventDefault();
-        
-        //보내줄 attraction data 생성 
-        let attdata = new FormData();
-        attdata.append('data', JSON.stringify(store.getState().attractions));
 
-        console.log(attdata.get('data'));
+        axios.post(
+            "http://localhost:9000/guide/choice/attraction_input", 
+            store.getState().attractions).then((responseData) => {
+            console.log('attraction insert 성공');
+        }).catch((error) => {
+            console.log('attraction insert 실패');
+        });
 
-        axios({
-            method: "post",
-            url: "http://localhost:9000/guide/choice/attraction_input",
-            data: attdata,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then((responseData)=>{
-			console.log("attraction form insert success");
-			document.getElementById("choiceFrm").reset();
-        }).catch((error)=>{
-            console.log("attraction form insert fail");
-		});
+        axios.post(
+            "http://localhost:9000/guide/choice/activity_input", 
+            store.getState().activities).then((responseData) => {
+            console.log('activity insert 성공');
+        }).catch((error) => {
+            console.log('activity insert 실패');
+        });
+
+        axios.post(
+            "http://localhost:9000/guide/choice/restaurant_input", 
+            store.getState().restaurants).then((responseData) => {
+            console.log('restaurant insert 성공');
+        }).catch((error) => {
+            console.log('restaurant insert 실패');
+        });
     }
 
     handleInput=(e)=>{

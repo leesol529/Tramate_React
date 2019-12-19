@@ -14,36 +14,36 @@ const addAttraction = ({
 });
 
 const addActivity = ({
+    gnum = 0,
     type = "",
-    price="",
-    content = "",
     img = "",
-    gnum = 0
+    price="",
+    content = ""
 }={})=>({
     type: "ADD_ACTIVITY",
     activity: {
+        gnum,
         type,
-        price,
-        content,
         img,
-        gnum
+        price,
+        content
     }
 });
 
 const addRestaurant = ({
+    gnum = 0,
     type = "",
-    price = "",
-    content = "",
     img = "",
-    gnum = 0
+    price="",
+    content = ""
 }={})=>({
     type: "ADD_RESTAURANT",
     restaurant: {
+        gnum,
         type,
-        price,
-        content,
         img,
-        gnum
+        price,
+        content
     }
 });
 

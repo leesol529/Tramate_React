@@ -17,6 +17,32 @@ export default class ActivityForm extends React.Component{
         }
     }
 
+    //id에 해당하는 gnum 가져와 state에 넣어줄 method
+    onMount = () => {
+        const id = localStorage.getItem("loginok");
+        let gnum;
+        var data= new FormData();
+        data.append("id", id)
+        
+        axios({
+            method: "post",
+            url: "http://localhost:9000/guide/choice/gnum",
+            data: data
+        }).then((responseData)=>{
+            gnum = responseData.data;
+            this.setState({
+                gnum
+            });
+            console.log(gnum);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+
+    componentWillMount(){
+        this.onMount();
+    }
+
     onKeyChange=(e)=>{
         this.setState({
             [e.target.name]: e.target.value
@@ -52,7 +78,7 @@ export default class ActivityForm extends React.Component{
 		
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/choice/attraction_img",
+            url: "http://localhost:9000/guide/choice/activity_img",
             data: data,
 			headers: {"Content-Type": "multipart/form-data"}
         }).then((responseData)=>{
