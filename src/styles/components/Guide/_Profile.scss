@@ -1,0 +1,131 @@
+.boss-guideprofile{
+    //border: 1px solid gray;
+    height: 200px;
+    margin-left: 450px;
+    margin-right: 450px;
+    position: relative;
+}
+
+.main-photo{
+    position: absolute;
+    width:200px;
+    height:199px;
+    //border: 1px solid black;
+    border-radius: 100%;
+}
+
+.guide-profile-image{
+    position: absolute;
+    width:200px;
+    height:199px;
+    //border: 1px solid black;
+    border-radius: 100px;
+}
+
+.vertical-line1{
+    border-left: 2px solid gray;
+    height: 200px;
+    position: absolute;
+    left: 233px;
+    top: 0;
+    opacity: 0.2;
+}
+
+
+.review{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    width: 50px;
+
+}
+
+.wrap1-count-review{
+    //border: 1px solid gray;
+    position: relative;
+    width: 460px;
+    height: 100px;
+    
+}
+
+.vertical-line2{
+    border-left: 2px solid gray;
+    height: 200px;
+    position: absolute;
+    left: 680px;
+    top: 0;
+    opacity: 0.2;
+    
+}
+
+.wrap1{
+    //border: 1px solid gray;
+    position: relative;
+    left: 240px;
+    width: 460px;
+    height: 200px;
+}
+
+.review-count{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    width: 100px;
+    opacity: 0.6;
+}
+
+.authentification{
+    position: absolute;
+    width: 100px;
+    top:10px;
+    left: 100px;
+    opacity: 0.6;
+}
+
+.wrap1-checked-af{
+    position: absolute;
+    width:460px;
+   // border: 1px solid gray;
+    height: 100px;
+}
+
+.af-info ul li{
+    list-style: none;
+    opacity: 0.6;
+}
+
+.af-info{
+    position: absolute;
+    // border: 1px solid black;
+    top: 0;
+    left: 700px;
+    width: 303px;
+    margin-right: 700px;
+    height: 200px;
+}
+
+.af-info2{
+    text-align: center;
+}
+
+.check{
+    height:42px;
+}
+
+.check-boss{
+    position: absolute;
+    left: 40px;
+    height: 76px;
+}
+
+.uncheck{
+    height:42px;
+ 
+}
+
+
+.profile-flexbox{
+    display: flex;
+    align-items: center;
+    line-height: 1.6;
+}

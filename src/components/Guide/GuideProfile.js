@@ -1,12 +1,17 @@
 import React from 'react';
-import StarRate from '../Util/StarRate';
-import GuideRate from './GuideRate';
+import Profile from './Profile';
+import Introduce from './Introduce';
+import Accommodation from './Accommodation';
+import Review from './Review';
 
-export default class GuideProfile extends React.Component {
-    render() {
-        return (
+export default class GuideProfile extends React.Component{
+    render(){
+        return(
             <div>
-                <GuideRate />
+                <Profile/>
+                <Introduce/>
+                <Accommodation/>
+                <Review/>
             </div>
         );
     }
