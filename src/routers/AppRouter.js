@@ -23,10 +23,10 @@ const AppRouter = () => (
   <BrowserRouter>
     <div>
       <Header />
-      <hr className="divider"/>
+      <hr className="divider" />
       <Switch>
         <Route path="/" component={Main} exact={true} />
-        <Route path="/result" component={Result} />
+        <Route path="/result/:spot" component={Result} />
         <Route path="/guide/profile" component={GuideProfile} />
         <Route path="/asia" component={Asia} />
         <Route path="/africa" component={Africa} />
