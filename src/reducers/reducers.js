@@ -47,7 +47,9 @@ const r_attractionReducer = (state = r_attractionReducerDefaultState, action) =>
             return [
                 ...state,
                 action.attraction
-            ]
+            ];
+        default:
+            return state;
     }
 }
 
@@ -58,6 +60,8 @@ const r_activityReducer = (state = r_activityReducerDefaultState, action) => {
                 ...state,
                 action.activity
             ]
+        default:
+            return state;
     }
 }
 
@@ -68,6 +72,8 @@ const r_restaurantReducer = (state = r_restaurantReducerDefaultState, action) =>
                 ...state,
                 action.restaurant
             ]
+        default:
+            return state;
     }
 }
 
