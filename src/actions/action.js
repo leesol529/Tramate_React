@@ -96,4 +96,37 @@ const r_addRestaurant = ({
     }
 });
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant };
+const r_addGuide = ({
+    num = 0,
+    name = '',
+    nat = '',
+    spot = '',
+    mobile = '',
+    addr = '',
+    content = '',
+    img = '',
+    fare = 0,
+    id = '',
+    pass = '',
+    email = '',
+    continent = ''
+} = {}) => ({
+    type: "ADD_R_GUIDE",
+    guide: {
+        num,
+        name,
+        nat,
+        spot,
+        mobile,
+        addr,
+        content,
+        img,
+        fare,
+        id,
+        pass,
+        email,
+        continent
+    }
+})
+
+export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide };

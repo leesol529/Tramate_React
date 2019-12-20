@@ -4,6 +4,7 @@ const restaurantRedecerDefaultState = [];
 const r_attractionReducerDefaultState = [];
 const r_activityReducerDefaultState = [];
 const r_restaurantReducerDefaultState = [];
+const r_guideReducerDefaultState = [];
 
 const attractionReducer = (state = attractionReducerDefaultState, action) => {
     switch (action.type) {
@@ -77,4 +78,16 @@ const r_restaurantReducer = (state = r_restaurantReducerDefaultState, action) =>
     }
 }
 
-export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer };
+const r_guideReducer = (state = r_guideReducerDefaultState, action) => {
+    switch (action.type) {
+        case 'ADD_R_GUIDE':
+            return [
+                ...state,
+                action.guide
+            ]
+        default:
+            return state;
+    }
+}
+
+export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer };

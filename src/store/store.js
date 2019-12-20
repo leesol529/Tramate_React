@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer } from '../reducers/reducers';
+import { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer } from '../reducers/reducers';
 
 const store = createStore(
     combineReducers({
@@ -8,7 +8,8 @@ const store = createStore(
         restaurants: restaurantReducer,
         r_attractions: r_attractionReducer,
         r_activities: r_activityReducer,
-        r_restaurants: r_restaurantReducer
+        r_restaurants: r_restaurantReducer,
+        r_guides: r_guideReducer
     }));
 
 export default store;

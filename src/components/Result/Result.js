@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import store from '../../store/store';
-import { r_addAttraction, r_addActivity, r_addRestaurant } from '../../actions/action';
+import { r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide } from '../../actions/action';
 
 export default class Result extends React.Component {
     constructor(props) {
@@ -16,8 +16,6 @@ export default class Result extends React.Component {
     }
 
     handleButtonClick = () => {
-
-        store.dispatch(r_addAttraction({ type: 'hallo' }));
         console.log(store.getState());
     }
 
@@ -37,7 +35,9 @@ export default class Result extends React.Component {
             url: "http://localhost:9000/guideRandomRelatedSpot",
             data: data
         }).then((responseData) => {
-            console.log(responseData.data);
+            responseData.data.forEach((guide) => {
+                store.dispatch(r_addGuide(guide));
+            })
         }).catch((error) => {
             console.log(error);
         });
@@ -48,11 +48,38 @@ export default class Result extends React.Component {
             url: "http://localhost:9000/spotRandomRelatedSpot",
             data: data
         }).then((responseData) => {
-            console.log(responseData.data);
+            responseData.data.forEach((attraction) => {
+                store.dispatch(r_addAttraction(attraction));
+            })
         }).catch((error) => {
             console.log(error);
         });
 
+        //spot에 관련한 Activity 5개 랜덤으로 불러오기
+        axios({
+            method: "post",
+            url: "http://localhost:9000/activityRandomRelatedSpot",
+            data: data
+        }).then((responseData) => {
+            responseData.data.forEach((activity) => {
+                store.dispatch(r_addActivity(activity));
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        //spot에 관련한 Restaurant 5개 랜덤으로 불러오기
+        axios({
+            method: "post",
+            url: "http://localhost:9000/restaurantRandomRelatedSpot",
+            data: data
+        }).then((responseData) => {
+            responseData.data.forEach((restaurant) => {
+                store.dispatch(r_addRestaurant(restaurant));
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
 
     }
 
