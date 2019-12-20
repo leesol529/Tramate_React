@@ -1,9 +1,12 @@
 const attractionReducerDefaultState = [];
 const activityReducerDefaultState = [];
 const restaurantRedecerDefaultState = [];
+const r_attractionReducerDefaultState = [];
+const r_activityReducerDefaultState = [];
+const r_restaurantReducerDefaultState = [];
 
-const attractionReducer = (state=attractionReducerDefaultState, action)=>{
-    switch(action.type){
+const attractionReducer = (state = attractionReducerDefaultState, action) => {
+    switch (action.type) {
         case 'ADD_ATTRACTION':
             return [
                 ...state,
@@ -14,10 +17,10 @@ const attractionReducer = (state=attractionReducerDefaultState, action)=>{
     }
 };
 
-const activityReducer = (state=activityReducerDefaultState, action)=>{
-    switch(action.type){
+const activityReducer = (state = activityReducerDefaultState, action) => {
+    switch (action.type) {
         case 'ADD_ACTIVITY':
-            return[
+            return [
                 ...state,
                 action.activity
             ];
@@ -26,8 +29,8 @@ const activityReducer = (state=activityReducerDefaultState, action)=>{
     };
 }
 
-const restaurantReducer = (state=restaurantRedecerDefaultState, action)=>{
-    switch(action.type){
+const restaurantReducer = (state = restaurantRedecerDefaultState, action) => {
+    switch (action.type) {
         case 'ADD_RESTAURANT':
             return [
                 ...state,
@@ -38,4 +41,34 @@ const restaurantReducer = (state=restaurantRedecerDefaultState, action)=>{
     }
 }
 
-export {attractionReducer, activityReducer, restaurantReducer};
+const r_attractionReducer = (state = r_attractionReducerDefaultState, action) => {
+    switch (action.type) {
+        case 'ADD_ATTRACTION':
+            return [
+                ...state,
+                action.attraction
+            ]
+    }
+}
+
+const r_activityReducer = (state = r_activityReducerDefaultState, action) => {
+    switch (action.type) {
+        case 'ADD_ACTIVITY':
+            return [
+                ...state,
+                action.activity
+            ]
+    }
+}
+
+const r_restaurantReducer = (state = r_restaurantReducerDefaultState, action) => {
+    switch (action.type) {
+        case 'ADD_RESTAURANT':
+            return [
+                ...state,
+                action.restaurant
+            ]
+    }
+}
+
+export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer };

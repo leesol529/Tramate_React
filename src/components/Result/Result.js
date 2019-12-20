@@ -5,15 +5,17 @@ export default class Result extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            spot: '다낭',
             guides: '',
             imgSource: '',
-            imgSource2: []
+            imgSource2: [],
+            lookAround: ['Host', 'Attraction', 'Activity', 'Restaurant']
         }
     }
 
     forDidMount = () => {
         var data = new FormData();
-        data.append("spot", '다낭');
+        data.append("spot", this.state.spot);
 
         axios({
             method: "post",
@@ -58,7 +60,7 @@ export default class Result extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="container_90">
 
             </div>
         );
