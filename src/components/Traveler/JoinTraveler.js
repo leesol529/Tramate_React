@@ -92,6 +92,8 @@ export default class TravlerLogin extends React.Component{
         }).catch((error)=>{
             console.log("traveler 가입정보 insert fail");
 		});
+
+		this.props.history.push("/login");
     }
 
     render(){

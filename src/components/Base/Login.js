@@ -13,12 +13,19 @@ export default class Login extends React.Component {
 
         e.preventDefault();
         var url = "http://localhost:9000/user/login?id=" + this.state.id + "&pass=" + this.state.pass;
-        axios.get(url).then((responseData) => {
-            if (responseData.data == 1) {
-                alert("로그인 성공");
+        axios.post(url).then((responseData) => {
+            if (responseData.data === 1) {
+                alert("login as Guide");
                 localStorage.setItem("loginok", this.state.id);
+                localStorage.setItem("user", "guide");
                 this.props.history.push("/");
-            } else {
+            } else if (responseData.data === 2){
+                alert("traveler로 로그인");
+                localStorage.setItem("loginok", this.state.id);
+                localStorage.setItem("user", "traveler");
+                this.props.history.push("/");
+            } 
+            else {
                 alert("아이디와 비밀번호가 맞지 않습니다.");
                 this.setState({
                     id: '',

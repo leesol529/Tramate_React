@@ -12,7 +12,6 @@ export default class Main extends React.Component{
     render(){
         return(
             <div>
-                <hr className="divider"/>
                 <div className="super">
                     <h3> Tramate 대륙별로 둘러보기 </h3>
                     <MainContent src={asia} country="아시아" to="asia"/>
@@ -23,7 +22,6 @@ export default class Main extends React.Component{
                     <MainContent src={australia} country="호주" to="australia"/>
                     <MainContent src={antarctica} country="남극" to="antarctica"/>
                 </div>
-
             </div>
         );
     }

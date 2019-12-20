@@ -89,7 +89,7 @@ export default class GuideChoice extends React.Component{
                                 <th colSpan="2"> Add guide options </th>
                             </tr>
                             <tr>
-                                <td colSpan="2"> <hr/> </td>
+                                <td colSpan="2"> <hr className="gchoice_hr"/> </td>
                             </tr>
                         </thead>
                         <tbody>
@@ -166,7 +166,7 @@ export default class GuideChoice extends React.Component{
                                 </td>
                             </tr>
                             <tr>
-                                <td colSpan="2"> <hr/> </td>
+                                <td colSpan="2"> <hr className="gchoice_hr"/> </td>
                             </tr>
                         </tbody>
                     </table>

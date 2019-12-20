@@ -98,6 +98,8 @@ export default class GuideLogin extends React.Component{
         }).catch((error)=>{
             console.log("guide 가입정보 insert fail");
 		});
+
+		this.props.history.push("/login");
 	}
 	
     render(){
@@ -197,7 +199,7 @@ export default class GuideLogin extends React.Component{
 							<td colSpan="2">
 								<input type="text" name="fare"
 									   required="required"
-									   placeholder="Guide price per person"
+									   placeholder="Guide price per person as in USD"
 									   //pattern="[0-9]{11}"
 									   className="join_input2"
 									   onChange={this.onKeyChange}/>
