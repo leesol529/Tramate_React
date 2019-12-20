@@ -43,7 +43,7 @@ const restaurantReducer = (state = restaurantRedecerDefaultState, action) => {
 
 const r_attractionReducer = (state = r_attractionReducerDefaultState, action) => {
     switch (action.type) {
-        case 'ADD_ATTRACTION':
+        case 'ADD_R_ATTRACTION':
             return [
                 ...state,
                 action.attraction
@@ -55,7 +55,7 @@ const r_attractionReducer = (state = r_attractionReducerDefaultState, action) =>
 
 const r_activityReducer = (state = r_activityReducerDefaultState, action) => {
     switch (action.type) {
-        case 'ADD_ACTIVITY':
+        case 'ADD_R_ACTIVITY':
             return [
                 ...state,
                 action.activity
@@ -67,7 +67,7 @@ const r_activityReducer = (state = r_activityReducerDefaultState, action) => {
 
 const r_restaurantReducer = (state = r_restaurantReducerDefaultState, action) => {
     switch (action.type) {
-        case 'ADD_RESTAURANT':
+        case 'ADD_R_RESTAURANT':
             return [
                 ...state,
                 action.restaurant

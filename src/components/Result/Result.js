@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import store from '../../store/store';
+import { r_addAttraction, r_addActivity, r_addRestaurant } from '../../actions/action';
 
 export default class Result extends React.Component {
     constructor(props) {
@@ -11,6 +13,12 @@ export default class Result extends React.Component {
             imgSource2: [],
             lookAround: ['Host', 'Attraction', 'Activity', 'Restaurant']
         }
+    }
+
+    handleButtonClick = () => {
+
+        store.dispatch(r_addAttraction({ type: 'hallo' }));
+        console.log(store.getState());
     }
 
     forDidMount = () => {
@@ -61,7 +69,7 @@ export default class Result extends React.Component {
     render() {
         return (
             <div className="container_90">
-
+                <button onClick={this.handleButtonClick}>현재 store 정보 보기</button>
             </div>
         );
     }

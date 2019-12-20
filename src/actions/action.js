@@ -53,7 +53,7 @@ const r_addAttraction = ({
     img = "",
     content = ""
 } = {}) => ({
-    type: "ADD_ATTRACTION",
+    type: "ADD_R_ATTRACTION",
     attraction: {
         gnum,
         name,
@@ -69,7 +69,7 @@ const r_addActivity = ({
     price = "",
     content = ""
 } = {}) => ({
-    type: "ADD_ACTIVITY",
+    type: "ADD_R_ACTIVITY",
     activity: {
         gnum,
         type,
@@ -86,7 +86,7 @@ const r_addRestaurant = ({
     price = "",
     content = ""
 } = {}) => ({
-    type: "ADD_RESTAURANT",
+    type: "ADD_R_RESTAURANT",
     restaurant: {
         gnum,
         type,
