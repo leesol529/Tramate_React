@@ -1,10 +1,10 @@
-import React from 'react'; 
+import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
 import store from '../../store/store';
-import {addAttraction} from '../../actions/action';
+import { addAttraction } from '../../actions/action';
 
-export default class AttractionForm extends React.Component{
+export default class AttractionForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,46 +20,47 @@ export default class AttractionForm extends React.Component{
     onMount = () => {
         const id = localStorage.getItem("loginok");
         let gnum;
-        var data= new FormData();
+        var data = new FormData();
         data.append("id", id)
-        
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/gnum",
             data: data
-        }).then((responseData)=>{
+        }).then((responseData) => {
             gnum = responseData.data;
+            console.log(gnum);
             this.setState({
                 gnum
             });
             console.log(gnum);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         });
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.onMount();
     }
 
-    onKeyChange=(e)=>{
+    onKeyChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
-    handleInsert=()=>{
+    handleInsert = () => {
         store.dispatch(addAttraction({
-            name: this.state.name, 
+            name: this.state.name,
             content: this.state.content,
             img: this.state.img,
             gnum: this.state.gnum
         }));
     }
 
-    onImageUpload=(e)=>{
+    onImageUpload = (e) => {
         //톰캣 서버에 이미지 업로드하기 
-		const uploadFile = e.target.files[0];
+        const uploadFile = e.target.files[0];
         const img = e.target.files[0].name;
         console.log(uploadFile);
         console.log(img);
@@ -72,21 +73,21 @@ export default class AttractionForm extends React.Component{
         //아래의 data을 받는 쪽에서 multipart로 받음
         let data = new FormData();
         data.append("uploadFile", uploadFile);
-		
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/attraction_img",
             data: data,
-			headers: {"Content-Type": "multipart/form-data"}
-        }).then((responseData)=>{
+            headers: { "Content-Type": "multipart/form-data" }
+        }).then((responseData) => {
             console.log(responseData.data);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log("이미지 업로드 중 오류");
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <table className="gchoice_form_table" id="choiceFrm">
                 <thead>
                     <tr>
@@ -99,20 +100,20 @@ export default class AttractionForm extends React.Component{
                 <tbody>
                     <tr>
                         <td>
-                            <ImageUpload onImageUpload={this.onImageUpload}/>
+                            <ImageUpload onImageUpload={this.onImageUpload} />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <input type="text" name="name" placeholder="name of attraction"
-                                   onChange={this.onKeyChange}
-                                   className="gchoice_input"/>
+                                onChange={this.onKeyChange}
+                                className="gchoice_input" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <textarea name="content" placeholder="Please describe the attraction"
-                                      onChange={this.onKeyChange}/>
+                                onChange={this.onKeyChange} />
                         </td>
                     </tr>
                 </tbody>
