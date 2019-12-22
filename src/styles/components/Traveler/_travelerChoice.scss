@@ -1,0 +1,74 @@
+.tChoice_super{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem auto 5rem auto;
+
+
+    .tChoice_title{
+        color: $basic;
+        margin-left: 10px;
+    }
+    .gPic_div{
+        display: block; 
+        overflow: hidden; 
+        height: 100px; 
+        width: 100px;
+        border-radius: 50px;
+
+        .tChoice_gPic{
+            width: 100px;
+            display: block; /* Otherwise it keeps some space around baseline */ 
+            min-width: 100%; /* Scale up to fill container width */ 
+            min-height: 100%; /* Scale up to fill container height */ 
+            -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
+        }
+    }
+    
+}
+
+hr{
+    border-top: $light;
+}
+
+.tChoice_table{
+    width: 300px;
+    margin: 20px auto;
+    color: $basic;
+
+    .tChoice_input{
+        width: 300px;
+        height: 30px;
+        line-height: 25px;
+        font-size: 1.7rem;
+        //border: 1px solid $light;
+        border-radius: 5px;
+        text-indent: 1rem;
+    }
+
+    .tChoice_center{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    //이미지 16:9 비율로 자르기 
+    .thumbnail-wrappper { 
+        width: 25%; 
+    }
+
+    .thumbnail { 
+        position: relative; 
+        padding-top: 56.25%; /* 16:9 ratio */ 
+        overflow: hidden; 
+    }
+
+    .tChoice_img{
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        max-width: 100%; 
+        height: auto;
+    }
+}
