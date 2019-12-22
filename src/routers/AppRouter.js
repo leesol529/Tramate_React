@@ -37,7 +37,7 @@ const AppRouter = () => (
         <Route path="/south_america" component={SouthAmerica} />
         <Route path="/guide/join" component={JoinGuide} />
         <Route path="/traveler/join" component={JoinTraveler} />
-        <Route path="/traveler/choice" component={TravelerChoice} />
+        <Route path="/traveler/choice/:num" component={TravelerChoice} />
         <Route path="/guide/choice" component={GuideChoice} />
         <Route path="/login" component={Login} />
         <Route path="/traveler/profile" component={TravelerProfile} />
