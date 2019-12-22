@@ -136,4 +136,4 @@ let mapDispatchToProps = (dispatch) => {
 
 Result = connect(mapStateToProps, mapDispatchToProps)(Result);
 
-export default Result;
+export default Result; 
