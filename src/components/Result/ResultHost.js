@@ -11,7 +11,7 @@ class ResultHost extends React.Component {
         }
     }
     handleTravelerChoice = () => {
-        this.props.history.push(`/travaler/choice/${this.props.guide.num}`);
+        this.props.history.push(`/traveler/choice/${this.props.guide.num}`);
     }
     componentWillMount = () => {
         axios
