@@ -14,7 +14,7 @@ export default class TravelerChoice extends React.Component {
             travelerChoice: [],
             // 나중에 tnum과 gnum은 dynamic하게 받아와야 하는 것임. 여기서는 일부러 입력해놓음.
             tnum: 1,
-            gnum: 11,
+            gnum: this.props.match.params.num,
             image: null,
             guide: ""
         }
@@ -83,6 +83,7 @@ export default class TravelerChoice extends React.Component {
     }
 
     render() {
+
         let attraction = [];
         let activity = [];
         let restaurant = [];
