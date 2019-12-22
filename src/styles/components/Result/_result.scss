@@ -1,1 +1,32 @@
 @import './lookaround';
+
+.result_flexbox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.result_component{
+    width:17%;
+    border:1px solid black;
+}
+
+.container_90{
+    width:90%;
+    margin:0 auto;
+}
+
+.result_textalign_center{
+    text-align: center;
+}
+
+.result_host_img{
+   max-width:150px;
+}
+
+.thumbnail-wrappper { width: 25%; }
+
+.thumbnail { position: relative; padding-top: 100%; /* 1:1 ratio */ overflow: hidden;
+    img { position: absolute; top: 0; left: 0; right: 0; bottom: 0; max-width: 100%; height: auto; 
+    cursor:pointer;}
+ }
+
