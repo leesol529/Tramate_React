@@ -35,8 +35,8 @@ class ResultHost extends React.Component {
         return (
             <div className="result_component">
                 <div className="result_textalign_center">
-                    <div class="thumbnail-wrapper">
-                        <div class="thumbnail">
+                    <div className="thumbnail-wrapper">
+                        <div className="thumbnail">
                             <img onClick={this.handleTravelerChoice} src={this.state.img} alt="" />
                         </div>
                     </div>
