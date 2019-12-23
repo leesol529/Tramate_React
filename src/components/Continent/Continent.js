@@ -9,7 +9,7 @@ export default class Continent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            continent: '',
+            continent: this.props.match.params.continent,
             guide: [],
             attraction: [],
             activity: [],
@@ -20,9 +20,10 @@ export default class Continent extends React.Component {
         console.log(this.state);
     }
     componentWillMount = () => {
+
         //Formdata 만들기
         var data = new FormData();
-        data.append('continent', 'europe');
+        data.append('continent', this.state.continent);
 
         //spot에 관련한 가이드 5명을 랜덤으로 불러오기
         axios({

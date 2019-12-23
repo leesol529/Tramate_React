@@ -42,7 +42,7 @@ const AppRouter = () => (
         <Route path="/guide/choice" component={GuideChoice} />
         <Route path="/login" component={Login} />
         <Route path="/traveler/profile" component={TravelerProfile} />
-        <Route path="/continent" component={Continent} />
+        <Route path="/continent/:continent" component={Continent} />
 
         {/* 나중에 GuideProfile 컴포넌트 안에서 호출하도록 변경하기 */}
         <Route path="/calendar" component={Calendar} />
