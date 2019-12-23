@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide } from '../../actions/action';
 import { connect } from 'react-redux';
-import ResultActivity from './ResultActivity';
 import ResultHost from './ResultHost';
 import ResultAttraction from './ResultAttraction';
 

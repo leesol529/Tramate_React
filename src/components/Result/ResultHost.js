@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
-import { Avatar, CardActions } from '@material-ui/core';
 
 class ResultHost extends React.Component {
     constructor(props) {
@@ -34,13 +33,15 @@ class ResultHost extends React.Component {
     render() {
         return (
             <div className="result_component">
-                <div className="result_textalign_center">
+                <div>
                     <div className="thumbnail-wrapper">
                         <div className="thumbnail">
                             <img onClick={this.handleTravelerChoice} src={this.state.img} alt="" />
                         </div>
                     </div>
-
+                    <div className="result_textalign_center">
+                        {this.props.guide.name}
+                    </div>
 
                     <br />
                     지역: {this.props.guide.spot}<br />
