@@ -6,11 +6,12 @@ class ResultHost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            img: ''
+            img: '',
+            tnum: 0
         }
     }
     handleTravelerChoice = () => {
-        this.props.history.push(`/traveler/choice/${this.props.guide.num}`);
+        this.props.history.push(`/traveler/choice/${this.props.guide.num}/${this.state.tnum}`);
     }
     componentWillMount = () => {
         axios
@@ -27,6 +28,22 @@ class ResultHost extends React.Component {
                 );
                 this.setState({ img: "data:;base64," + base64 });
             });
+
+        var data = new FormData();
+        data.append("id", localStorage.getItem('loginok'));
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/traveler/getNumById",
+            data: data
+        }).then((responseData) => {
+            this.setState({
+                tnum: responseData.data
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+
 
 
     }

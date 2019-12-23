@@ -3,7 +3,9 @@ import axios from 'axios';
 import { r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide } from '../../actions/action';
 import { connect } from 'react-redux';
 import ResultHost from './ResultHost';
-import ResultAttraction from './ResultAttraction';
+import AttractionResult from '../Traveler/AttractionResult';
+import RestraurantResult from '../Traveler/RestaurantResult';
+import ActivityResult from '../Traveler/ActivityResult';
 
 class Result extends React.Component {
     constructor(props) {
@@ -110,8 +112,22 @@ class Result extends React.Component {
                 </div>
                 <p>최고의 관광명소에 가보세요.</p>
                 <div className="result_flexbox">
+                    {this.state.attraction.map((att, idx) => (
+                        <AttractionResult idx={idx + 1} att={att} />
+                    ))}
                 </div>
-                <ResultAttraction />
+                <p>최고의 액티비티를 즐겨보세요.</p>
+                <div className="result_flexbox">
+                    {this.state.activity.map((act, idx) => (
+                        <ActivityResult idx={idx + 1} act={act} />
+                    ))}
+                </div>
+                <p>최고의 레스토랑에서 식사를 해보세요.</p>
+                <div className="result_flexbox">
+                    {this.state.restaurant.map((res, idx) => (
+                        <RestraurantResult idx={idx = 1} res={res} />
+                    ))}
+                </div>
             </div>
         );
     }
