@@ -12,8 +12,16 @@ export default class Login extends React.Component {
     handleOnSubmit = (e) => {
 
         e.preventDefault();
-        var url = "http://localhost:9000/user/login?id=" + this.state.id + "&pass=" + this.state.pass;
-        axios.post(url).then((responseData) => {
+        var url = "http://localhost:9000/user/login";
+        var data = new FormData();
+        data.append("id", this.state.id);
+        data.append("pass", this.state.pass);
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/user/login",
+            data: data
+        }).then((responseData) => {
             if (responseData.data === 1) {
                 alert("login as Guide");
                 localStorage.setItem("loginok", this.state.id);
@@ -36,13 +44,38 @@ export default class Login extends React.Component {
             console.log("로그인 실패");
         });
 
+        // axios.post(url, data).then((responseData) => {
+        //     if (responseData.data === 1) {
+        //         alert("login as Guide");
+        //         localStorage.setItem("loginok", this.state.id);
+        //         localStorage.setItem("user", "guide");
+        //         this.props.history.push("/");
+        //     } else if (responseData.data === 2){
+        //         alert("traveler로 로그인");
+        //         localStorage.setItem("loginok", this.state.id);
+        //         localStorage.setItem("user", "traveler");
+        //         this.props.history.push("/");
+        //     } 
+        //     else {
+        //         alert("아이디와 비밀번호가 맞지 않습니다.");
+        //         this.setState({
+        //             id: '',
+        //             pass: ''
+        //         })
+        //     }
+        // }).catch((error) => {
+        //     console.log("로그인 실패");
+        // });
+
     }
+    
     handleOnChange = (e) => {
 
         e.preventDefault();
         this.setState({
             [e.target.name]: e.target.value
-        })
+        });
+
     }
     render() {
         return (

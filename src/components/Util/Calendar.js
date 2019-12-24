@@ -3,15 +3,19 @@ import 'react-dates/initialize'; //어쩌면 calendar를 호출하는 컴포넌�
 import 'react-dates/lib/css/_datepicker.css';
 import {DateRangePicker} from 'react-dates';
 import moment from 'moment';
+import {addCalendar} from '../../actions/action';
+import {connect} from 'react-redux';
 
 const now = moment();
 console.log(now.format('MMM Do, YYYY'));
 
-export default class Calendar extends React.Component{
+class Calendar extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
+            gnum: this.props.gnum,
+            tnum: this.props.tnum,
             startDate: null,
             endDate: null,
             focusedInput: null,
@@ -29,12 +33,17 @@ export default class Calendar extends React.Component{
 
     //캘린더 선택 후에도 open 상태 유지 
     onFocusChange(focusedInput) {
-        if (!focusedInput) return; // doesn't update the focusedInput if it is trying to close the DRP
+        //날짜 선택 후 캘린더 자동으로 닫히도록 하고 싶으면 아래의 if문 다시 주기 
+        //if (!focusedInput) return; 
         this.setState({ focusedInput });
-      }
+    }
     
+    onClick=()=>{
+        console.log(this.state.startDate);        
+        console.log(this.state.endDate);
+    }
+
     render(){
-    
         return(
             <div>
                 <DateRangePicker
@@ -52,7 +61,20 @@ export default class Calendar extends React.Component{
                     displayFormat="YYYY-MM-D"
                     showDefaultInputIcon
                 />
+                {/* <button onClick={this.onClick}>state체크 </button> */}
             </div>
         );
     }
 }
+
+//store의 state를 변경하기 위한 method
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onInsertSchedule: (a) => dispatch(addCalendar(a))
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+Calendar= connect(undefined ,mapDispatchToProps)(Calendar);
+
+export default Calendar;

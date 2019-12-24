@@ -72,3 +72,24 @@ hr{
         height: auto;
     }
 }
+
+.tChoice_btn{
+    margin: 20px auto 70px auto;
+    width: 200px;
+    height: 40px;
+    font-size: 1.7rem;
+    color: white;
+    border: none;
+    background-color: $point;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.cal_desc{
+    color: $basic;
+    margin-top: 4rem;
+}
+
+.calendar_div{
+    margin: 2rem 0 4rem 0; 
+}
