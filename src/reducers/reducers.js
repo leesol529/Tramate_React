@@ -5,7 +5,8 @@ const r_attractionReducerDefaultState = [];
 const r_activityReducerDefaultState = [];
 const r_restaurantReducerDefaultState = [];
 const r_guideReducerDefaultState = [];
-const travelerDefaultState = [];
+const calendarReducerDefaultState={};
+const scheduleReducerDefaultState = [];
 
 const attractionReducer = (state = attractionReducerDefaultState, action) => {
     switch (action.type) {
@@ -91,18 +92,27 @@ const r_guideReducer = (state = r_guideReducerDefaultState, action) => {
     }
 }
 
-const travelerReducer = (state = travelerDefaultState, action) => {
-    switch (action.type) {
-        case 'ADD_TRAVELER':
-            return [
-                ...state,
-                action.traveler
-            ]
-        case 'RESET_TRAVELER':
-            return []
+const calendarReducer = (state = calendarReducerDefaultState, action)=>{
+    switch(action.type){
+        case 'ADD_CALENDAR':
+            return action.calendar;
         default:
             return state;
     }
 }
 
-export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer, travelerReducer };
+const scheduleReducer = (state = scheduleReducerDefaultState, action)=>{
+    switch(action.type){
+        case 'ADD_SCHEDULE':
+            return action.schedule;
+        case 'DEL_SCHEDULE':
+            state.filter((schedule)=>{
+                return !(schedule.pks===action.schedule.pks && schedule.type === action.schedule.type);
+            });
+            break;
+        default: 
+            return state;
+    }
+}
+
+export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer, calendarReducer, scheduleReducer };

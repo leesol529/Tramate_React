@@ -53,7 +53,7 @@ export default class RestaurantsResult extends React.Component{
                     </tr>
                     <tr>
                         <td className="tChoice_input">
-                            <b style={{margin:'-5px'}}>Type</b> : {this.props.res.type} activity
+                            <b style={{margin:'-5px'}}>Type</b> : {this.props.res.type} restaurant
                         </td>
                     </tr>
                     <tr>

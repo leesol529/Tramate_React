@@ -3,8 +3,10 @@ import axios from 'axios';
 import AttractionResult from './AttractionResult';
 import ActivityResult from './ActivityResult';
 import RestaurantResult from './RestaurantResult';
+import Calendar from '../Util/Calendar';
+import {connect} from 'react-redux';
 
-export default class TravelerChoice extends React.Component {
+class TravelerChoice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,10 +15,14 @@ export default class TravelerChoice extends React.Component {
             spot: "",
             travelerChoice: [],
             // 나중에 tnum과 gnum은 dynamic하게 받아와야 하는 것임. 여기서는 일부러 입력해놓음.
-            tnum: 1,
-            gnum: this.props.match.params.num,
+            tnum: this.props.match.params.tnum,
+            gnum: this.props.match.params.gnum,
             image: null,
-            guide: ""
+            guide: "",
+            //schedule 테이블을 위한 타입 주기 
+            attType: 1,
+            actType: 2,
+            resType: 3
         }
     }
 
@@ -82,6 +88,10 @@ export default class TravelerChoice extends React.Component {
 
     }
 
+    handleSubmit = () =>{
+
+    }
+
     render() {
 
         let attraction = [];
@@ -90,18 +100,20 @@ export default class TravelerChoice extends React.Component {
 
         for(let i=0; i<this.state.spot.length; i++){
             attraction.push(<AttractionResult att={this.state.spot[i]}
-                                              idx={[i+1]}/>)
+                                              idx={[i+1]}
+                                              type={this.state.attType}/>)
         }
         for(let i=0; i<this.state.activity.length; i++){
             activity.push(<ActivityResult act={this.state.activity[i]}
-                                          idx={[i+1]}/>)
+                                          idx={[i+1]}
+                                          type={this.state.actType}/>)
         }
         for(let i=0; i<this.state.restaurant.length; i++){
             restaurant.push(<RestaurantResult res={this.state.restaurant[i]}
-                                              idx={[i+1]}/>)
+                                              idx={[i+1]}
+                                              type={this.state.resType}/>)
         }
 
-        console.log(this.state);
         return (
             <div className="super">
                 <div className="tChoice_super">
@@ -112,12 +124,34 @@ export default class TravelerChoice extends React.Component {
                         가이드 {this.state.guide.name}의 목록 중 하고싶은 것을 선택해주세요 
                     </h2>
                 </div>
+                <hr/>
+                <p className="cal_desc"> 일정을 선택해 주세요. 가능한 날짜를 모두 선택해 주시면 예약 성공에 도움이 됩니다.</p>
+                <div className="calendar_div">
+                    <Calendar gnum={this.state.gnum} tnum={this.props.tnum}/>
+                </div>
+                <hr/>
                 <div className="form_div">{attraction}</div>
                 <hr/>
                 <div className="form_div">{activity}</div>
                 <hr/>
                 <div className="form_div">{restaurant}</div>
+                <hr/>
+                <button type="submit" className="tChoice_btn">
+                    가이드에게 문의하기
+                </button>
             </div>
         );
     }
 }
+
+//store의 state를 props로 저장 
+let mapStateToProps = (state) => {
+    return {
+        calendars: state.calendars
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+TravelerChoice= connect(mapStateToProps)(TravelerChoice);
+
+export default TravelerChoice;

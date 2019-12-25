@@ -29,6 +29,10 @@ export default class AttractionResult extends React.Component{
         });
     }
 
+    onCheck = () => {
+        
+    }
+
     render(){
         console.log(this.props.att)
         return(

@@ -127,33 +127,43 @@ const r_addGuide = ({
         email,
         continent
     }
-})
+});
 
-const addTraveler = ({
-    num = 0,
-    name = '',
-    nat = '',
-    mobile = '',
-    addr = '',
-    content = '',
-    img = '',
-    id = '',
-    pass = '',
-    email = ''
-} = {}) => ({
-    type: 'ADD_TRAVELER',
-    traveler: {
-        num,
-        name,
-        nat,
-        mobile,
-        addr,
-        content,
-        img,
-        id,
-        pass,
-        email
+const addCalendar = ({
+    gnum = 0,
+    tnum = 0,
+    startdate = "",
+    enddate = ""
+}={}) =>({
+    type: "ADD_CALENDAR",
+    calendar: {
+        gnum,
+        tnum,
+        startdate,
+        enddate
     }
 })
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addTraveler };
+const addSchedule = ({
+    pks = 0,
+    type = 0
+}={})=>({
+    type: "ADD_SCHEDULE",
+    schedule: {
+        pks,
+        type
+    }
+})
+
+const delSchedule = ({
+    pks = 0,
+    type = 0
+} = {}) =>({
+    type: "DEL_SCHEDULE",
+    schdule: {
+        pks,
+        type
+    }
+})
+
+export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, addSchedule, delSchedule };
