@@ -1,1 +1,8 @@
 @import './imageUpload';
+
+.reply_image_grid{
+    width:5rem;
+    border:1px solid black;
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr 5fr;
+}

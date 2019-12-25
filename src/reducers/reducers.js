@@ -5,6 +5,7 @@ const r_attractionReducerDefaultState = [];
 const r_activityReducerDefaultState = [];
 const r_restaurantReducerDefaultState = [];
 const r_guideReducerDefaultState = [];
+const travelerDefaultState = [];
 
 const attractionReducer = (state = attractionReducerDefaultState, action) => {
     switch (action.type) {
@@ -90,4 +91,18 @@ const r_guideReducer = (state = r_guideReducerDefaultState, action) => {
     }
 }
 
-export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer };
+const travelerReducer = (state = travelerDefaultState, action) => {
+    switch (action.type) {
+        case 'ADD_TRAVELER':
+            return [
+                ...state,
+                action.traveler
+            ]
+        case 'RESET_TRAVELER':
+            return []
+        default:
+            return state;
+    }
+}
+
+export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer, travelerReducer };

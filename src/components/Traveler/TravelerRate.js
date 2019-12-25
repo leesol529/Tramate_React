@@ -1,15 +1,15 @@
 import React from 'react';
 import StarRate from '../Util/StarRate';
 import axios from 'axios';
-import GuideRateList from './GuideRateList';
+import TravelerRateList from './TravelerRateList';
 
-export default class GuideRate extends React.Component {
+export default class TravelerRate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             gnum: this.props.match.params.gnum,
             tnum: this.props.match.params.tnum,
-            gname: '',
+            tname: '',
             rating: 0,
             rate: 0,
             content: '',
@@ -32,7 +32,7 @@ export default class GuideRate extends React.Component {
 
     handleOnSubmit = (e) => {
 
-        axios.post('http://localhost:9000/guide/rate', {
+        axios.post('http://localhost:9000/traveler/rate', {
             gnum: this.state.gnum,
             tnum: this.state.tnum,
             rate: this.state.rating,
@@ -48,11 +48,11 @@ export default class GuideRate extends React.Component {
     componentDidMount = () => {
 
         var data = new FormData();
-        data.append('gnum', this.state.gnum);
+        data.append('tnum', this.state.tnum);
 
         axios({
             method: "post",
-            url: "http://localhost:9000/reply/to/guide",
+            url: "http://localhost:9000/reply/to/traveler",
             data: data
         }).then((responseData) => {
             this.setState({
@@ -63,27 +63,26 @@ export default class GuideRate extends React.Component {
         });
 
         let data1 = new FormData();
-        data1.append('num', this.state.gnum);
+        data1.append('num', this.state.tnum);
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/select",
+            url: "http://localhost:9000/traveler/select",
             data: data1
         }).then((responseData) => {
             this.setState({
-                gname: responseData.data.name
+                tname: responseData.data.name
             })
         }).catch((error) => {
-            console.log("gnum의 이름을 가져오지 못했다");
+            console.log("tnum의 이름을 가져오지 못했다");
         });
     }
-
 
     render() {
         return (
             <div>
                 <div className="guide_rate_flexbox">
-                    <p>{this.state.gname}님 가이드는 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p>{this.state.tname}님 가이드는 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <StarRate onStarClick={this.onStarClick} />
                 </div>
                 <div>
@@ -95,7 +94,7 @@ export default class GuideRate extends React.Component {
                     </form>
                 </div>
                 {this.state.replyList.map((reply) => (
-                    <GuideRateList key={reply.num} reply={reply} />
+                    <TravelerRateList key={reply.num} reply={reply} />
                 ))}
 
             </div>

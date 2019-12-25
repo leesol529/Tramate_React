@@ -19,6 +19,8 @@ import Login from '../components/Base/Login';
 import TravelerProfile from '../components/Traveler/Profile';
 import Calendar from '../components/Util/Calendar';
 import Continent from '../components/Continent/Continent';
+import GuideRate from '../components/Guide/GuideRate';
+import TravelerRate from '../components/Traveler/TravelerRate';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -43,6 +45,8 @@ const AppRouter = () => (
         <Route path="/login" component={Login} />
         <Route path="/traveler/profile" component={TravelerProfile} />
         <Route path="/continent/:continent" component={Continent} />
+        <Route path="/guide/rate/:gnum/:tnum" component={GuideRate} />
+        <Route path="/traveler/rate/:tnum/:gnum" component={TravelerRate} />
 
         {/* 나중에 GuideProfile 컴포넌트 안에서 호출하도록 변경하기 */}
         <Route path="/calendar" component={Calendar} />

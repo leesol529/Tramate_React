@@ -129,4 +129,31 @@ const r_addGuide = ({
     }
 })
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide };
+const addTraveler = ({
+    num = 0,
+    name = '',
+    nat = '',
+    mobile = '',
+    addr = '',
+    content = '',
+    img = '',
+    id = '',
+    pass = '',
+    email = ''
+} = {}) => ({
+    type: 'ADD_TRAVELER',
+    traveler: {
+        num,
+        name,
+        nat,
+        mobile,
+        addr,
+        content,
+        img,
+        id,
+        pass,
+        email
+    }
+})
+
+export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addTraveler };
