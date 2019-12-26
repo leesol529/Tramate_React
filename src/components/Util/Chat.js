@@ -7,22 +7,22 @@ export default class Chat extends React.Component {
         this.state = {
             gnum: this.props.match.params.gnum,
             tnum: this.props.match.params.tnum,
-            comefrom: 0,
+            comefrom: '',
             content: '',
             chatList: []
         }
 
     }
 
-    componentDidMount = () => {
+    UNSAFE_componentWillMount = () => {
         const userType = localStorage.getItem('user');
         if (userType === 'guide') {
             this.setState({
-                comefrom: localStorage.getItem('gnum')
+                comefrom: this.state.gnum
             })
         } else {
             this.setState({
-                comefrom: localStorage.getItem('tnum')
+                comefrom: this.state.tnum
             })
         }
     }
@@ -82,13 +82,11 @@ export default class Chat extends React.Component {
                 </form><br />
                 <div className="chat-div">
                     {this.state.chatList.map((chat) => {
-
-                        if (chat.comefrom === this.state.comefrom) {
-                            return <p className="line-from-me" key={chat.num}>me : {chat.content}</p>;
+                        if (chat.comefrom + "" == this.state.comefrom) {
+                            return <p className="line-from-me" key={chat.num}>me:{chat.content}</p>
                         } else {
-                            return <p className="line-from-other" key={chat.num}>other: {chat.content}</p>
+                            return <p className="line-from-other" key={chat.num}>other:{chat.content}</p>
                         }
-
                     })}
                 </div>
             </div>

@@ -10,7 +10,8 @@ class Header extends React.Component {
     }
 
     handleOnClick = () => {
-        localStorage.setItem("user", "");
+        localStorage.removeItem('user');
+        localStorage.removeItem('loginok');
         this.props.history.push('/');
     }
 
