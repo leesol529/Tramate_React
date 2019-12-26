@@ -27,8 +27,10 @@ class TravelerChoice extends React.Component {
     }
 
     getGuide = async() => {
-        let url5 = "http://localhost:9000/guide/select?num="+this.state.gnum;
-        await axios.get(url5).then((res)=>{
+        let url5 = "http://localhost:9000/guide/select";
+        let data = new FormData();
+        data.append("num", this.state.gnum)
+        await axios.post(url5, data).then((res)=>{
             console.log(res.data);
             this.setState({
                 guide: res.data
@@ -89,7 +91,7 @@ class TravelerChoice extends React.Component {
     }
 
     handleSubmit = () =>{
-
+        console.log(this.props.calendars);
     }
 
     render() {
@@ -101,17 +103,20 @@ class TravelerChoice extends React.Component {
         for(let i=0; i<this.state.spot.length; i++){
             attraction.push(<AttractionResult att={this.state.spot[i]}
                                               idx={[i+1]}
-                                              type={this.state.attType}/>)
+                                              type={this.state.attType}
+                                              key={i}/>)
         }
         for(let i=0; i<this.state.activity.length; i++){
             activity.push(<ActivityResult act={this.state.activity[i]}
                                           idx={[i+1]}
-                                          type={this.state.actType}/>)
+                                          type={this.state.actType}
+                                          key={i}/>)
         }
         for(let i=0; i<this.state.restaurant.length; i++){
             restaurant.push(<RestaurantResult res={this.state.restaurant[i]}
                                               idx={[i+1]}
-                                              type={this.state.resType}/>)
+                                              type={this.state.resType}
+                                              key={i}/>)
         }
 
         return (
@@ -136,7 +141,7 @@ class TravelerChoice extends React.Component {
                 <hr/>
                 <div className="form_div">{restaurant}</div>
                 <hr/>
-                <button type="submit" className="tChoice_btn">
+                <button type="submit" className="tChoice_btn" onClick={this.handleSubmit}>
                     가이드에게 문의하기
                 </button>
             </div>

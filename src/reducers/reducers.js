@@ -96,6 +96,8 @@ const calendarReducer = (state = calendarReducerDefaultState, action)=>{
     switch(action.type){
         case 'ADD_CALENDAR':
             return action.calendar;
+        case 'DEL_CALENDAR':
+            return state = calendarReducerDefaultState;
         default:
             return state;
     }
@@ -104,12 +106,12 @@ const calendarReducer = (state = calendarReducerDefaultState, action)=>{
 const scheduleReducer = (state = scheduleReducerDefaultState, action)=>{
     switch(action.type){
         case 'ADD_SCHEDULE':
-            return action.schedule;
+            return [
+                ...state,
+                action.schedule
+            ];
         case 'DEL_SCHEDULE':
-            state.filter((schedule)=>{
-                return !(schedule.pks===action.schedule.pks && schedule.type === action.schedule.type);
-            });
-            break;
+            return state.filter(({pks,type})=> !(pks=== action.schedule.pks && type === action.schedule.type));
         default: 
             return state;
     }

@@ -144,6 +144,21 @@ const addCalendar = ({
     }
 })
 
+const delCalendar = ({
+    gnum = 0,
+    tnum = 0,
+    startdate = "",
+    enddate = ""
+}={}) =>({
+    type: "DEL_CALENDAR",
+    calendar: {
+        gnum,
+        tnum,
+        startdate,
+        enddate
+    }
+})
+
 const addSchedule = ({
     pks = 0,
     type = 0
@@ -160,10 +175,10 @@ const delSchedule = ({
     type = 0
 } = {}) =>({
     type: "DEL_SCHEDULE",
-    schdule: {
+    schedule: {
         pks,
         type
     }
 })
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, addSchedule, delSchedule };
+export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, delCalendar, addSchedule, delSchedule };

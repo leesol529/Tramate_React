@@ -3,11 +3,10 @@ import 'react-dates/initialize'; //어쩌면 calendar를 호출하는 컴포넌�
 import 'react-dates/lib/css/_datepicker.css';
 import {DateRangePicker} from 'react-dates';
 import moment from 'moment';
-import {addCalendar} from '../../actions/action';
+import {addCalendar, delCalendar} from '../../actions/action';
 import {connect} from 'react-redux';
 
 const now = moment();
-console.log(now.format('MMM Do, YYYY'));
 
 class Calendar extends React.Component{
 
@@ -38,21 +37,24 @@ class Calendar extends React.Component{
         this.setState({ focusedInput });
     }
     
-    onClick=()=>{
-        console.log(this.state.startDate);        
-        console.log(this.state.endDate);
+    //달력에서 날짜 클릭 시 해당 날짜를 state에 값 저장 
+    handleDatesChange=({startDate, endDate})=>{
+        this.setState({ startDate, endDate });
+        this.props.onDeleteCalendar();
+        this.props.onInsertCalendar();
+        
     }
 
     render(){
         return(
             <div>
                 <DateRangePicker
-                    date = {moment()}
+                    //date = {moment()}
                     startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                     startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                     endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                     endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                    onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                    onDatesChange={this.handleDatesChange} // PropTypes.func.isRequired,
                     focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                     onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
                     hideKeyboardShortcutsPanel={true}
@@ -67,10 +69,11 @@ class Calendar extends React.Component{
     }
 }
 
-//store의 state를 변경하기 위한 method
+//store의 state를 변경하기 위한 method (저장)
 let mapDispatchToProps = (dispatch) => {
     return {
-        onInsertSchedule: (a) => dispatch(addCalendar(a))
+        onInsertCalendar: (a) => dispatch(addCalendar(a)),
+        onDeleteCalendar: (a) => dispatch(delCalendar(a))
     };
 }
 

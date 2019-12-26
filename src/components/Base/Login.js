@@ -12,7 +12,6 @@ export default class Login extends React.Component {
     handleOnSubmit = (e) => {
 
         e.preventDefault();
-        var url = "http://localhost:9000/user/login";
         var data = new FormData();
         data.append("id", this.state.id);
         data.append("pass", this.state.pass);
@@ -24,11 +23,30 @@ export default class Login extends React.Component {
         }).then((responseData) => {
             if (responseData.data === 1) {
                 alert("login as Guide");
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:9000/guide/choice/gnum',
+                    data: data
+                }).then((res)=>{
+                    localStorage.setItem("gnum", res.data);
+                }).catch((err)=>{
+                    console.log("gnum 가져오기 실패");
+                })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "guide");
                 this.props.history.push("/");
             } else if (responseData.data === 2){
                 alert("traveler로 로그인");
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:9000/traveler/getNumById',
+                    data: data
+                }).then((res)=>{
+                    localStorage.setItem("tnum", res.data);
+                    console.log(localStorage.getItem("tnum"));
+                }).catch((err)=>{
+                    console.log("tnum 가져오기 실패");
+                })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "traveler");
                 this.props.history.push("/");

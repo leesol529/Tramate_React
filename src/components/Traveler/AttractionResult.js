@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {addSchedule, delSchedule} from '../../actions/action';
 
-export default class AttractionResult extends React.Component{
+class AttractionResult extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
-            image: ""
+            image: "",
+            type: this.props.type,
+            check: false
         }
     }
 
@@ -30,17 +34,28 @@ export default class AttractionResult extends React.Component{
     }
 
     onCheck = () => {
-        
+        if(!this.state.check){
+            this.props.onInsertSchedule({pks: this.props.att.num, type: this.props.type});
+            console.log(this.props.schedules);
+            this.setState({
+                check: true
+            });
+        } else if(this.state.check){
+            this.props.onDeleteSchedule({pks: this.props.att.num, type: this.props.type});
+            console.log(this.props.schedules);
+            this.setState({
+                check: false
+            });
+        }
     }
 
     render(){
-        console.log(this.props.att)
         return(
             <table className="tChoice_table" id="choiceFrm">
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox"/>
+                            <input type="checkbox" onClick={this.onCheck} />
                             Attraction{this.props.idx}
                         </th>
                     </tr>
@@ -72,3 +87,22 @@ export default class AttractionResult extends React.Component{
         );
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        schedules: state.schedules
+    };
+}
+
+//store의 state를 변경하기 위한 method (저장)
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onInsertSchedule: (a) => dispatch(addSchedule(a)),
+        onDeleteSchedule: (a) => dispatch(delSchedule(a))
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+AttractionResult= connect(mapStateToProps ,mapDispatchToProps)(AttractionResult);
+
+export default AttractionResult;

@@ -134,12 +134,15 @@ class Result extends React.Component {
 }
 
 
+//store의 r_guides를 this.props.r_guides에 저장 
 let mapStateToProps = (state) => {
     return {
         r_guides: state.r_guides
     };
 }
 
+//store의 정보를 변경할 때(action을 호출 할 때) 사용
+//this.props.onUpdateGuide(객체) 형태로 호출 
 let mapDispatchToProps = (dispatch) => {
     return {
         onUpdateGuide: (a) => dispatch(r_addGuide(a)),
