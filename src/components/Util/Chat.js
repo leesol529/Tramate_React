@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import Image from '../Guide/Image';
 export default class Chat extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,9 @@ export default class Chat extends React.Component {
             tnum: this.props.match.params.tnum,
             comefrom: '',
             content: '',
-            chatList: []
+            chatList: [],
+            traveler: '',
+            guide: ''
         }
 
     }
@@ -70,6 +72,37 @@ export default class Chat extends React.Component {
         });
     }
     componentDidMount = () => {
+
+        let traveler = new FormData();
+        traveler.append('num', this.state.tnum);
+
+        let guide = new FormData();
+        guide.append('num', this.state.guide);
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/traveler/select",
+            data: traveler
+        }).then((responseData) => {
+            this.setState({
+                traveler: responseData.data
+            })
+        }).catch((error) => {
+            console.log("댓글 받기 에러!");
+        });
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/guide/select",
+            data: traveler
+        }).then((responseData) => {
+            this.setState({
+                guide: responseData.data
+            })
+        }).catch((error) => {
+            console.log("댓글 받기 에러!");
+        });
+
         this.list();
     }
 
@@ -83,9 +116,19 @@ export default class Chat extends React.Component {
                 <div className="chat-div">
                     {this.state.chatList.map((chat) => {
                         if (chat.comefrom + "" == this.state.comefrom) {
-                            return <p className="line-from-me" key={chat.num}>me:{chat.content}</p>
+                            return (
+                                <div key={chat.num} className="line-from-me">
+                                    <Image img={this.state.traveler.img} alt="" />
+                                    <p>{chat.content}</p>
+                                </div>
+                            );
                         } else {
-                            return <p className="line-from-other" key={chat.num}>other:{chat.content}</p>
+                            return (
+                                <div key={chat.num} className="line-from-other">
+                                    <Image img={this.state.traveler.img} alt="" />
+                                    <p>{chat.content}</p>
+                                </div>
+                            )
                         }
                     })}
                 </div>
