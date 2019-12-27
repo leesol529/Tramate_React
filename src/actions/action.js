@@ -133,14 +133,16 @@ const addCalendar = ({
     gnum = 0,
     tnum = 0,
     startdate = "",
-    enddate = ""
+    enddate = "",
+    accept = 'no'
 }={}) =>({
     type: "ADD_CALENDAR",
     calendar: {
         gnum,
         tnum,
         startdate,
-        enddate
+        enddate,
+        accept
     }
 })
 
@@ -148,34 +150,44 @@ const delCalendar = ({
     gnum = 0,
     tnum = 0,
     startdate = "",
-    enddate = ""
+    enddate = "",
+    accept = 'no'
 }={}) =>({
     type: "DEL_CALENDAR",
     calendar: {
         gnum,
         tnum,
         startdate,
-        enddate
+        enddate,
+        accept
     }
 })
 
 const addSchedule = ({
+    gnum=0,
+    tnum=0,
     pks = 0,
     type = 0
 }={})=>({
     type: "ADD_SCHEDULE",
     schedule: {
+        gnum,
+        tnum,
         pks,
         type
     }
 })
 
 const delSchedule = ({
+    gnum=0,
+    tnum=0,
     pks = 0,
     type = 0
 } = {}) =>({
     type: "DEL_SCHEDULE",
     schedule: {
+        gnum,
+        tnum,
         pks,
         type
     }
