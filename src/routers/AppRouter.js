@@ -23,6 +23,7 @@ import TravelerRate from '../components/Traveler/TravelerRate';
 import Chat from '../components/Util/Chat';
 import Check from '../components/Util/Check';
 import GuideSchedule from '../components/Guide/GuideSchedule';
+//import ChatWraper from '../components/Util/ChatWrapper';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -51,9 +52,10 @@ const AppRouter = () => (
         <Route path="/traveler/rate/:tnum/:gnum" component={TravelerRate} />
         <Route path="/chat/:gnum/:tnum" component={Chat} />
         <Route path="/check" component={Check} />
+        {/* <Route path="/chatwrapper" component={ChatWraper} /> */}
 
         {/* 나중에 GuideProfile 컴포넌트에서 링크 주기  */}
-        <Route path="/guide/schedule" component={GuideSchedule} />
+        <Route path="/guide/schedule/:gnum" component={GuideSchedule} />
       </Switch>
     </div>
   </BrowserRouter>

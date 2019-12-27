@@ -134,7 +134,7 @@ const addCalendar = ({
     tnum = 0,
     startdate = "",
     enddate = "",
-    accept = 'no'
+    accept = ""
 }={}) =>({
     type: "ADD_CALENDAR",
     calendar: {
@@ -151,7 +151,7 @@ const delCalendar = ({
     tnum = 0,
     startdate = "",
     enddate = "",
-    accept = 'no'
+    accept = ""
 }={}) =>({
     type: "DEL_CALENDAR",
     calendar: {
