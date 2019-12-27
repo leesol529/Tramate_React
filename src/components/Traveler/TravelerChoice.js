@@ -5,6 +5,8 @@ import ActivityResult from './ActivityResult';
 import RestaurantResult from './RestaurantResult';
 import Calendar from '../Util/Calendar';
 import {connect} from 'react-redux';
+import store from '../../store/store';
+
 
 class TravelerChoice extends React.Component {
     constructor(props) {
@@ -17,12 +19,10 @@ class TravelerChoice extends React.Component {
             // 나중에 tnum과 gnum은 dynamic하게 받아와야 하는 것임. 여기서는 일부러 입력해놓음.
             tnum: this.props.match.params.tnum,
             gnum: this.props.match.params.gnum,
+            startdate: this.props.calendars.startdate,
+            enddate: this.props.calendars.enddate,
             image: null,
-            guide: "",
-            //schedule 테이블을 위한 타입 주기 
-            attType: 1,
-            actType: 2,
-            resType: 3
+            guide: ""
         }
     }
 
@@ -91,7 +91,27 @@ class TravelerChoice extends React.Component {
     }
 
     handleSubmit = () =>{
+
+        //calendar에 insert
+        axios.post(
+            "http://localhost:9000/calendar/insert", 
+            store.getState().calendars).then((responseData) => {
+            console.log('calendar insert success');
+        }).catch((error) => {
+            console.log('calendar insert fail');
+        });
         console.log(this.props.calendars);
+        //att,act,res의 result에서 저장한 schedules의 내용을 db 저장하는 axios
+        axios.post(
+            "http://localhost:9000/traveler/choice", 
+            store.getState().schedules).then((responseData) => {
+            console.log('schedule insert success');
+        }).catch((error) => {
+            console.log('schedule insert fail');
+        });
+       
+        this.props.history.push("/traveler/profile");
+
     }
 
     render() {
@@ -102,20 +122,23 @@ class TravelerChoice extends React.Component {
 
         for(let i=0; i<this.state.spot.length; i++){
             attraction.push(<AttractionResult att={this.state.spot[i]}
+                                              gnum={this.state.gnum}
+                                              tnum={this.state.tnum}
                                               idx={[i+1]}
-                                              type={this.state.attType}
                                               key={i}/>)
         }
         for(let i=0; i<this.state.activity.length; i++){
             activity.push(<ActivityResult act={this.state.activity[i]}
+                                          gnum={this.state.gnum}
+                                          tnum={this.state.tnum}
                                           idx={[i+1]}
-                                          type={this.state.actType}
                                           key={i}/>)
         }
         for(let i=0; i<this.state.restaurant.length; i++){
             restaurant.push(<RestaurantResult res={this.state.restaurant[i]}
+                                              gnum={this.state.gnum}
+                                              tnum={this.state.tnum}
                                               idx={[i+1]}
-                                              type={this.state.resType}
                                               key={i}/>)
         }
 
@@ -132,7 +155,7 @@ class TravelerChoice extends React.Component {
                 <hr/>
                 <p className="cal_desc"> 일정을 선택해 주세요. 가능한 날짜를 모두 선택해 주시면 예약 성공에 도움이 됩니다.</p>
                 <div className="calendar_div">
-                    <Calendar gnum={this.state.gnum} tnum={this.props.tnum}/>
+                    <Calendar gnum={this.state.gnum} tnum={this.state.tnum}/>
                 </div>
                 <hr/>
                 <div className="form_div">{attraction}</div>
@@ -149,10 +172,13 @@ class TravelerChoice extends React.Component {
     }
 }
 
+
+
 //store의 state를 props로 저장 
 let mapStateToProps = (state) => {
     return {
-        calendars: state.calendars
+        calendars: state.calendars,
+        schedules: state.schedules
     };
 }
 

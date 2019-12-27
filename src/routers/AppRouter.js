@@ -17,11 +17,12 @@ import TravelerChoice from '../components/Traveler/TravelerChoice';
 import GuideChoice from '../components/Guide/GuideChoice';
 import Login from '../components/Base/Login';
 import TravelerProfile from '../components/Traveler/Profile';
-import Calendar from '../components/Util/Calendar';
 import Continent from '../components/Continent/Continent';
 import GuideRate from '../components/Guide/GuideRate';
 import TravelerRate from '../components/Traveler/TravelerRate';
 import Chat from '../components/Util/Chat';
+import Check from '../components/Util/Check';
+import GuideSchedule from '../components/Guide/GuideSchedule';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -49,9 +50,10 @@ const AppRouter = () => (
         <Route path="/guide/rate/:gnum/:tnum" component={GuideRate} />
         <Route path="/traveler/rate/:tnum/:gnum" component={TravelerRate} />
         <Route path="/chat/:gnum/:tnum" component={Chat} />
+        <Route path="/check" component={Check} />
 
-        {/* 나중에 GuideProfile 컴포넌트 안에서 호출하도록 변경하기 */}
-        <Route path="/calendar" component={Calendar} />
+        {/* 나중에 GuideProfile 컴포넌트에서 링크 주기  */}
+        <Route path="/guide/schedule" component={GuideSchedule} />
       </Switch>
     </div>
   </BrowserRouter>

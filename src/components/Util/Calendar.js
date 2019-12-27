@@ -6,8 +6,6 @@ import moment from 'moment';
 import {addCalendar, delCalendar} from '../../actions/action';
 import {connect} from 'react-redux';
 
-const now = moment();
-
 class Calendar extends React.Component{
 
     constructor(props) {
@@ -39,10 +37,34 @@ class Calendar extends React.Component{
     
     //달력에서 날짜 클릭 시 해당 날짜를 state에 값 저장 
     handleDatesChange=({startDate, endDate})=>{
-        this.setState({ startDate, endDate });
-        this.props.onDeleteCalendar();
-        this.props.onInsertCalendar();
+
+        //이 부분이 없으면 한번에 값이 안들어가짐, 이유 불명확
+        this.state={
+            gnum: this.props.gnum,
+            tnum: this.props.tnum,
+            startDate,
+            endDate
+        };
+
+        this.setState({
+            gnum: this.props.gnum,
+            tnum: this.props.tnum,
+            startDate,
+            endDate
+        });
+
+        let startdate = moment(this.state.startDate).format('YYYY-MM-DD');
+        let enddate = moment(this.state.endDate).format('YYYY-MM-DD');
+        let calendar = {
+            gnum: Number(this.props.gnum),
+            tnum: Number(this.props.tnum),
+            startdate,
+            enddate,
+            //accept: no이면 수락 전 수락 후 yes로 변경하기 
+            accept: 'no'
+        };
         
+        this.props.onInsertCalendar(calendar);
     }
 
     render(){
@@ -63,7 +85,6 @@ class Calendar extends React.Component{
                     displayFormat="YYYY-MM-D"
                     showDefaultInputIcon
                 />
-                {/* <button onClick={this.onClick}>state체크 </button> */}
             </div>
         );
     }
