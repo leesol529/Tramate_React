@@ -3,7 +3,7 @@ import Axios from 'axios';
 import host2 from '../../img/host2.jpg';
 import review2 from '../../img/review.png';
 import check1 from '../../img/checked.svg';
-// import uncheck1 from '../../img/unchecked.svg';
+import uncheck1 from '../../img/unchecked.svg';
 
 
 export default class TravlerProfile extends React.Component{
@@ -37,6 +37,10 @@ export default class TravlerProfile extends React.Component{
 
    
     render(){
+        const img=this.state.travelerData.img;
+        const email=this.state.travelerData.email;
+        const mobile=this.state.travelerData.mobile;
+
 
         return(
             <div className="boss-traveler">
@@ -44,7 +48,7 @@ export default class TravlerProfile extends React.Component{
                     <img src={host2} className="traveler-profile-image" alt=""/>
                 </div>
                 {/* 세로줄 */}
-                <div className="vertical-line1-traveler">
+                <div className="vertical-line1">
                 </div>
 
                 <div className="wrap1-traveler">
@@ -57,21 +61,21 @@ export default class TravlerProfile extends React.Component{
                     </div>
                     
                     <div className="wrap1-checked-af-traveler">
-                        <img src={check1} className="check-boss-traveler" alt=""/>
+                        <img src={check1} className="check-boss" alt=""/>
                         <p className="authentification-traveler">
                              인증 완료
                         </p>
                     </div>
                 </div>
                 {/* 세로줄 */}
-                <div className="vertical-line2-traveler">
+                <div className="vertical-line2">
                 </div>
                 <div className="af-info-traveler">
                     <h4 className="af-info2-traveler"> {this.state.travelerData.name}님의 인증 내역</h4>
                     <ul>
-                        <li className="profile-flexbox-traveler">셀카</li>
-                        <li className="profile-flexbox-traveler">이메일</li>
-                        <li className="profile-flexbox-traveler">전화번호</li>
+                        <li className="profile-flexbox-traveler">{img ? <img src={check1} className="check" alt=""/>:<img src={uncheck1} className="uncheck" alt=""/>}&nbsp;셀카</li>
+                        <li className="profile-flexbox-traveler">{email ? <img src={check1} className="check" alt=""/>:<img src={uncheck1} className="uncheck" alt=""/>}&nbsp;이메일</li>
+                        <li className="profile-flexbox-traveler">{mobile ? <img src={check1} className="check" alt=""/>:<img src={uncheck1} className="uncheck" alt=""/>}&nbsp;전화번호</li>
                     </ul>
                 </div>
             </div>

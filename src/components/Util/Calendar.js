@@ -1,5 +1,5 @@
 import React from 'react';
-import 'react-dates/initialize'; //어쩌면 calendar를 호출하는 컴포넌트에서 import해야하는듯? 
+import 'react-dates/initialize'; 
 import 'react-dates/lib/css/_datepicker.css';
 import {DateRangePicker} from 'react-dates';
 import moment from 'moment';
@@ -61,7 +61,7 @@ class Calendar extends React.Component{
             startdate,
             enddate,
             //accept: no이면 수락 전 수락 후 yes로 변경하기 
-            accept: 'no'
+            accept: 'wait'
         };
         
         this.props.onInsertCalendar(calendar);

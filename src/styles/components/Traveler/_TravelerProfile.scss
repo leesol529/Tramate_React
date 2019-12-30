@@ -1,16 +1,16 @@
 .boss-traveler{
     border: 1px solid gray;
-    height: 200px;
-    margin-left: 450px;
-    margin-right: 450px;
     position: relative;
+    height: 200px;
+    margin: 0 400px;
+  
 }
 
 .traveler-main-photo{
     position: absolute;
     width:200px;
     height:199px;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 100%;
 }
 
@@ -18,19 +18,9 @@
     position: absolute;
     width:200px;
     height:199px;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 100px;
 }
-
-.vertical-line1-traveler{
-    border-left: 2px solid gray;
-    height: 200px;
-    position: absolute;
-    left: 233px;
-    top: 0;
-    opacity: 0.2;
-}
-
 
 .review-traveler{
     position: absolute;
@@ -41,7 +31,7 @@
 }
 
 .wrap1-count-review-traveler{
-    border: 1px solid gray;
+    // border: 1px solid gray;
     position: relative;
     top: -1px;
     width: 460px;
@@ -49,18 +39,8 @@
     
 }
 
-.vertical-line2-traveler{
-    border-left: 2px solid gray;
-    height: 200px;
-    position: absolute;
-    left: 680px;
-    top: 0;
-    opacity: 0.2;
-    
-}
-
 .wrap1-traveler{
-    border: 1px solid gray;
+    // border: 1px solid gray;
     position: relative;
     left: 240px;
     width: 460px;
@@ -87,18 +67,13 @@
     position: relative;
     top: -1px;
     width: 460px;
-    border: 1px solid gray;
+    // border: 1px solid gray;
     height: 100px;
-}
-
-.af-info ul li{
-    list-style: none;
-    opacity: 0.6;
 }
 
 .af-info-traveler{
     position: absolute;
-    border: 1px solid black;
+    // border: 1px solid black;
     top: 0;
     left: 700px;
     width: 303px;
@@ -109,22 +84,6 @@
 .af-info2-traveler{
     text-align: center;
 }
-
-.check{
-    height:42px;
-}
-
-.check-boss-traveler{
-    position: absolute;
-    left: 17px;
-    height: 76px;
-}
-
-.uncheck{
-    height:42px;
- 
-}
-
 
 .profile-flexbox-traveler{
     display: flex;
