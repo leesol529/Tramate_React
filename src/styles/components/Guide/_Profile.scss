@@ -11,18 +11,29 @@
 
 .main-photo{
     position: absolute;
-    width:200px;
-    height:199px;
-    //border: 1px solid black;
-    border-radius: 100%;
+    // width:200px;
+    // height:199px;
+    // //border: 1px solid black;
+    // border-radius: 100%;
+    // display: block; 
+    overflow: hidden; 
+    height: 200px; 
+    width: 200px;
+    border-radius: 100px;
 }
 
 .guide-profile-image{
-    position: absolute;
-    width:200px;
-    height:199px;
-    //border: 1px solid black;
-    border-radius: 100px;
+    // position: absolute;
+    // width:200px;
+    // height:199px;
+    // //border: 1px solid black;
+    // border-radius: 100px;
+    width: 100px;
+    /* display: block; */
+    /* width: 150px; */
+    min-width: 100%;
+    min-height: 100%;
+    -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
 }
 
 .vertical-line1{
@@ -103,6 +114,12 @@
     font-weight: bold;
 }
 
+.ahref-Profile{
+    color: black;
+    text-decoration: none;
+}
+
+
 .wrap1-guideSchedule{
     position: relative;
     width: 460px;
@@ -135,6 +152,7 @@
     left: 700px;
     width: 300px;
     height: 199px;
+    line-height: 20px;
 }
 
 .af-info2{
@@ -149,7 +167,7 @@
 
 .check-boss{
     position: absolute;
-    top:18px;
+    top: 15px;
     left: 24px;
     width: 50px;
     height: 60px;
