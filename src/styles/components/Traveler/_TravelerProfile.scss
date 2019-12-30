@@ -1,50 +1,10 @@
-.boss-traveler{
-    border: 1px solid gray;
-    position: relative;
-    height: 200px;
-    margin: 0 400px;
-  
-}
 
-.traveler-main-photo{
-    position: absolute;
-    width:200px;
-    height:199px;
-    // border: 1px solid black;
-    border-radius: 100%;
-}
-
-.traveler-profile-image{
-    position: absolute;
-    width:200px;
-    height:199px;
-    // border: 1px solid black;
-    border-radius: 100px;
-}
 
 .review-traveler{
     position: absolute;
     top: 20px;
     left: 30px;
     width: 50px;
-
-}
-
-.wrap1-count-review-traveler{
-    // border: 1px solid gray;
-    position: relative;
-    top: -1px;
-    width: 460px;
-    height: 100px;
-    
-}
-
-.wrap1-traveler{
-    // border: 1px solid gray;
-    position: relative;
-    left: 240px;
-    width: 460px;
-    height: 200px;
 }
 
 .review-count-traveler{
@@ -53,40 +13,4 @@
     left: 100px;
     width: 100px;
     opacity: 0.6;
-}
-
-.authentification-traveler{
-    position: absolute;
-    width: 100px;
-    top:10px;
-    left: 100px;
-    opacity: 0.6;
-}
-
-.wrap1-checked-af-traveler{
-    position: relative;
-    top: -1px;
-    width: 460px;
-    // border: 1px solid gray;
-    height: 100px;
-}
-
-.af-info-traveler{
-    position: absolute;
-    // border: 1px solid black;
-    top: 0;
-    left: 700px;
-    width: 303px;
-    margin-right: 700px;
-    height: 200px;
-}
-
-.af-info2-traveler{
-    text-align: center;
-}
-
-.profile-flexbox-traveler{
-    display: flex;
-    align-items: center;
-    line-height: 1.6;
 }

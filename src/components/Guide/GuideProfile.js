@@ -2,7 +2,6 @@ import React from 'react';
 import Profile from './Profile';
 import Introduce from './Introduce';
 import Accommodation from './Accommodation';
-import Review from './Review';
 import GuideRate from './GuideRate';
 
 export default class GuideProfile extends React.Component {

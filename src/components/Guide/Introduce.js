@@ -18,7 +18,7 @@ export default class Introduce extends React.Component{
         super(props);
         this.state={
             //spring에서 목록을 받아서 저장할 변수
-            guideData:''
+            guideData:'',
         };
     }
 
@@ -53,11 +53,6 @@ export default class Introduce extends React.Component{
         const length=(String(this.state.guideData.content).length);
         const detailBack2=length<='267'?detailBack===null:detailBack;
         
-
-
-
-
-
         return(
             <div className="boss2">
                 <h1 className="h1-Introduce">안녕하세요 저는 {this.state.guideData.name}입니다.</h1>
@@ -66,6 +61,7 @@ export default class Introduce extends React.Component{
 
                 <div onClick={this.toggleMenu} className="detailBack">{detailBack2}</div>
                 <hr className="line-Introduce"></hr>
+                <br/>
                 <div className="intro-ul">
                     <ul className="ul-Introduce">
                         <li>가이드 장소 : {this.state.guideData.spot}</li>

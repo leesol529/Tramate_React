@@ -24,9 +24,11 @@ export default class TravlerIntroduce extends React.Component{
 
         data=()=>{
             //spring에서 json 결과물 나오는 url
-            var url="http://localhost:9000/controller/traveler/select?num=2";
+            var url="http://localhost:9000/traveler/select";
+            let data = new FormData();
+            data.append("num", this.props.tnum);
 
-            Axios.get(url).then((responseData)=>{
+            Axios.post(url, data).then((responseData)=>{
                 //spring 서버로부터 받은 데이터를 travelerData로 수정
                 this.setState({
                     travelerData:responseData.data
@@ -45,18 +47,22 @@ export default class TravlerIntroduce extends React.Component{
             const shorten = <p className="introduce toggle">{this.state.travelerData.content}</p>;
             const full = <p className="toggle">{this.state.travelerData.content}</p>;
             const menuVis=this.state.showMenu?full:shorten;
-            const detail='자세히 보기';
-            const back='원래대로';
+            const detail=<p className="detail-introduce">자세히 보기</p>;
+            const back=<p className="back-Introduce">원래대로</p>;
             const detailBack=this.state.detail?back:detail;
-            // const notExist=<div maxLength>{this.state.travelerData.content}</div>
+            const length=(String(this.state.travelerData.content).length);
+            const detailBack2=length<='267'?detailBack===null:detailBack;
 
             return(
                 <div className="boss2">
                     <h1 className="h1-Introduce">안녕하세요 저는 {this.state.travelerData.name}입니다.</h1>
                     <div className="doubleQuestionMark">“</div>
                     {menuVis}
-                    <div onClick={this.toggleMenu} className="detailBack">{detailBack}</div>
+                    <div onClick={this.toggleMenu} className="detailBack">{detailBack2}</div>
                     <hr className="line-Introduce"></hr>
+                    <div className="intro-ul">
+                        <br/>
+                    </div>
                 </div>
                 
             )
