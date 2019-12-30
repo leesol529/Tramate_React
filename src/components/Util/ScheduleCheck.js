@@ -27,6 +27,7 @@ export default class ScheduleCheck extends React.Component{
         if(day.format('YYYY-MM-D')==='2019-12-31')
             return true;
         return false;
+        
     }
 
     render(){
@@ -36,12 +37,12 @@ export default class ScheduleCheck extends React.Component{
                     startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                     endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                     onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-                    focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                    onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                    initialVisibleMonth={() => moment().add(2, "M")} // PropTypes.func or null,
+                    //focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                    //onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                    //initialVisibleMonth={() => moment().add(2, "D")} // PropTypes.func or null,
                     hideKeyboardShortcutsPanel={true}
                     numberOfMonths={3}
-                    isDayBlocked={this.isDayBlocked}
+                    isDayBlocked={this.isBlocked}
                 />
             </div>
         );
