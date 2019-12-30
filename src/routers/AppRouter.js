@@ -33,7 +33,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={Main} exact={true} />
         <Route path="/result/:spot" component={Result} />
-        <Route path="/guide/profile" component={GuideProfile} />
+        <Route path="/guide/profile/:gnum/:tnum" component={GuideProfile} />
         <Route path="/asia" component={Asia} />
         <Route path="/africa" component={Africa} />
         <Route path="/antarctica" component={Antarctica} />

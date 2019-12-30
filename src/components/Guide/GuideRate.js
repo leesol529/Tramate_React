@@ -7,8 +7,10 @@ export default class GuideRate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gnum: this.props.match.params.gnum,
-            tnum: this.props.match.params.tnum,
+            // gnum: this.props.match.params.gnum,
+            // tnum: this.props.match.params.tnum,
+            gnum: this.props.gnum,
+            tnum: this.props.tnum,
             gname: '',
             rating: 0,
             rate: 0,

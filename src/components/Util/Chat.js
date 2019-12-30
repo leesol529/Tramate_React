@@ -1,10 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Image from '../Guide/Image';
-import { connect } from 'react-redux';
-import { setChat } from '../../actions/action';
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -147,17 +145,3 @@ class Chat extends React.Component {
     }
 
 }
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onUpdateChat: (a) => dispatch(setChat(a)),
-    };
-}
-let mapStateToProps = (state) => {
-    return {
-        chats: state.chats
-    };
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Chat); 

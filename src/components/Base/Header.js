@@ -5,6 +5,28 @@ import { Link, withRouter } from 'react-router-dom';
 
 class Header extends React.Component {
 
+    data = [
+        {
+            key: 'john',
+            value: 'John Doe',
+        },
+        {
+            key: 'jane',
+            value: 'Jane Doe',
+        },
+        {
+            key: 'mary',
+            value: 'Mary Phillips',
+        },
+        {
+            key: 'robert',
+            value: 'Robert',
+        },
+        {
+            key: 'karius',
+            value: 'Karius',
+        },
+    ]
     handleLogoClick = () => {
         this.props.history.push('/')
     }
@@ -13,6 +35,10 @@ class Header extends React.Component {
         localStorage.removeItem('user');
         localStorage.removeItem('loginok');
         this.props.history.push('/');
+    }
+
+    handleOnChange = () => {
+
     }
 
     render() {
@@ -26,7 +52,7 @@ class Header extends React.Component {
                     <img src={logo} alt="logo" className="logo"
                         onClick={this.handleLogoClick} />
                     <ReactSearchBox placeholder="어디로 떠나고 싶으신가요?"
-                        className="search_bar" />
+                        className="search_bar" data={this.data} ref="searchbox" />
                 </div>
                 <div className="header_right">
                     <ul>

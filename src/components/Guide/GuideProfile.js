@@ -3,15 +3,16 @@ import Profile from './Profile';
 import Introduce from './Introduce';
 import Accommodation from './Accommodation';
 import Review from './Review';
+import GuideRate from './GuideRate';
 
-export default class GuideProfile extends React.Component{
-    render(){
-        return(
+export default class GuideProfile extends React.Component {
+    render() {
+        return (
             <div>
-                <Profile/>
-                <Introduce/>
-                <Accommodation/>
-                <Review/>
+                <Profile />
+                <Introduce />
+                <Accommodation />
+                <GuideRate gnum={this.props.match.params.gnum} tnum={this.props.match.params.tnum} />
             </div>
         );
     }
