@@ -13,7 +13,8 @@ export default class Profile extends React.Component{
        super(props);
        this.state={
            //spring 에서 게시판 목록을 받아서 저장할 변수
-           guideData: ''
+           guideData: '',
+           
        };
    }
 
@@ -63,8 +64,7 @@ export default class Profile extends React.Component{
                     <div className="wrap1-count-review">
                         <img src={chat} className="chat" alt=""/>
                         <p className="review-count">
-                            
-                            후기 (  )개
+                           <a href="#abc" className="ahref-Profile">후기 (  )개</a> 
                         </p>
                     </div>
 
