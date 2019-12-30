@@ -24,9 +24,10 @@ export default class Introduce extends React.Component{
 
     data=()=>{
         //spring 에서 josn 결과물 나오는 url
-        var url="http://localhost:9000/guide/select?num="+localStorage.getItem('gnum');//spring 주소가 9000임. 9000에서 가져오라는 의미.
-
-        Axios.get(url).then((responseData)=>{
+        var url="http://localhost:9000/guide/select";//spring 주소가 9000임. 9000에서 가져오라는 의미.
+        let data = new FormData();
+        data.append("num", this.props.gnum);
+        Axios.post(url, data).then((responseData)=>{
             //spring 서버로부터 받은 데이터로 guestData 수정
             this.setState({
                 guideData:responseData.data

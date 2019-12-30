@@ -9,8 +9,8 @@ export default class GuideProfile extends React.Component {
     render() {
         return (
             <div>
-                <Profile />
-                <Introduce />
+                <Profile gnum={this.props.match.params.gnum} tnum={this.props.match.params.tnum}/>
+                <Introduce gnum={this.props.match.params.gnum} tnum={this.props.match.params.tnum}/>
                 <Accommodation />
                 <GuideRate gnum={this.props.match.params.gnum} tnum={this.props.match.params.tnum} />
             </div>
