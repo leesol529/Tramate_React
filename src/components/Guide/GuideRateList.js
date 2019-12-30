@@ -2,6 +2,7 @@ import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import axios from 'axios';
 import Image from './Image';
+
 export default class GuideRateList extends React.Component {
     constructor(props) {
         super(props);
@@ -28,9 +29,10 @@ export default class GuideRateList extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="guide_rate">
                 <div className="guide_rate_flexbox">
                     <Image img={this.state.traveler.img} />
+                    <div className="guide_rate_name">{this.state.traveler.name}</div>
                     <StarRatingComponent
                         name="rate2"
                         editing={false}
@@ -39,11 +41,8 @@ export default class GuideRateList extends React.Component {
                         value={this.props.reply.rate}
                     />
                 </div>
-                <br />
-                이름 : {this.state.traveler.name}
-                평가 : {this.props.reply.content}
-
-
+                {this.props.reply.content}
+                <hr />
             </div>
         );
     }

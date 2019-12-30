@@ -2,6 +2,7 @@ import React from 'react';
 import StarRate from '../Util/StarRate';
 import axios from 'axios';
 import TravelerRateList from './TravelerRateList';
+import { Button } from '@material-ui/core';
 
 export default class TravelerRate extends React.Component {
     constructor(props) {
@@ -80,23 +81,26 @@ export default class TravelerRate extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container_90">
                 <div className="guide_rate_flexbox">
-                    <p>{this.state.tname}님 가이드는 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p>{this.state.tname}님은 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <StarRate onStarClick={this.onStarClick} />
                 </div>
                 <div>
                     <form className="guide_rate_flexbox" onSubmit={this.handleOnSubmit}>
-                        <textarea onChange={this.handleOnChange} name="content">
+                        <textarea onChange={this.handleOnChange} name="content" className="guide_rate_textarea">
 
                         </textarea>
-                        <button type="submit">댓글 남기기</button>
+                        <Button variant="contained" color="secondary" type="submit">
+                            댓글 남기기
+                        </Button>
                     </form>
                 </div>
-                {this.state.replyList.map((reply) => (
-                    <TravelerRateList key={reply.num} reply={reply} />
-                ))}
-
+                <div>
+                    {this.state.replyList.map((reply) => (
+                        <TravelerRateList key={reply.num} reply={reply} />
+                    ))}
+                </div>
             </div>
         );
     }

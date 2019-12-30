@@ -2,12 +2,13 @@
 
 .result_flexbox{
     display: flex;
-    justify-content: space-between;
+    font-size:$s-size;
+    justify-content: space-around;
 }
 
 .result_component{
     width:17%;
-    border:1px solid black;
+
 }
 
 .container_90{
@@ -32,3 +33,13 @@
     cursor:pointer;}
  }
 
+ .result_introduce{
+    font-size:$s-size;
+ }
+ .result_header{
+    font-size:$m-size;
+ }
+ .hr_margin{
+     margin-top: 4rem;
+     margin-bottom: 4rem;
+ }

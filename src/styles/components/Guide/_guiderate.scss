@@ -1,3 +1,18 @@
 .guide_rate_flexbox{
     display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size:$s-size;
+}
+.guide_rate_name{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size:$s-size;
+}
+.guide_rate{
+    font-size:$s-size;
+}
+.guide_rate_textarea{
+    width:50rem;
+    height: 10rem;
 }

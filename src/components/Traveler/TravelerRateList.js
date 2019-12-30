@@ -28,9 +28,10 @@ export default class TravelerRateList extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="guide_rate">
                 <div className="guide_rate_flexbox">
                     <Image img={this.state.guide.img} />
+                    <div className="guide_rate_name">{this.state.guide.name}</div>
                     <StarRatingComponent
                         name="rate2"
                         editing={false}
@@ -39,11 +40,8 @@ export default class TravelerRateList extends React.Component {
                         value={this.props.reply.rate}
                     />
                 </div>
-                <br />
-                이름 : {this.state.guide.name}
-                평가 : {this.props.reply.content}
-
-
+                {this.props.reply.content}
+                <hr />
             </div>
         );
     }

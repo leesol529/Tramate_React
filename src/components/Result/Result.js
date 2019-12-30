@@ -37,7 +37,7 @@ class Result extends React.Component {
                 this.setState({
                     guide: this.state.guide.concat(guide)
                 })
-                this.props.onUpdateGuide(r_addGuide(guide));
+                this.props.onUpdateGuide(guide);
             });
 
         }).catch((error) => {
@@ -104,30 +104,39 @@ class Result extends React.Component {
     render() {
         return (
             <div className="container_90">
-                <p>최고의 호스트들과 함께 해보세요.</p>
+                <br />
+                <h3 className="result_header">최고의 가이드와 함께하세요</h3>
+                <p className="result_introduce">경험이 많은 현지 가이드가 당신의 여행과 함께합니다.</p>
                 <div className="result_flexbox">
-                    {this.state.guide.map((guide) => (
-                        <ResultHost key={guide.name} guide={guide} />
+                    {this.state.guide.map((guide, idx) => (
+                        <ResultHost key={idx + 1} guide={guide} />
                     ))}
                 </div>
-                <p>최고의 관광명소에 가보세요.</p>
+                <hr className="hr_margin" />
+                <h3 className="result_header">숨은 관광명소를 찾아보세요</h3>
+                <p className="result_introduce">유명한 광광지는 물론 현지 가이드만 아는 숨은 관광명소도 즐겨보아요. </p>
                 <div className="result_flexbox">
                     {this.state.attraction.map((att, idx) => (
-                        <AttractionResult idx={idx + 1} att={att} />
+                        <AttractionResult key={idx + 1} idx={idx + 1} att={att} />
                     ))}
                 </div>
-                <p>최고의 액티비티를 즐겨보세요.</p>
+                <hr className="hr_margin" />
+                <h3 className="result_header">색다른 액티비티를 즐겨보세요</h3>
+                <p className="result_introduce">각 여행지 특성에 맞는 액티비티를 소개해드립니다. 색다른 체험을 해보는건 어떠신가요?</p>
                 <div className="result_flexbox">
                     {this.state.activity.map((act, idx) => (
-                        <ActivityResult idx={idx + 1} act={act} />
+                        <ActivityResult key={idx + 1} idx={idx + 1} act={act} />
                     ))}
                 </div>
-                <p>최고의 레스토랑에서 식사를 해보세요.</p>
+                <hr className="hr_margin" />
+                <h3 className="result_header">현지 음식과 함께 하는 여행</h3>
+                <p className="result_introduce">금강산도 식후경이라고 했나요? 맛있는 현지 음식을 경험해보세요. 분명 맛있을 겁니다.</p>
                 <div className="result_flexbox">
                     {this.state.restaurant.map((res, idx) => (
-                        <RestraurantResult idx={idx = 1} res={res} />
+                        <RestraurantResult key={idx + 1} idx={idx + 1} res={res} />
                     ))}
                 </div>
+                <hr className="hr_margin" />
             </div>
         );
     }
@@ -152,6 +161,5 @@ let mapDispatchToProps = (dispatch) => {
     };
 }
 
-Result = connect(mapStateToProps, mapDispatchToProps)(Result);
 
-export default Result; 
+export default connect(mapStateToProps, mapDispatchToProps)(Result); 

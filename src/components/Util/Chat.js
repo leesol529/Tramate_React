@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Image from '../Guide/Image';
-export default class Chat extends React.Component {
+import { connect } from 'react-redux';
+import { setChat } from '../../actions/action';
+
+class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,6 +70,9 @@ export default class Chat extends React.Component {
             this.setState({
                 chatList: responseData.data
             })
+            this.props.onUpdateChat(responseData.data);
+            console.log(this.props.chats);
+
         }).catch((error) => {
             console.log("댓글 받기 에러!");
         });
@@ -113,26 +119,45 @@ export default class Chat extends React.Component {
                     <input type="text" name="content" ref="content" onChange={this.handleOnChange} />
                     <button>메세지 보내기</button>
                 </form><br />
-                <div className="chat-div">
-                    {this.state.chatList.map((chat) => {
-                        if (chat.comefrom + "" == this.state.comefrom) {
-                            return (
-                                <div key={chat.num} className="line-from-me">
-                                    <Image img={this.state.traveler.img} alt="" />
-                                    <p>{chat.content}</p>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div key={chat.num} className="line-from-other">
-                                    <Image img={this.state.traveler.img} alt="" />
-                                    <p>{chat.content}</p>
-                                </div>
-                            )
-                        }
-                    })}
+                <div className="chat-body">
+                    <div className="chat">
+                        {this.state.chatList.map((chat) => {
+                            if (chat.comefrom + "" == this.state.comefrom) {
+                                return (
+                                    <div key={chat.num} className="mine messages">
+                                        <div className="message">
+                                            {chat.content}
+                                        </div>
+                                    </div>
+                                );
+                            } else {
+                                return (
+                                    <div key={chat.num} className="yours messages">
+                                        <div className="message">
+                                            {chat.content}
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
         );
     }
+
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onUpdateChat: (a) => dispatch(setChat(a)),
+    };
+}
+let mapStateToProps = (state) => {
+    return {
+        chats: state.chats
+    };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat); 

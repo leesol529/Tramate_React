@@ -135,7 +135,7 @@ const addCalendar = ({
     startdate = "",
     enddate = "",
     accept = 'no'
-}={}) =>({
+} = {}) => ({
     type: "ADD_CALENDAR",
     calendar: {
         gnum,
@@ -152,7 +152,7 @@ const delCalendar = ({
     startdate = "",
     enddate = "",
     accept = 'no'
-}={}) =>({
+} = {}) => ({
     type: "DEL_CALENDAR",
     calendar: {
         gnum,
@@ -164,11 +164,11 @@ const delCalendar = ({
 })
 
 const addSchedule = ({
-    gnum=0,
-    tnum=0,
+    gnum = 0,
+    tnum = 0,
     pks = 0,
     type = 0
-}={})=>({
+} = {}) => ({
     type: "ADD_SCHEDULE",
     schedule: {
         gnum,
@@ -179,11 +179,11 @@ const addSchedule = ({
 })
 
 const delSchedule = ({
-    gnum=0,
-    tnum=0,
+    gnum = 0,
+    tnum = 0,
     pks = 0,
     type = 0
-} = {}) =>({
+} = {}) => ({
     type: "DEL_SCHEDULE",
     schedule: {
         gnum,
@@ -193,4 +193,9 @@ const delSchedule = ({
     }
 })
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, delCalendar, addSchedule, delSchedule };
+const setChat = (list) => ({
+    type: "SET_CHAT",
+    chat: list
+})
+
+export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, delCalendar, addSchedule, delSchedule, setChat };

@@ -5,8 +5,10 @@ const r_attractionReducerDefaultState = [];
 const r_activityReducerDefaultState = [];
 const r_restaurantReducerDefaultState = [];
 const r_guideReducerDefaultState = [];
-const calendarReducerDefaultState={};
+const calendarReducerDefaultState = {};
 const scheduleReducerDefaultState = [];
+const chatReducerDefaltState = [];
+
 
 const attractionReducer = (state = attractionReducerDefaultState, action) => {
     switch (action.type) {
@@ -92,8 +94,8 @@ const r_guideReducer = (state = r_guideReducerDefaultState, action) => {
     }
 }
 
-const calendarReducer = (state = calendarReducerDefaultState, action)=>{
-    switch(action.type){
+const calendarReducer = (state = calendarReducerDefaultState, action) => {
+    switch (action.type) {
         case 'ADD_CALENDAR':
             return action.calendar;
         case 'DEL_CALENDAR':
@@ -103,18 +105,27 @@ const calendarReducer = (state = calendarReducerDefaultState, action)=>{
     }
 }
 
-const scheduleReducer = (state = scheduleReducerDefaultState, action)=>{
-    switch(action.type){
+const scheduleReducer = (state = scheduleReducerDefaultState, action) => {
+    switch (action.type) {
         case 'ADD_SCHEDULE':
             return [
                 ...state,
                 action.schedule
             ];
         case 'DEL_SCHEDULE':
-            return state.filter(({pks,type})=> !(pks=== action.schedule.pks && type === action.schedule.type));
-        default: 
+            return state.filter(({ pks, type }) => !(pks === action.schedule.pks && type === action.schedule.type));
+        default:
             return state;
     }
 }
 
-export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer, calendarReducer, scheduleReducer };
+const chatReducer = (state = chatReducerDefaltState, action) => {
+    switch (action.type) {
+        case 'SET_CHAT':
+            return action.chat;
+        default:
+            return state;
+    }
+}
+
+export { attractionReducer, activityReducer, restaurantReducer, r_attractionReducer, r_activityReducer, r_restaurantReducer, r_guideReducer, calendarReducer, scheduleReducer, chatReducer };
