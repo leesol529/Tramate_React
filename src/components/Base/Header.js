@@ -2,31 +2,30 @@ import React from 'react';
 import logo from './logo.jpg';
 import ReactSearchBox from 'react-search-box';
 import { Link, withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 class Header extends React.Component {
 
-    data = [
-        {
-            key: 'john',
-            value: 'John Doe',
-        },
-        {
-            key: 'jane',
-            value: 'Jane Doe',
-        },
-        {
-            key: 'mary',
-            value: 'Mary Phillips',
-        },
-        {
-            key: 'robert',
-            value: 'Robert',
-        },
-        {
-            key: 'karius',
-            value: 'Karius',
-        },
-    ]
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount = () => {
+        axios.get('http://localhost:9000/spot/distinct').then((response) => {
+            this.setState({
+                data: response.data.map((data) => {
+                    return {
+                        key: data,
+                        value: data
+                    }
+                })
+            })
+        })
+    }
+
     handleLogoClick = () => {
         this.props.history.push('/')
     }
@@ -35,10 +34,6 @@ class Header extends React.Component {
         localStorage.removeItem('user');
         localStorage.removeItem('loginok');
         this.props.history.push('/');
-    }
-
-    handleOnChange = () => {
-
     }
 
     render() {
@@ -52,7 +47,9 @@ class Header extends React.Component {
                     <img src={logo} alt="logo" className="logo"
                         onClick={this.handleLogoClick} />
                     <ReactSearchBox placeholder="어디로 떠나고 싶으신가요?"
-                        className="search_bar" data={this.data} ref="searchbox" />
+                        className="search_bar" data={this.state.data} ref="searchbox" onSelect={(record) => {
+                            this.props.history.push(`/result/${record.value}`);
+                        }} />
                 </div>
                 <div className="header_right">
                     <ul>
