@@ -5,7 +5,7 @@ export default class TravlerIntroduce extends React.Component{
         state={
             showMenu:false, 
             detail:false
-        }
+                }
         
         toggleMenu=()=>{
             this.setState({
@@ -42,24 +42,21 @@ export default class TravlerIntroduce extends React.Component{
         }
 
         render(){  
-            const shorten = <p className="introducebox toggle2">{this.state.travelerData.content}</p>;
-            const full = <p className="toggle2">{this.state.travelerData.content}</p>;
+            const shorten = <p className="introduce toggle">{this.state.travelerData.content}</p>;
+            const full = <p className="toggle">{this.state.travelerData.content}</p>;
             const menuVis=this.state.showMenu?full:shorten;
             const detail='자세히 보기';
             const back='원래대로';
-            const detailBack2=this.state.detail?back:detail;
-            
+            const detailBack=this.state.detail?back:detail;
+            // const notExist=<div maxLength>{this.state.travelerData.content}</div>
+
             return(
-                <div className="boss2-traveler">
-                    <h1>안녕하세요 저는 {this.state.travelerData.name}입니다.</h1>
+                <div className="boss2">
+                    <h1 className="h1-Introduce">안녕하세요 저는 {this.state.travelerData.name}입니다.</h1>
+                    <div className="doubleQuestionMark">“</div>
                     {menuVis}
-                    <div onClick={this.toggleMenu} className="detailBack-traveler">{detailBack2}</div>
-                    <hr className="line-travelerIntroduce"></hr>
-                    <div className="intro-ul-traveler">
-                        <ul>
-                            <li>가이드 장소 : </li>
-                        </ul>
-                    </div>
+                    <div onClick={this.toggleMenu} className="detailBack">{detailBack}</div>
+                    <hr className="line-Introduce"></hr>
                 </div>
                 
             )

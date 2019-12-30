@@ -1,8 +1,10 @@
 .boss-guideprofile{
-    //border: 1px solid gray;
+    // border: 1px solid #BDBDBD;
+    border-radius: 12px;
     height: 200px;
-    width:900px;
+    width: 1000px;
     margin:0 auto;
+    margin-top: 50px;
     position: relative;
     
 }
@@ -25,33 +27,54 @@
 
 .vertical-line1{
     border-left: 2px solid gray;
-    height: 200px;
+    height: 199px;
     position: absolute;
     left: 233px;
     top: 0;
     opacity: 0.2;
 }
 
-
-.review{
+.chat{
     position: absolute;
     top: 20px;
     left: 30px;
-    width: 50px;
+    width: 40px;
 
+}
+
+.calendar{
+    position: absolute;
+    top: 30px;
+    left: 29px;
+    width: 38px;
+    height: 38px;
+}
+
+.goSchedule{
+    position: absolute;
+    top: 37px;
+    left: 100px;
+    opacity: 0.6;
+    color: black;
+    text-decoration: none;
+}
+
+.goSchedule:hover{
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .wrap1-count-review{
     //border: 1px solid gray;
     position: relative;
     width: 460px;
-    height: 100px;
+    height: 60px;
     
 }
 
 .vertical-line2{
     border-left: 2px solid gray;
-    height: 200px;
+    height: 199px;
     position: absolute;
     left: 680px;
     top: 0;
@@ -75,38 +98,49 @@
     opacity: 0.6;
 }
 
+.review-count:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.wrap1-guideSchedule{
+    position: relative;
+    width: 460px;
+    height: 72px;
+}
+
 .authentification{
     position: absolute;
+    top: 13px;
     width: 100px;
-    top:10px;
     left: 100px;
     opacity: 0.6;
 }
 
 .wrap1-checked-af{
-    position: absolute;
+    position: relative;
     width:460px;
    // border: 1px solid gray;
-    height: 100px;
+    height: 68px;
 }
 
 .af-info ul li{
     list-style: none;
-    opacity: 0.6;
 }
 
 .af-info{
+    //border: 1px solid gray;
     position: absolute;
-    // border: 1px solid black;
     top: 0;
     left: 700px;
-    width: 303px;
-    margin-right: 700px;
-    height: 200px;
+    width: 300px;
+    height: 199px;
 }
 
 .af-info2{
     text-align: center;
+    opacity: 0.8;
+    margin-bottom: auto;
 }
 
 .check{
@@ -115,18 +149,36 @@
 
 .check-boss{
     position: absolute;
-    left: 40px;
-    height: 76px;
+    top:18px;
+    left: 24px;
+    width: 50px;
+    height: 60px;
 }
 
 .uncheck{
-    height:42px;
+    height: 40px;
  
 }
 
 
-.profile-flexbox{
-    display: flex;
-    align-items: center;
-    line-height: 1.6;
+.sellca-profile{
+    position: relative;
+    top: -13px;
+    display: inline;
+    opacity: 0.6;
+}
+
+.email-profile{
+    position: relative;
+    top: -13px;
+    display: inline;
+    opacity: 0.6;
+
+}
+
+.addr-profile{
+    position: relative;
+    top: -13px;
+    display: inline;
+    opacity: 0.6;
 }

@@ -1,56 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap);
+
+
 .boss2{
     // border: 1px solid gray;
-    height: 350px;
-    margin-left: 300px;
-    margin-right: 300px;
+    height: auto;
+    margin: 0 200px;
 }
 
-h1{
+.h1-Introduce{
     text-align: center;
-}
-
-h2{
-    text-align: center;
- 
+    opacity: 0.7;
+    margin-top: 70px;
 }
 
 .introduce{
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
+    display: -webkit-box;//이거 없으면 화면에 줄임표(...)표시가 안됨!
     -webkit-line-clamp: 3; /* 라인수 */
     -webkit-box-orient: vertical;
     word-wrap:break-word; 
-    line-height: 1.2em;
-    height: 3.6em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+    height: 4em; 
 
 }
 
 .toggle{
-    line-height: 1.2em;
+    line-height: normal;
 }
 
-.detailBack:hover{
+.detail-introduce{
+    width: 110px;
+    color:#088A85;
+}
+
+.back-Introduce{
+    width: 80px;
+    color:#088A85;
+}
+
+.detail-introduce:hover{
     cursor: pointer;
     font-weight: bold;
 }
 
+.back-Introduce:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+// .detailBack:hover{
+//     cursor: pointer;
+//     font-weight: bold;
+// }
+
+// .detailBack{
+//     color: #088A85;
+//     width: 110px;
+// }
 
 .line-Introduce{
     border:2px solid gray;
-    width:100px;
+    width:200px;
     opacity: 0.5;
     position: absolute;
 
 }
 
-.intro-ul ul li{
-    list-style: none;
-}
-
 .intro-ul{
     position: relative;
-    top:50px;
+    top: 20px;
     right: 40px;
     line-height: 2em;
+}
+
+.ul-Introduce{
+
+    li{
+        list-style: none;
+    }
+}
+
+.doubleQuestionMark{
+    height: 60px !important;
+    color: #EBEBEB !important;
+    font-size: 100px !important;
+    font-weight: 700 !important;
+    font-family: 'Nanum Myeongjo', serif;
 }
