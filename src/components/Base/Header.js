@@ -48,7 +48,7 @@ class Header extends React.Component {
                         onClick={this.handleLogoClick} />
                     <ReactSearchBox placeholder="어디로 떠나고 싶으신가요?"
                         className="search_bar" data={this.state.data} ref="searchbox" onSelect={(record) => {
-                            this.props.history.push(`/result/${record.value}`);
+                            this.props.history.replace(`/result/${record.value}`);
                         }} />
                 </div>
                 <div className="header_right">

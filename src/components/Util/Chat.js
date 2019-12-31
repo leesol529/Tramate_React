@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Image from '../Guide/Image';
+import 'react-chat-elements/dist/main.css';
+import { MessageBox, SystemMessage, MessageList, Input, Button, Avatar, Popup, Navbar } from 'react-chat-elements'
 
 export default class Chat extends React.Component {
     constructor(props) {
@@ -10,7 +12,7 @@ export default class Chat extends React.Component {
             tnum: this.props.match.params.tnum,
             comefrom: '',
             content: '',
-            chatList: [],
+            messages: [],
             traveler: '',
             guide: ''
         }
@@ -66,11 +68,8 @@ export default class Chat extends React.Component {
             data: data
         }).then((responseData) => {
             this.setState({
-                chatList: responseData.data
+                messages: responseData.data
             })
-            this.props.onUpdateChat(responseData.data);
-            console.log(this.props.chats);
-
         }).catch((error) => {
             console.log("댓글 받기 에러!");
         });
@@ -111,35 +110,61 @@ export default class Chat extends React.Component {
     }
 
     render() {
+        console.log(localStorage.getItem('tnum'));
         return (
-            <div>
-                <form onSubmit={this.handleSendMessage} id="my-form">
-                    <input type="text" name="content" ref="content" onChange={this.handleOnChange} />
-                    <button>메세지 보내기</button>
-                </form><br />
-                <div className="chat-body">
-                    <div className="chat">
-                        {this.state.chatList.map((chat) => {
-                            if (chat.comefrom + "" == this.state.comefrom) {
-                                return (
-                                    <div key={chat.num} className="mine messages">
-                                        <div className="message">
-                                            {chat.content}
-                                        </div>
-                                    </div>
-                                );
-                            } else {
-                                return (
-                                    <div key={chat.num} className="yours messages">
-                                        <div className="message">
-                                            {chat.content}
-                                        </div>
-                                    </div>
-                                )
+            <div style={{ width: '50rem',margin:'0 auto' }}>
+                <Navbar
+                    left={
+                        <div></div>
+                    }
+                    center={
+                        <div>대화창</div>
+                    }
+                    right={
+                        <div></div>
+                    } />
+                <MessageList
+                    className='message-list'
+                    lockable={true}
+                    toBottomHeight={'100%'}
+                    dataSource={
+                        this.state.messages.map((message) => {
+                            if (localStorage.getItem('user') == 'traveler' && localStorage.getItem('tnum') == message.comefrom) {
+                                return {
+                                    position: 'right',
+                                    type: 'text',
+                                    text: message.content
+
+                                }
+                            } 
+                            else if(localStorage.getItem('user') == 'guide' && localStorage.getItem('gnum') == message.comefrom){
+                                return {
+                                    position: 'right',
+                                    type: 'text',
+                                    text: message.content
+
+                                }
                             }
-                        })}
-                    </div>
-                </div>
+                            else {
+                                return {
+                                    position: 'left',
+                                    type: 'text',
+                                    text: message.content
+                                }
+                            }
+                        })
+                    } />
+                <SystemMessage
+                    text={'End of conversation'} />
+
+                <form onSubmit={this.handleSendMessage} id="my-form" style={{ display: 'flex' }}>
+                    <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none',width:'43rem' }}  />
+                    <Button
+                        color='white'
+                        backgroundColor='black'
+                        text='Send' />
+                </form>
+
             </div>
         );
     }
