@@ -8,8 +8,8 @@ export default class TravelerRate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gnum: this.props.match.params.gnum,
-            tnum: this.props.match.params.tnum,
+            gnum: this.props.gnum,
+            tnum: this.props.tnum,
             tname: '',
             rating: 0,
             rate: 0,
@@ -81,7 +81,7 @@ export default class TravelerRate extends React.Component {
 
     render() {
         return (
-            <div className="container_90">
+            <div className="boss2" id="TravelerProfile-TravelerRate">
                 <div className="guide_rate_flexbox">
                     <p>{this.state.tname}님은 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <StarRate onStarClick={this.onStarClick} />

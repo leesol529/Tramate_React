@@ -46,7 +46,7 @@ const AppRouter = () => (
         <Route path="/traveler/choice/:gnum/:tnum" exact={true} component={TravelerChoice} />
         <Route path="/guide/choice" component={GuideChoice} />
         <Route path="/login" component={Login} />
-        <Route path="/traveler/profile" component={TravelerProfile} />
+        <Route path="/traveler/profile/:gnum/:tnum" component={TravelerProfile} />
         <Route path="/continent/:continent" component={Continent} />
         <Route path="/guide/rate/:gnum/:tnum" component={GuideRate} />
         <Route path="/traveler/rate/:tnum/:gnum" component={TravelerRate} />

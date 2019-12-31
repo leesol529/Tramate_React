@@ -83,7 +83,7 @@ export default class GuideRate extends React.Component {
 
     render() {
         return (
-            <div className="container_90">
+            <div className="boss2" id="abc">
                 <div className="guide_rate_flexbox">
                     <p>{this.state.gname}님 가이드는 어땠나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <StarRate onStarClick={this.onStarClick} />

@@ -3,7 +3,7 @@ import axios from 'axios';
 import host1 from '../../img/host1.jpg';
 import check1 from '../../img/checked.svg'
 import uncheck1 from '../../img/unchecked.svg';
-import chat from '../../img/chat.png';
+import chat1 from '../../img/chat.png';
 import calendar from '../../img/calendar.png';
 import {Link} from 'react-router-dom';
 
@@ -14,6 +14,7 @@ export default class Profile extends React.Component{
        this.state={
            //spring 에서 게시판 목록을 받아서 저장할 변수
            guideData: '',
+           guideratedata:''
            
        };
    }
@@ -21,7 +22,7 @@ export default class Profile extends React.Component{
 
 
    //목록 가져올 메소드
-   data=()=>{
+   Gdata=()=>{
        //spring에서 json파일 결과물 나오는 url
        var url="http://localhost:9000/guide/select";//spring 주소가 9000임. 9000에서 가져오라는 의미.
        let data = new FormData();
@@ -38,8 +39,24 @@ export default class Profile extends React.Component{
         });
    }
 
+   /* GuideRate 의 목록 가져오는 메소드 */
+   GRate=()=>{
+       var url="http://localhost:9000/guiderate/select";
+       let GRatedata = new FormData();
+       GRatedata.append("gnum",this.props.gnum);
+       axios.post(url, GRatedata).then((responseData)=>{
+           this.setState({
+               guideratedata:responseData.data
+           })
+           console.log(this.state.guideratedata);
+       }).catch((error)=>{
+           console.log("** guideratedata 오류");
+       })
+   }
+
    componentWillMount(){
-       this.data();
+       this.Gdata();
+       this.GRate();
    }
    
    
@@ -63,9 +80,9 @@ export default class Profile extends React.Component{
 
                 <div className="wrap1">
                     <div className="wrap1-count-review">
-                        <img src={chat} className="chat" alt=""/>
+                        <img src={chat1} className="chat1" alt=""/>
                         <p className="review-count">
-                           <a href="#abc" className="ahref-Profile">후기 (  )개</a> 
+                           <a href="#abc" className="ahref-Profile">후기 {this.state.guideratedata}개</a> 
                         </p>
                     </div>
 
