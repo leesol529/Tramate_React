@@ -39,7 +39,7 @@ export default class Profile extends React.Component{
         });
    }
 
-   /* GuideRate 의 목록 가져오는 메소드 */
+   /* GuideRate 별 댓글 갯수 가져오는 메소드 */
    GRate=()=>{
        var url="http://localhost:9000/guiderate/select";
        let GRatedata = new FormData();

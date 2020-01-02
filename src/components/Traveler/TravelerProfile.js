@@ -11,11 +11,12 @@ export default class TravlerProfile extends React.Component{
     constructor(props){
        super(props);
        this.state={
-            travelerData:''
+            travelerData:'',
+            travelerRateData:''
        };
    }
 
-   data=()=>{
+   Tdata=()=>{
         //spring 에서 json 결과 나오는 url
         var url="http://localhost:9000/traveler/select";
         let data = new FormData();
@@ -32,8 +33,25 @@ export default class TravlerProfile extends React.Component{
         })
    }
 
+    /* TravelerRate 별 댓글 갯수 가져오는 메소드 */
+    TRate=()=>{
+        var url="http://localhost:9000/travelerrate/select";
+        let TRatedata = new FormData();
+        TRatedata.append("tnum",this.props.tnum);
+        Axios.post(url, TRatedata).then((responseData)=>{
+            this.setState({
+                travelerRateData:responseData.data
+            })
+            console.log(this.state.travelerRateData);
+        }).catch((error)=>{
+            console.log("** TravelerRate 별 댓글 갯수 가져오기 오류");
+        })
+    }
+
+
    componentWillMount(){
-       this.data();
+       this.Tdata();
+       this.TRate();
    }
 
 
@@ -54,14 +72,14 @@ export default class TravlerProfile extends React.Component{
                 </div>
 
                 <div className="wrap1">
-                    <div className="wrap1-count-review">
+                    <div className="wrap1-count-review-travelerProfile">
                         <img src={chat1} className="chat1" alt=""/>
                         <p className="review-count">
-                           <a href="#TravelerProfile-TravelerRate" className="ahref-Profile"> 후기 (  )개</a>
+        <a href="#TravelerProfile-TravelerRate" className="ahref-Profile"> 후기 {this.state.travelerRateData}개</a>
                         </p>
                     </div>
                     
-                    <div className="wrap1-checked-af">
+                    <div className="wrap1-checked-af-travelerProfile">
                         <img src={check1} className="check-boss" alt=""/>
                         <p className="authentification">
                              인증 완료
