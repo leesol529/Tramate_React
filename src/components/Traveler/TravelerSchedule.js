@@ -1,6 +1,7 @@
 import React from 'react';
-import FixedSchedule from './FixedSchedule';
-import NewSchedule from './NewSchedule';
+import FixedSchedule from './TravelerFixedSchedule';
+import NewSchedule from './TravelerNewSchedule';
+import DeclinedSchedule from './TravelerDeclinedSchedule';
 import axios from 'axios';
 
 class TravelerSchedule extends React.Component{
@@ -11,8 +12,10 @@ class TravelerSchedule extends React.Component{
             tnum: this.props.match.params.tnum,
             fixed: [],
             new: [],
+            declined: [],
             fixedSchedule: [],
-            newSchedule: []
+            newSchedule: [],
+            declinedSchedule: []
         }
     }
 
@@ -52,16 +55,17 @@ class TravelerSchedule extends React.Component{
 
     getNewSchedule = () => {
         let data = new FormData();
-        data.append("gnum", this.state.gnum);
+        data.append("tnum", this.state.tnum);
 
         //예약 대기중인 스케줄 가져오기 
         axios.post(
-            "http://localhost:9000/guide/schedule/new",
+            "http://localhost:9000/traveler/schedule/new",
             data
         ).then((res)=>{
             this.setState({
                 new: res.data
             });
+
             if(this.state.new.length>0){
                 this.state.new.map((newOne, idx)=>{
                     this.setState({
@@ -75,22 +79,53 @@ class TravelerSchedule extends React.Component{
             }else if(this.state.new.length===0){
                 this.setState({
                     newSchedule: [
-                        <h3> No new schedules </h3>
+                        <h3> 새로 신청한 스케줄이 없습니다 </h3>
                     ]
                 })
             }
         }).catch((err)=>{
             console.log("예약 대기중인 스케줄 가져오기 실패");
         });
-
-        
     }
 
+    getDeclinedSchedule = () => {
+        let data = new FormData();
+        data.append("tnum", this.state.tnum);
 
+        //거절된 스케줄 가져오기 
+        axios.post(
+            "http://localhost:9000/traveler/schedule/no",
+            data
+        ).then((res)=>{
+            this.setState({
+                declined: res.data
+            });
+            if(this.state.declined.length>0){
+                this.state.declined.map((declinedOne, idx)=>{
+                    this.setState({
+                        declinedSchedule: [
+                            ...this.state.declinedSchedule,
+                            <DeclinedSchedule key={idx+200} schedule={declinedOne}
+                                         history={this.props.history}/>
+                        ]
+                    })
+                })
+            }else if(this.state.declinedSchedule.length===0){
+                this.setState({
+                    declinedSchedule: [
+                        <h3> 거절된 스케줄이 없습니다 </h3>
+                    ]
+                })
+            }
+        }).catch((err)=>{
+            console.log("거절된 스케줄 가져오기 실패");
+        });
+    }
 
     componentDidMount(){
         this.getFixedSchedule();
         this.getNewSchedule();
+        this.getDeclinedSchedule();
     }
 
     render(){
@@ -109,6 +144,11 @@ class TravelerSchedule extends React.Component{
                 <h2 className="schedule_title"> 예약 대기중인 스케줄 </h2>
                 <div className="schedule_super_div">
                     {this.state.newSchedule}
+                </div>
+                <hr/>
+                <h2 className="schedule_title"> 예약 거절 된 스케줄 </h2>
+                <div className="schedule_super_div">
+                    {this.state.declinedSchedule}
                 </div>
             </div>
         );

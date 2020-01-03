@@ -25,6 +25,7 @@ import Check from '../components/Util/Check';
 import GuideSchedule from '../components/Guide/GuideSchedule';
 import ScheduleDetail from '../components/Guide/ScheduleDetail';
 import TravelerSchedule from '../components/Traveler/TravelerSchedule';
+import TravelerScheduleDetail from '../components/Traveler/TravelerScheduleDetail';
 //import ChatWraper from '../components/Util/ChatWrapper';
 
 const AppRouter = () => (
@@ -35,6 +36,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={Main} exact={true} />
         <Route path="/result/:spot" component={Result} />
+        <Route path="/guide/profile/:gnum" component={GuideProfile} exact={true} />
         <Route path="/guide/profile/:gnum/:tnum" component={GuideProfile} />
         <Route path="/asia" component={Asia} />
         <Route path="/africa" component={Africa} />
@@ -48,6 +50,7 @@ const AppRouter = () => (
         <Route path="/traveler/choice/:gnum/:tnum" exact={true} component={TravelerChoice} />
         <Route path="/guide/choice" component={GuideChoice} />
         <Route path="/login" component={Login} />
+        <Route path="/traveler/profile/:tnum" component={TravelerProfile} exact={true} />
         <Route path="/traveler/profile/:gnum/:tnum" component={TravelerProfile} />
         <Route path="/continent/:continent" component={Continent} />
         <Route path="/guide/rate/:gnum/:tnum" component={GuideRate} />
@@ -60,6 +63,7 @@ const AppRouter = () => (
         <Route path="/guide/schedule/:gnum" component={GuideSchedule} exact={true} />
         <Route path="/traveler/schedule/:tnum" component={TravelerSchedule} exact={true} />
         <Route path="/guide/schedule/detail/:gnum/:tnum" component={ScheduleDetail} />
+        <Route path="/traveler/schedule/detail/:gnum/:tnum" component={TravelerScheduleDetail} />
       </Switch>
     </div>
   </BrowserRouter>
