@@ -27,30 +27,30 @@ export default class Login extends React.Component {
                     method: 'post',
                     url: 'http://localhost:9000/guide/choice/gnum',
                     data: data
-                }).then((res)=>{
+                }).then((res) => {
                     localStorage.setItem("gnum", res.data);
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("gnum 가져오기 실패");
                 })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "guide");
                 this.props.history.push("/");
-            } else if (responseData.data === 2){
+            } else if (responseData.data === 2) {
                 alert("traveler로 로그인");
                 axios({
                     method: 'post',
                     url: 'http://localhost:9000/traveler/getNumById',
                     data: data
-                }).then((res)=>{
+                }).then((res) => {
                     localStorage.setItem("tnum", res.data);
                     console.log(localStorage.getItem("tnum"));
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("tnum 가져오기 실패");
                 })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "traveler");
                 this.props.history.push("/");
-            } 
+            }
             else {
                 alert("아이디와 비밀번호가 맞지 않습니다.");
                 this.setState({
@@ -86,7 +86,7 @@ export default class Login extends React.Component {
         // });
 
     }
-    
+
     handleOnChange = (e) => {
 
         e.preventDefault();

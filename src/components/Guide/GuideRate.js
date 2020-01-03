@@ -90,10 +90,10 @@ export default class GuideRate extends React.Component {
                 </div>
                 <div>
                     <form className="guide_rate_flexbox" onSubmit={this.handleOnSubmit}>
-                        <textarea onChange={this.handleOnChange} name="content" className="guide_rate_textarea">
+                        <textarea onChange={this.handleOnChange} name="content" className="guide_rate_textarea" style={{ width: '90%' }}>
 
                         </textarea>
-                        <Button variant="contained" color="secondary" type="submit">
+                        <Button variant="contained" color="secondary" type="submit" style={{ width: '10%', height: '10rem', marginLeft: '5rem' }}>
                             후기 남기기
                         </Button>
                     </form>

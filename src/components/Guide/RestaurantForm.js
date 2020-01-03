@@ -1,10 +1,10 @@
-import React from 'react'; 
+import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
 import store from '../../store/store';
-import {addRestaurant} from '../../actions/action';
+import { addRestaurant } from '../../actions/action';
 
-export default class RestaurantForm extends React.Component{
+export default class RestaurantForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,37 +20,37 @@ export default class RestaurantForm extends React.Component{
     onMount = () => {
         const id = localStorage.getItem("loginok");
         let gnum;
-        var data= new FormData();
+        var data = new FormData();
         data.append("id", id)
-        
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/gnum",
             data: data
-        }).then((responseData)=>{
+        }).then((responseData) => {
             gnum = responseData.data;
             this.setState({
                 gnum
             });
             console.log(gnum);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         });
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.onMount();
     }
 
-    onKeyChange=(e)=>{
+    onKeyChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
-    handleInsert=(e)=>{
+    handleInsert = (e) => {
         //***여기서 else를 줘서 check가 아닐 땐 state에서 빼주는 method 호출하기 
-        if(e.target.checked){
+        if (e.target.checked) {
             store.dispatch(addRestaurant({
                 img: this.state.img,
                 type: this.state.type,
@@ -58,13 +58,13 @@ export default class RestaurantForm extends React.Component{
                 content: this.state.content,
                 gnum: this.state.gnum
             }));
-            console.log(store.getState()); 
-        }  
+            console.log(store.getState());
+        }
     }
 
-    onImageUpload=(e)=>{
+    onImageUpload = (e) => {
         //톰캣 서버에 이미지 업로드하기 
-		const uploadFile = e.target.files[0];
+        const uploadFile = e.target.files[0];
         const img = e.target.files[0].name;
         console.log(uploadFile);
         console.log(img);
@@ -77,26 +77,26 @@ export default class RestaurantForm extends React.Component{
         //아래의 data을 받는 쪽에서 multipart로 받음
         let data = new FormData();
         data.append("uploadFile", uploadFile);
-		
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/restaurant_img",
             data: data,
-			headers: {"Content-Type": "multipart/form-data"}
-        }).then((responseData)=>{
+            headers: { "Content-Type": "multipart/form-data" }
+        }).then((responseData) => {
             console.log(responseData.data);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log("이미지 업로드 중 오류");
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <table className="gchoice_form_table" id="choiceFrm">
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" onChange={this.handleInsert}/>
+                            <input type="checkbox" onChange={this.handleInsert} />
                             Restaurant Form
                         </th>
                     </tr>
@@ -104,13 +104,13 @@ export default class RestaurantForm extends React.Component{
                 <tbody>
                     <tr>
                         <td>
-                            <ImageUpload onImageUpload={this.onImageUpload}/>
+                            <ImageUpload onImageUpload={this.onImageUpload} />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <select name="type" defaultValue="" className="gchoice_input"
-                                    onChange={this.onKeyChange}>
+                                onChange={this.onKeyChange}>
                                 <option value="" disabled>Type of a restaurant </option>
                                 <option value="korean"> Korean </option>
                                 <option value="chinese"> Chinese </option>
@@ -136,8 +136,8 @@ export default class RestaurantForm extends React.Component{
                     <tr>
                         <td>
                             <select name="price" defaultValue=""
-                                    onChange={this.onKeyChange}
-                                    className="gchoice_input">
+                                onChange={this.onKeyChange}
+                                className="gchoice_input">
                                 <option value="" disabled> Price range </option>
                                 <option value="$">$</option>
                                 <option value="$$">$$</option>
@@ -147,9 +147,9 @@ export default class RestaurantForm extends React.Component{
                     </tr>
                     <tr>
                         <td>
-                            <textarea name="content" 
-                                      onChange={this.onKeyChange}
-                                      placeholder="Please describe the restaurant"/>
+                            <textarea name="content"
+                                onChange={this.onKeyChange}
+                                placeholder="Please describe the restaurant" />
                         </td>
                     </tr>
                 </tbody>

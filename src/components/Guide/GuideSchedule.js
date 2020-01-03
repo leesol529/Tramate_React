@@ -4,9 +4,9 @@ import FixedSchedule from './FixedSchedule';
 import NewSchedule from './NewSchedule';
 import axios from 'axios';
 
-class GuideSchedule extends React.Component{
-    
-    constructor(props){
+class GuideSchedule extends React.Component {
+
+    constructor(props) {
         super(props);
         this.state = {
             gnum: this.props.match.params.gnum,
@@ -23,22 +23,22 @@ class GuideSchedule extends React.Component{
         axios.post(
             "http://localhost:9000/guide/schedule/fixed",
             data
-        ).then((res)=>{
+        ).then((res) => {
             this.setState({
                 fixed: res.data
             });
-            
-            if(this.state.fixed.length>0){
-                this.state.fixed.map((fixedOne, idx)=>{
+
+            if (this.state.fixed.length > 0) {
+                this.state.fixed.map((fixedOne, idx) => {
                     this.setState({
                         fixedSchedule: [
                             ...this.state.fixedSchedule,
                             <FixedSchedule key={idx} schedule={fixedOne}
-                                           history={this.props.history}/>
+                                history={this.props.history} />
                         ]
                     })
                 })
-            } else if(this.state.fixed.length===0){
+            } else if (this.state.fixed.length === 0) {
                 this.setState({
                     fixedSchedule: [
                         <h3> No fixed schedules </h3>
@@ -46,7 +46,7 @@ class GuideSchedule extends React.Component{
                 })
             }
 
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log("예약된 스케줄 가져오기 실패");
         });
     }
@@ -59,44 +59,44 @@ class GuideSchedule extends React.Component{
         axios.post(
             "http://localhost:9000/guide/schedule/new",
             data
-        ).then((res)=>{
+        ).then((res) => {
             this.setState({
                 new: res.data
             });
-            if(this.state.new.length>0){
-                this.state.new.map((newOne, idx)=>{
+            if (this.state.new.length > 0) {
+                this.state.new.map((newOne, idx) => {
                     this.setState({
                         newSchedule: [
                             ...this.state.newSchedule,
-                            <NewSchedule key={idx+100} schedule={newOne}
-                                         history={this.props.history}/>
+                            <NewSchedule key={idx + 100} schedule={newOne}
+                                history={this.props.history} />
                         ]
                     })
                 })
-            }else if(this.state.new.length===0){
+            } else if (this.state.new.length === 0) {
                 this.setState({
                     newSchedule: [
                         <h3> No new schedules </h3>
                     ]
                 })
             }
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log("예약 대기중인 스케줄 가져오기 실패");
         });
 
-        
+
     }
 
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.getFixedSchedule();
         this.getNewSchedule();
     }
 
-    render(){
-        
-        return(
+    render() {
+
+        return (
             <div className="super">
                 {/* 예약 확정 스케줄 */}
                 <h2 className="schedule_title"> Fixed Schedule </h2>
@@ -106,7 +106,7 @@ class GuideSchedule extends React.Component{
 
 
                 {/* 예약 대기 스케줄 */}
-                <hr/>
+                <hr />
                 <h2 className="schedule_title"> New Schedule </h2>
                 <div className="schedule_super_div">
                     {this.state.newSchedule}

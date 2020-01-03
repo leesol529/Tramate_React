@@ -1,10 +1,10 @@
-import React from 'react'; 
+import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
 import store from '../../store/store';
-import {addActivity} from '../../actions/action';
+import { addActivity } from '../../actions/action';
 
-export default class ActivityForm extends React.Component{
+export default class ActivityForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,35 +21,35 @@ export default class ActivityForm extends React.Component{
     onMount = () => {
         const id = localStorage.getItem("loginok");
         let gnum;
-        var data= new FormData();
+        var data = new FormData();
         data.append("id", id)
-        
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/gnum",
             data: data
-        }).then((responseData)=>{
+        }).then((responseData) => {
             gnum = responseData.data;
             this.setState({
                 gnum
             });
             console.log(gnum);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         });
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.onMount();
     }
 
-    onKeyChange=(e)=>{
+    onKeyChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
-    handleInsert=()=>{
+    handleInsert = () => {
         store.dispatch(addActivity({
             content: this.state.content,
             img: this.state.img,
@@ -57,12 +57,12 @@ export default class ActivityForm extends React.Component{
             price: this.state.price,
             gnum: this.state.gnum
         }));
-        console.log(store.getState());        
+        console.log(store.getState());
     }
 
-    onImageUpload=(e)=>{
+    onImageUpload = (e) => {
         //톰캣 서버에 이미지 업로드하기 
-		const uploadFile = e.target.files[0];
+        const uploadFile = e.target.files[0];
         const img = e.target.files[0].name;
         console.log(uploadFile);
         console.log(img);
@@ -75,21 +75,21 @@ export default class ActivityForm extends React.Component{
         //아래의 data을 받는 쪽에서 multipart로 받음
         let data = new FormData();
         data.append("uploadFile", uploadFile);
-		
+
         axios({
             method: "post",
             url: "http://localhost:9000/guide/choice/activity_img",
             data: data,
-			headers: {"Content-Type": "multipart/form-data"}
-        }).then((responseData)=>{
+            headers: { "Content-Type": "multipart/form-data" }
+        }).then((responseData) => {
             console.log(responseData.data);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log("이미지 업로드 중 오류");
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <table className="gchoice_form_table" id="choiceFrm">
                 <thead>
                     <tr>
@@ -102,13 +102,13 @@ export default class ActivityForm extends React.Component{
                 <tbody>
                     <tr>
                         <td>
-                            <ImageUpload onImageUpload={this.onImageUpload}/>
+                            <ImageUpload onImageUpload={this.onImageUpload} />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <select name="type" defaultValue="" className="gchoice_input"
-                                    onChange={this.onKeyChange}>
+                                onChange={this.onKeyChange}>
                                 <option value="" disabled>Type of an activity </option>
                                 <option value="indoor">Indoor activity</option>
                                 <option value="outdoor">Outdoor activity</option>
@@ -118,8 +118,8 @@ export default class ActivityForm extends React.Component{
                     <tr>
                         <td>
                             <select name="price" defaultValue=""
-                                    onChange={this.onKeyChange}
-                                    className="gchoice_input">
+                                onChange={this.onKeyChange}
+                                className="gchoice_input">
                                 <option value="" disabled> Price range </option>
                                 <option value="$">$</option>
                                 <option value="$$">$$</option>
@@ -129,9 +129,9 @@ export default class ActivityForm extends React.Component{
                     </tr>
                     <tr>
                         <td>
-                            <textarea name="content" 
-                                      onChange={this.onKeyChange}
-                                      placeholder="Please describe the attraction"/>
+                            <textarea name="content"
+                                onChange={this.onKeyChange}
+                                placeholder="Please describe the attraction" />
                         </td>
                     </tr>
                 </tbody>

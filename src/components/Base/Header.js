@@ -5,6 +5,18 @@ import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-modal'
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        heigth: '40%',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
 class Header extends React.Component {
 
     constructor(props) {
@@ -19,12 +31,12 @@ class Header extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     openModal() {
-        this.setState({modalIsOpen: true});
-      }
-     
-      
-     
-      closeModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+
+
+    closeModal() {
         var data = new FormData();
         data.append("id", this.state.id);
         data.append("pass", this.state.pass);
@@ -40,30 +52,30 @@ class Header extends React.Component {
                     method: 'post',
                     url: 'http://localhost:9000/guide/choice/gnum',
                     data: data
-                }).then((res)=>{
+                }).then((res) => {
                     localStorage.setItem("gnum", res.data);
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("gnum 가져오기 실패");
                 })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "guide");
                 this.props.history.push("/");
-            } else if (responseData.data === 2){
+            } else if (responseData.data === 2) {
                 alert("traveler로 로그인");
                 axios({
                     method: 'post',
                     url: 'http://localhost:9000/traveler/getNumById',
                     data: data
-                }).then((res)=>{
+                }).then((res) => {
                     localStorage.setItem("tnum", res.data);
                     console.log(localStorage.getItem("tnum"));
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("tnum 가져오기 실패");
                 })
                 localStorage.setItem("loginok", this.state.id);
                 localStorage.setItem("user", "traveler");
                 this.props.history.push("/");
-            } 
+            }
             else {
                 alert("아이디와 비밀번호가 맞지 않습니다.");
                 this.setState({
@@ -74,10 +86,10 @@ class Header extends React.Component {
         }).catch((error) => {
             console.log("로그인 실패");
         });
-        this.setState({modalIsOpen: false});
-      }
+        this.setState({ modalIsOpen: false });
+    }
 
-      handleOnChange = (e) => {
+    handleOnChange = (e) => {
 
         e.preventDefault();
         this.setState({
@@ -148,34 +160,35 @@ class Header extends React.Component {
                                         {/* <li ><Link to="/login" className="header_link">로그인</Link></li> */}
                                         <li onClick={this.openModal} >로그인</li>
 
-                                     </div>
+                                    </div>
                         }
                     </ul>
                 </div>
                 <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Example Modal">
-            <div className="wrapper">
-            <div className="main">
-    <p className="sign" align="center">Sign in</p>
-    <form className="form1">
-      <input className="un " type="text" align="center" placeholder="Username" type="text" name="id" onChange={this.handleOnChange} />
-      <input className="pass" type="password" align="center" placeholder="Password"  type="password" name="pass" onChange={this.handleOnChange}/>
-      <a className="submit" align="center" onClick={this.closeModal}>Sign in</a>
-      <p className="forgot" align="center"><a href="#">Forgot Password?</a></p>
-      </form>
-            
-                
-    </div>
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal">
+                    <div className="wrapper">
+                        <div className="main">
+                            <p className="sign" align="center">Sign in</p>
+                            <form className="form1">
+                                <input className="un " type="text" align="center" placeholder="Username" type="text" name="id" onChange={this.handleOnChange} />
+                                <input className="pass" type="password" align="center" placeholder="Password" type="password" name="pass" onChange={this.handleOnChange} />
+                                <a className="submit" align="center" onClick={this.closeModal}>Sign in</a>
+                                <p className="forgot" align="center"><a href="#">Forgot Password?</a></p>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+
+
+                </Modal>
             </div>
-          
-          
-          
-            </Modal>
-            </div>
-        
+
         );
     }
 }

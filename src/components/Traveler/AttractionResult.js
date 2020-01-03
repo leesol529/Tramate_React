@@ -1,10 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {addSchedule, delSchedule} from '../../actions/action';
+import { connect } from 'react-redux';
+import { addSchedule, delSchedule } from '../../actions/action';
 
-class AttractionResult extends React.Component{
+class AttractionResult extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             image: "",
@@ -16,7 +16,7 @@ class AttractionResult extends React.Component{
     }
 
     onCheck = () => {
-        if(!this.state.check){
+        if (!this.state.check) {
             this.state = {
                 pks: this.props.att.num,
                 type: this.state.type
@@ -32,14 +32,14 @@ class AttractionResult extends React.Component{
                 pks: this.state.pks,
                 type: this.state.type
             };
-            
+
             this.setState({
                 check: true
             });
 
             this.props.onInsertSchedule(schedule);
 
-        } else if(this.state.check){
+        } else if (this.state.check) {
             this.state = {
                 pks: this.props.att.num,
                 type: this.state.type
@@ -56,15 +56,15 @@ class AttractionResult extends React.Component{
                 type: this.state.type
             };
             this.props.onDeleteSchedule(schedule);
-            
+
             this.setState({
                 check: false
             });
         }
-    }   
+    }
 
-    render(){
-        return(
+    render() {
+        return (
             <table className="tChoice_table" id="choiceFrm">
                 <thead>
                     <tr>
@@ -79,9 +79,9 @@ class AttractionResult extends React.Component{
                         <td className="tChoice_input tChoice_center">
                             <div className="thumbnail-wrapper">
                                 <div className="thumbnail">
-                                    <img src={`http://localhost:9000/image/${this.props.att.img}`} 
-                                        className="tChoice_img" 
-                                        alt="result_img"/>
+                                    <img src={`http://localhost:9000/image/${this.props.att.img}`}
+                                        className="tChoice_img"
+                                        alt="result_img" />
                                 </div>
                             </div>
                         </td>
@@ -111,6 +111,6 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 //store에 정의 된 state를 쓰기 위한 connect
-AttractionResult= connect(undefined ,mapDispatchToProps)(AttractionResult);
+AttractionResult = connect(undefined, mapDispatchToProps)(AttractionResult);
 
 export default AttractionResult;
