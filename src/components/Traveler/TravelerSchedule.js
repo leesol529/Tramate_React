@@ -1,15 +1,14 @@
 import React from 'react';
-import ScheduleCheck from '../Util/ScheduleCheck';
 import FixedSchedule from './FixedSchedule';
 import NewSchedule from './NewSchedule';
 import axios from 'axios';
 
-class GuideSchedule extends React.Component{
+class TravelerSchedule extends React.Component{
     
     constructor(props){
         super(props);
         this.state = {
-            gnum: this.props.match.params.gnum,
+            tnum: this.props.match.params.tnum,
             fixed: [],
             new: [],
             fixedSchedule: [],
@@ -19,9 +18,9 @@ class GuideSchedule extends React.Component{
 
     getFixedSchedule = () => {
         let data = new FormData();
-        data.append("gnum", this.state.gnum);
+        data.append("tnum", this.state.tnum);
         axios.post(
-            "http://localhost:9000/guide/schedule/fixed",
+            "http://localhost:9000/traveler/schedule/fixed",
             data
         ).then((res)=>{
             this.setState({
@@ -99,7 +98,7 @@ class GuideSchedule extends React.Component{
         return(
             <div className="super">
                 {/* 예약 확정 스케줄 */}
-                <h2 className="schedule_title"> Fixed Schedule </h2>
+                <h2 className="schedule_title"> 확정 된 스케줄 </h2>
                 <div className="schedule_super_div">
                     {this.state.fixedSchedule}
                 </div>
@@ -107,7 +106,7 @@ class GuideSchedule extends React.Component{
 
                 {/* 예약 대기 스케줄 */}
                 <hr/>
-                <h2 className="schedule_title"> New Schedule </h2>
+                <h2 className="schedule_title"> 예약 대기중인 스케줄 </h2>
                 <div className="schedule_super_div">
                     {this.state.newSchedule}
                 </div>
@@ -116,4 +115,4 @@ class GuideSchedule extends React.Component{
     }
 }
 
-export default GuideSchedule;
+export default TravelerSchedule;

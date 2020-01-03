@@ -1,0 +1,47 @@
+.detail_super_div{
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
+}
+
+.info_super{
+    width: 60%;
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    margin: 0 auto;
+}
+
+.schedule_super{
+    margin-top: 5rem;
+}
+
+.schedule_title{
+    font-size: 3.3rem;
+}
+
+.schedule_info{
+    color: $point2;
+}
+
+.schedule_info2{
+    color: $basic;
+}
+
+.schedule_detail_hr{
+    margin: 5rem 0;
+}
+
+.schedule_detail_img{
+    display: block; 
+    overflow: hidden; 
+    height: 120px; 
+    width: 120px;
+    border-radius: 100px;
+    margin: 3rem 0 0 1.5rem;
+    img{
+        width: 120px;
+        display: block; /* Otherwise it keeps some space around baseline */ 
+        min-width: 100%; /* Scale up to fill container width */ 
+        min-height: 100%; /* Scale up to fill container height */ 
+        -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
+    }
+}

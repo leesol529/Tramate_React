@@ -35,23 +35,6 @@ class TravelerChoice extends React.Component {
             this.setState({
                 guide: res.data
             });
-
-            //Byte array 이미지를 이미지로 바꾸는 것.
-            let url4 = "http://localhost:9000/image/"+this.state.guide.img;
-            axios
-                .get(
-                    url4,
-                    { responseType: 'arraybuffer' },
-                )
-                .then(response => {
-                    const base64 = btoa(
-                        new Uint8Array(response.data).reduce(
-                            (data, byte) => data + String.fromCharCode(byte),
-                            '',
-                        ),
-                    );
-                    this.setState({ image: "data:;base64," + base64 });
-                });
         });
     }
 
@@ -146,7 +129,7 @@ class TravelerChoice extends React.Component {
             <div className="super">
                 <div className="tChoice_super">
                     <div className="gPic_div">
-                    <img src={this.state.image} className="tChoice_gPic" alt="guideProfilePic" />
+                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} className="tChoice_gPic" alt="guideProfilePic" />
                     </div>
                     <h2 className="tChoice_title"> 
                         가이드 {this.state.guide.name}의 목록 중 하고싶은 것을 선택해주세요 
