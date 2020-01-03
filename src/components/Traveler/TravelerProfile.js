@@ -4,6 +4,7 @@ import host2 from '../../img/host2.jpg';
 import check1 from '../../img/checked.svg';
 import uncheck1 from '../../img/unchecked.svg';
 import chat1 from '../../img/chat.png';
+import calendar from '../../img/calendar.png';
 
 
 export default class TravlerProfile extends React.Component{
@@ -60,6 +61,11 @@ export default class TravlerProfile extends React.Component{
         const img=this.state.travelerData.img;
         const email=this.state.travelerData.email;
         const mobile=this.state.travelerData.mobile;
+        const user=localStorage.getItem("user");
+        const schedule="스케줄 보러가기";
+        const noschedule=null;
+        const travelerschedule=user?schedule:noschedule;
+
 
 
         return(
@@ -72,14 +78,21 @@ export default class TravlerProfile extends React.Component{
                 </div>
 
                 <div className="wrap1">
-                    <div className="wrap1-count-review-travelerProfile">
+                    <div className="wrap1-count-review">
                         <img src={chat1} className="chat1" alt=""/>
                         <p className="review-count">
-        <a href="#TravelerProfile-TravelerRate" className="ahref-Profile"> 후기 {this.state.travelerRateData}개</a>
+                             <a href="#TravelerProfile-TravelerRate" className="ahref-Profile"> 후기 {this.state.travelerRateData}개</a>
                         </p>
                     </div>
-                    
-                    <div className="wrap1-checked-af-travelerProfile">
+
+                    {/* 여행자 스케줄 확인할 수 있는 메뉴 */}
+                    <div className="wrap1-guideSchedule">
+                        <img src={calendar} className="calendar" alt=""/>
+                        {travelerschedule}
+                    </div>
+
+
+                    <div className="wrap1-checked-af">
                         <img src={check1} className="check-boss" alt=""/>
                         <p className="authentification">
                              인증 완료
