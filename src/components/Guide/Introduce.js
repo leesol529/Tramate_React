@@ -19,6 +19,7 @@ export default class Introduce extends React.Component{
         this.state={
             //spring에서 목록을 받아서 저장할 변수
             guideData:'',
+            guideratedata:''
         };
     }
 
@@ -38,9 +39,25 @@ export default class Introduce extends React.Component{
         })
     }
 
+    /* GuideRate 별 댓글 갯수 가져오는 메소드 */
+   GRate=()=>{
+    var url="http://localhost:9000/guiderate/select";
+    let GRatedata = new FormData();
+    GRatedata.append("gnum",this.props.gnum);
+    Axios.post(url, GRatedata).then((responseData)=>{
+        this.setState({
+            guideratedata:responseData.data
+        })
+        console.log(this.state.guideratedata);
+    }).catch((error)=>{
+        console.log("** guideratedata 오류");
+    })
+}
+
 
     componentWillMount(){
         this.data();
+        this.GRate();
     }
     
     render(){  
@@ -58,7 +75,6 @@ export default class Introduce extends React.Component{
                 <h1 className="h1-Introduce">안녕하세요 저는 {this.state.guideData.name}입니다.</h1>
                 <div className="doubleQuestionMark">“</div>
                 {menuVis1}
-
                 <div onClick={this.toggleMenu} className="detailBack">{detailBack2}</div>
                 <hr className="line-Introduce"></hr>
                 <br/>
@@ -67,6 +83,9 @@ export default class Introduce extends React.Component{
                         <li>가이드 장소 : {this.state.guideData.spot}</li>
                     </ul>
                 </div>
+                <br/>
+                <hr className="line2-Introdue"/>
+                {/* <h3 className="h3-travelerIntroduce">후기 {this.state.guideratedata}개</h3> */}
             </div>
             
         )

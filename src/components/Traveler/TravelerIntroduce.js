@@ -4,7 +4,8 @@ import Axios from 'axios';
 export default class TravlerIntroduce extends React.Component{
         state={
             showMenu:false, 
-            detail:false
+            detail:false,
+            travelerRateData:''
                 }
         
         toggleMenu=()=>{
@@ -22,7 +23,7 @@ export default class TravlerIntroduce extends React.Component{
             };
         }
 
-        data=()=>{
+        Tdata=()=>{
             //spring에서 json 결과물 나오는 url
             var url="http://localhost:9000/traveler/select";
             let data = new FormData();
@@ -39,8 +40,25 @@ export default class TravlerIntroduce extends React.Component{
             })
         }
 
+        /* TravelerRate 별 댓글 갯수 가져오는 메소드 */
+        TRate=()=>{
+        var url="http://localhost:9000/travelerrate/select";
+        let TRatedata = new FormData();
+        TRatedata.append("tnum",this.props.tnum);
+        Axios.post(url, TRatedata).then((responseData)=>{
+            this.setState({
+                travelerRateData:responseData.data
+            })
+            console.log(this.state.travelerRateData);
+        }).catch((error)=>{
+            console.log("** TravelerRate 별 댓글 갯수 가져오기 오류");
+        })
+    }
+
+
         componentWillMount(){
-            this.data();
+            this.Tdata();
+            this.TRate();
         }
 
         render(){  
@@ -60,9 +78,8 @@ export default class TravlerIntroduce extends React.Component{
                     {menuVis}
                     <div onClick={this.toggleMenu} className="detailBack">{detailBack2}</div>
                     <hr className="line-Introduce"></hr>
-                    <div className="intro-ul">
-                        <br/>
-                    </div>
+                    <br/>
+                    <h3 className="h3-travelerIntroduce">후기 {this.state.travelerRateData}개</h3>
                 </div>
                 
             )
