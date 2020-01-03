@@ -33,16 +33,21 @@ export default class TravelerRate extends React.Component {
 
     handleOnSubmit = (e) => {
 
-        axios.post('http://localhost:9000/traveler/rate', {
-            gnum: this.state.gnum,
-            tnum: this.state.tnum,
-            rate: this.state.rating,
-            content: this.state.content
-        }).then((responseData) => {
-            console.log('성공');
-        }).catch((error) => {
-            console.log('실패');
-        });
+        if (this.state.gnum == undefined) {
+            alert('Guide로 로그인 한 후에 댓글을 달아주세요');
+        } else {
+
+            axios.post('http://localhost:9000/traveler/rate', {
+                gnum: this.state.gnum,
+                tnum: this.state.tnum,
+                rate: this.state.rating,
+                content: this.state.content
+            }).then((responseData) => {
+                console.log('성공');
+            }).catch((error) => {
+                console.log('실패');
+            });
+        }
 
     }
 
