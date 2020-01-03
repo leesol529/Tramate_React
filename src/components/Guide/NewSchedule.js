@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 export default class NewSchedule extends React.Component {
 
@@ -9,9 +10,53 @@ export default class NewSchedule extends React.Component {
             traveler: {},
             att: 0,
             act: 0,
-            res: 0
+            res: 0,
+            reason: '',
+            modalIsOpen: false
         }
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
 
+    }
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+    closeModal() {
+
+        let data = new FormData();
+        data.append('gnum', this.props.schedule[0].gnum);
+        data.append('tnum', this.props.schedule[0].tnum);
+        data.append('reason', this.state.reason);
+
+        axios({
+            method: "post",
+            url: "http://localhost:9000/calendar/reason/update",
+            data: data
+        }).then((responseData) => {
+            console.log('Reason 보내기 성공')
+        }).catch((error) => {
+            console.log("Reason 보내기 실패");
+        });
+
+        console.log(this.props.schedule[0].gnum);
+        let data1 = new FormData();
+        data1.append("num", this.props.schedule[0].num);
+        axios.post(
+            "http://localhost:9000/guide/decline",
+            data1
+        ).then((res) => {
+            console.log("decline success");
+            window.location.reload();
+        }).catch((err) => {
+            console.log("decline fail");
+        });
+
+        this.setState({ modalIsOpen: false });
+    }
+    handleOnChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     getTraveler = () => {
@@ -65,17 +110,9 @@ export default class NewSchedule extends React.Component {
     }
 
     handleDecline = () => {
-        console.log(this.props.schedule[0].gnum);
-        let data = new FormData();
-        data.append("num", this.props.schedule[0].num);
-        axios.post(
-            "http://localhost:9000/guide/decline",
-            data
-        ).then((res) => {
-            console.log("decline success");
-            window.location.reload();
-        }).catch((err) => {
-            console.log("decline fail");
+
+        this.setState({
+            modalIsOpen: true
         });
     }
 
@@ -100,9 +137,19 @@ export default class NewSchedule extends React.Component {
                         End: {this.props.schedule[0].enddate}
                     </p>
                     <div className="overlay"></div>
-                    <div className="button1" onClick={this.handleDecline}><p> Decline </p></div>
+                    <div className="button1" onClick={this.handleDecline}><p > Decline </p></div>
                     <div className="button2" onClick={this.handleAccept}><p> Accept </p></div>
                 </div>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    contentLabel="Example Modal">
+                    <form onSubmit={this.closeModal}>
+                        <textarea name="reason" onChange={this.handleOnChange} />
+                        <button type="submit">이유 전송하기</button>
+                    </form>
+                </Modal>
             </div>
         );
     }
