@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Image from '../Guide/Image';
 import 'react-chat-elements/dist/main.css';
-import { MessageBox, SystemMessage, MessageList, Input, Button, Avatar, Popup, Navbar } from 'react-chat-elements'
+import { MessageBox, SystemMessage, MessageList, Input, Button, Avatar, Popup, Navbar,SideBar } from 'react-chat-elements'
 
 export default class Chat extends React.Component {
     constructor(props) {
@@ -133,7 +133,8 @@ export default class Chat extends React.Component {
                                 return {
                                     position: 'right',
                                     type: 'text',
-                                    text: message.content
+                                    text: message.content,
+
 
                                 }
                             } 
@@ -164,6 +165,7 @@ export default class Chat extends React.Component {
                         backgroundColor='black'
                         text='Send' />
                 </form>
+               
 
             </div>
         );
