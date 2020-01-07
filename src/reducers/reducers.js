@@ -17,6 +17,8 @@ const attractionReducer = (state = attractionReducerDefaultState, action) => {
                 ...state,
                 action.attraction
             ];
+        case 'DEL_ATTRACTION':
+            return state.filter(({ gnum, name }) => !(gnum === action.attraction.gnum && name === action.attraction.name));
         default:
             return state;
     }
@@ -29,6 +31,8 @@ const activityReducer = (state = activityReducerDefaultState, action) => {
                 ...state,
                 action.activity
             ];
+        case 'DEL_ACTIVITY':
+                return state.filter(({ gnum, content }) => !(gnum === action.activity.gnum && content === action.activity.content));
         default:
             return state;
     };
@@ -41,6 +45,8 @@ const restaurantReducer = (state = restaurantRedecerDefaultState, action) => {
                 ...state,
                 action.restaurant
             ];
+        case 'DEL_RESTAURANT':
+            return state.filter(({ gnum, content }) => !(gnum === action.restaurant.gnum && content === action.restaurant.content));
         default:
             return state;
     }

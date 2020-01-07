@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
-import store from '../../store/store';
-import { addActivity } from '../../actions/action';
+import { connect } from 'react-redux';
+import { addActivity, delActivity } from '../../actions/action';
 
-export default class ActivityForm extends React.Component {
+class ActivityForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -49,15 +49,60 @@ export default class ActivityForm extends React.Component {
         });
     }
 
-    handleInsert = () => {
-        store.dispatch(addActivity({
-            content: this.state.content,
-            img: this.state.img,
-            type: this.state.type,
-            price: this.state.price,
-            gnum: this.state.gnum
-        }));
-        console.log(store.getState());
+    onCheck = () => {
+        if (!this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            });
+
+            let activity = {
+                gnum: Number(this.state.gnum),
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+
+            this.setState({
+                check: true
+            });
+
+            this.props.onInsertActivity(activity);
+
+        } else if (this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            });
+
+            let activity = {
+                gnum: Number(this.state.gnum),
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+            this.props.onDeleteActivity(activity);
+
+            this.setState({
+                check: false
+            });
+        }
     }
 
     onImageUpload = (e) => {
@@ -94,7 +139,7 @@ export default class ActivityForm extends React.Component {
                 <thead>
                     <tr>
                         <th>
-                            <button type="button" onClick={this.handleInsert}> + </button>
+                            <input type="checkbox" onClick={this.onCheck} />
                             Activity Form
                         </th>
                     </tr>
@@ -139,3 +184,16 @@ export default class ActivityForm extends React.Component {
         );
     }
 }
+
+//store의 state를 변경하기 위한 method (저장)
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onInsertActivity: (a) => dispatch(addActivity(a)),
+        onDeleteActivity: (a) => dispatch(delActivity(a))
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+ActivityForm = connect(undefined, mapDispatchToProps)(ActivityForm);
+
+export default ActivityForm;

@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
-import store from '../../store/store';
-import { addAttraction } from '../../actions/action';
+import { connect } from 'react-redux';
+import { addAttraction, delAttraction } from '../../actions/action';
 
-export default class AttractionForm extends React.Component {
+class AttractionForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,8 @@ export default class AttractionForm extends React.Component {
             name: "",
             img: "",
             content: "",
-            gnum: 1
+            gnum: 1,
+            checked: false
         }
     }
 
@@ -29,11 +30,9 @@ export default class AttractionForm extends React.Component {
             data: data
         }).then((responseData) => {
             gnum = responseData.data;
-            console.log(gnum);
             this.setState({
                 gnum
             });
-            console.log(gnum);
         }).catch((error) => {
             console.log(error);
         });
@@ -49,13 +48,54 @@ export default class AttractionForm extends React.Component {
         });
     }
 
-    handleInsert = () => {
-        store.dispatch(addAttraction({
-            name: this.state.name,
-            content: this.state.content,
-            img: this.state.img,
-            gnum: this.state.gnum
-        }));
+    onCheck = () => {
+        if (!this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
+                name: this.state.name,
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                name: this.state.name,
+                content: this.state.content
+            });
+
+            let attraction = {
+                gnum: Number(this.state.gnum),
+                name: this.state.name,
+                content: this.state.content
+            };
+
+            this.setState({
+                check: true
+            });
+
+            this.props.onInsertAttraction(attraction);
+
+        } else if (this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
+                name: this.state.name,
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                name: this.state.name,
+                content: this.state.content
+            });
+
+            let attraction = {
+                gnum: Number(this.state.gnum),
+                name: this.state.name,
+                content: this.state.content
+            };
+            this.props.onDeleteAttraction(attraction);
+
+            this.setState({
+                check: false
+            });
+        }
     }
 
     onImageUpload = (e) => {
@@ -92,7 +132,7 @@ export default class AttractionForm extends React.Component {
                 <thead>
                     <tr>
                         <th>
-                            <button type="button" onClick={this.handleInsert}> + </button>
+                            <input type="checkbox" onClick={this.onCheck} />
                             Attraction Form
                         </th>
                     </tr>
@@ -121,3 +161,16 @@ export default class AttractionForm extends React.Component {
         );
     }
 }
+
+//store의 state를 변경하기 위한 method (저장)
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onInsertAttraction: (a) => dispatch(addAttraction(a)),
+        onDeleteAttraction: (a) => dispatch(delAttraction(a))
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+AttractionForm = connect(undefined, mapDispatchToProps)(AttractionForm);
+
+export default AttractionForm;

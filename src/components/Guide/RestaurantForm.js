@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageUpload from '../Util/ImageUpload';
 import axios from 'axios';
-import store from '../../store/store';
-import { addRestaurant } from '../../actions/action';
+import { connect } from 'react-redux';
+import { addRestaurant, delRestaurant } from '../../actions/action';
 
-export default class RestaurantForm extends React.Component {
+class RestaurantForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -48,17 +48,59 @@ export default class RestaurantForm extends React.Component {
         });
     }
 
-    handleInsert = (e) => {
-        //***여기서 else를 줘서 check가 아닐 땐 state에서 빼주는 method 호출하기 
-        if (e.target.checked) {
-            store.dispatch(addRestaurant({
-                img: this.state.img,
+    onCheck = () => {
+        if (!this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content,
-                gnum: this.state.gnum
-            }));
-            console.log(store.getState());
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            });
+
+            let restaurant = {
+                gnum: Number(this.state.gnum),
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+
+            this.setState({
+                check: true
+            });
+
+            this.props.onInsertRestaurant(restaurant);
+
+        } else if (this.state.check) {
+            this.state = {
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+            this.setState({
+                gnum: this.state.gnum,
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            });
+
+            let restaurant = {
+                gnum: Number(this.state.gnum),
+                type: this.state.type,
+                price: this.state.price,
+                content: this.state.content
+            };
+            this.props.onDeleteRestaurant(restaurant);
+
+            this.setState({
+                check: false
+            });
         }
     }
 
@@ -96,7 +138,7 @@ export default class RestaurantForm extends React.Component {
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" onChange={this.handleInsert} />
+                            <input type="checkbox" onClick={this.onCheck} />
                             Restaurant Form
                         </th>
                     </tr>
@@ -157,3 +199,16 @@ export default class RestaurantForm extends React.Component {
         );
     }
 }
+
+//store의 state를 변경하기 위한 method (저장)
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onInsertRestaurant: (a) => dispatch(addRestaurant(a)),
+        onDeleteRestaurant: (a) => dispatch(delRestaurant(a))
+    };
+}
+
+//store에 정의 된 state를 쓰기 위한 connect
+RestaurantForm = connect(undefined, mapDispatchToProps)(RestaurantForm);
+
+export default RestaurantForm;

@@ -47,6 +47,55 @@ const addRestaurant = ({
     }
 });
 
+const delAttraction = ({
+    gnum = 0,
+    name = "",
+    img = "",
+    content = ""
+} = {}) => ({
+    type: "DEL_ATTRACTION",
+    attraction: {
+        gnum,
+        name,
+        img,
+        content
+    }
+});
+
+const delActivity = ({
+    gnum = 0,
+    type = "",
+    img = "",
+    price = "",
+    content = ""
+} = {}) => ({
+    type: "DEL_ACTIVITY",
+    activity: {
+        gnum,
+        type,
+        img,
+        price,
+        content
+    }
+});
+
+const delRestaurant = ({
+    gnum = 0,
+    type = "",
+    img = "",
+    price = "",
+    content = ""
+} = {}) => ({
+    type: "DEL_RESTAURANT",
+    restaurant: {
+        gnum,
+        type,
+        img,
+        price,
+        content
+    }
+});
+
 const r_addAttraction = ({
     gnum = 0,
     name = "",
@@ -193,4 +242,4 @@ const delSchedule = ({
     }
 })
 
-export { addAttraction, addActivity, addRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, delCalendar, addSchedule, delSchedule };
+export { addAttraction, addActivity, addRestaurant, delAttraction, delActivity, delRestaurant, r_addAttraction, r_addActivity, r_addRestaurant, r_addGuide, addCalendar, delCalendar, addSchedule, delSchedule };
