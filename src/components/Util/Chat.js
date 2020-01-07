@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Image from '../Guide/Image';
 import 'react-chat-elements/dist/main.css';
-import { MessageBox, SystemMessage, MessageList, Input, Button, Avatar, Popup, Navbar,SideBar } from 'react-chat-elements'
+import { MessageBox, SystemMessage, MessageList, Input, Button, Avatar, Popup, Navbar, SideBar } from 'react-chat-elements'
 
 export default class Chat extends React.Component {
     constructor(props) {
@@ -80,7 +80,7 @@ export default class Chat extends React.Component {
         traveler.append('num', this.state.tnum);
 
         let guide = new FormData();
-        guide.append('num', this.state.guide);
+        guide.append('num', this.state.gnum);
 
         axios({
             method: "post",
@@ -97,7 +97,7 @@ export default class Chat extends React.Component {
         axios({
             method: "post",
             url: "http://localhost:9000/guide/select",
-            data: traveler
+            data: guide
         }).then((responseData) => {
             this.setState({
                 guide: responseData.data
@@ -110,9 +110,8 @@ export default class Chat extends React.Component {
     }
 
     render() {
-        console.log(localStorage.getItem('tnum'));
         return (
-            <div style={{ width: '50rem',margin:'0 auto' }}>
+            <div style={{ width: '50rem', margin: '0 auto' }}>
                 <Navbar
                     left={
                         <div></div>
@@ -137,8 +136,8 @@ export default class Chat extends React.Component {
 
 
                                 }
-                            } 
-                            else if(localStorage.getItem('user') == 'guide' && localStorage.getItem('gnum') == message.comefrom){
+                            }
+                            else if (localStorage.getItem('user') == 'guide' && localStorage.getItem('gnum') == message.comefrom) {
                                 return {
                                     position: 'right',
                                     type: 'text',
@@ -159,13 +158,20 @@ export default class Chat extends React.Component {
                     text={'End of conversation'} />
 
                 <form onSubmit={this.handleSendMessage} id="my-form" style={{ display: 'flex' }}>
-                    <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none',width:'43rem' }}  />
+                    <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none', width: '43rem' }} />
                     <Button
                         color='white'
                         backgroundColor='black'
                         text='Send' />
                 </form>
-               
+                <div className="sticky_left">
+                    <div className="chat_left">
+                        <img src={`http://localhost:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" />
+                    </div>
+                </div>
+                <div className="chat_right">
+                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
+                </div>
 
             </div>
         );
