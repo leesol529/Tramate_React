@@ -141,14 +141,14 @@ class Header extends React.Component {
                         {
                             user === "guide" ?
                                 <div className="header_list">
-                                    <li><Link to="/guide/profile" className="header_link"> My Profile as Guide </Link></li>
+                                    <li><Link to={`/guide/profile/${localStorage.getItem('gnum')}`} className="header_link"> My Profile as Guide </Link></li>
                                     <li onClick={this.handleOnClick}>
                                         Logout
                                 </li>
                                 </div>
                                 : user === "traveler" ?
                                     <div className="header_list">
-                                        <li><Link to="/traveler/profile" className="header_link"> 나의 여행자 프로필 보기 </Link></li>
+                                        <li><Link to={`/traveler/profile/${localStorage.getItem('tnum')}`} className="header_link"> 나의 여행자 프로필 보기 </Link></li>
                                         <li onClick={this.handleOnClick}>
                                             로그아웃
                                 </li>
