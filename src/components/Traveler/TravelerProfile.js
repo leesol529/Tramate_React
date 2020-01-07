@@ -1,10 +1,10 @@
 import React from 'react';
 import Axios from 'axios';
-import host2 from '../../img/host2.jpg';
 import check1 from '../../img/checked.svg';
 import uncheck1 from '../../img/unchecked.svg';
 import chat1 from '../../img/chat.png';
 import calendar from '../../img/calendar.png';
+import {Link} from 'react-router-dom';
 
 
 export default class TravlerProfile extends React.Component{
@@ -19,7 +19,7 @@ export default class TravlerProfile extends React.Component{
 
    Tdata=()=>{
         //spring 에서 json 결과 나오는 url
-        var url="http://localhost:9000/traveler/select";
+        var url="http://192.168.0.89:9000/traveler/select";
         let data = new FormData();
         data.append("num", this.props.tnum);
 
@@ -36,7 +36,7 @@ export default class TravlerProfile extends React.Component{
 
     /* TravelerRate 별 댓글 갯수 가져오는 메소드 */
     TRate=()=>{
-        var url="http://localhost:9000/travelerrate/select";
+        var url="http://192.168.0.89:9000/travelerrate/select";
         let TRatedata = new FormData();
         TRatedata.append("tnum",this.props.tnum);
         Axios.post(url, TRatedata).then((responseData)=>{
@@ -62,7 +62,7 @@ export default class TravlerProfile extends React.Component{
         const email=this.state.travelerData.email;
         const mobile=this.state.travelerData.mobile;
         const user=localStorage.getItem("user");
-        const schedule="스케줄 보러가기";
+        const schedule=<Link to={`/traveler/schedule/${localStorage.getItem('tnum')}`} className="goSchedule">스케줄 보러가기</Link>;
         const noschedule=null;
         const travelerschedule=user?schedule:noschedule;
 
@@ -71,7 +71,7 @@ export default class TravlerProfile extends React.Component{
         return(
             <div className="boss-guideprofile">
                 <div className="main-photo">
-                    <img src={host2} className="guide-profile-image" alt=""/>
+                    <img src={img} className="guide-profile-image" alt=""/>
                 </div>
                 {/* 세로줄 */}
                 <div className="vertical-line1">
