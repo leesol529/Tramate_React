@@ -111,68 +111,77 @@ export default class Chat extends React.Component {
 
     render() {
         return (
-            <div style={{ width: '50rem', margin: '0 auto' }}>
-                <Navbar
-                    left={
-                        <div></div>
-                    }
-                    center={
-                        <div>대화창</div>
-                    }
-                    right={
-                        <div></div>
-                    } />
-                <MessageList
-                    className='message-list'
-                    lockable={true}
-                    toBottomHeight={'100%'}
-                    dataSource={
-                        this.state.messages.map((message) => {
-                            if (localStorage.getItem('user') == 'traveler' && localStorage.getItem('tnum') == message.comefrom) {
-                                return {
-                                    position: 'right',
-                                    type: 'text',
-                                    text: message.content,
-
-
-                                }
-                            }
-                            else if (localStorage.getItem('user') == 'guide' && localStorage.getItem('gnum') == message.comefrom) {
-                                return {
-                                    position: 'right',
-                                    type: 'text',
-                                    text: message.content
-
-                                }
-                            }
-                            else {
-                                return {
-                                    position: 'left',
-                                    type: 'text',
-                                    text: message.content
-                                }
-                            }
-                        })
-                    } />
-                <SystemMessage
-                    text={'End of conversation'} />
-
-                <form onSubmit={this.handleSendMessage} id="my-form" style={{ display: 'flex' }}>
-                    <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none', width: '43rem' }} />
-                    <Button
-                        color='white'
-                        backgroundColor='black'
-                        text='Send' />
-                </form>
-                <div className="sticky_left">
+            <div className="chat_flexbox">
+                <div className="width_100">
                     <div className="chat_left">
-                        <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" />
+                        <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" /><br />
                     </div>
+                    <button type="button" className="chat_button" onClick={() => {
+                        this.props.history.push(`traveler/profile/${this.state.guide.num}/${this.state.traveler.num}`);
+                    }}>프로필 보러가기</button>
                 </div>
-                <div className="chat_right">
-                    <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
-                </div>
+                <div style={{ width: '33.3%', margin: '0 auto' }}>
+                    <Navbar
+                        left={
+                            <div></div>
+                        }
+                        center={
+                            <div>대화창</div>
+                        }
+                        right={
+                            <div></div>
+                        } />
+                    <MessageList
+                        className='message-list'
+                        lockable={true}
+                        toBottomHeight={'100%'}
+                        dataSource={
+                            this.state.messages.map((message) => {
+                                if (localStorage.getItem('user') == 'traveler' && localStorage.getItem('tnum') == message.comefrom) {
+                                    return {
+                                        position: 'right',
+                                        type: 'text',
+                                        text: message.content,
 
+
+                                    }
+                                }
+                                else if (localStorage.getItem('user') == 'guide' && localStorage.getItem('gnum') == message.comefrom) {
+                                    return {
+                                        position: 'right',
+                                        type: 'text',
+                                        text: message.content
+
+                                    }
+                                }
+                                else {
+                                    return {
+                                        position: 'left',
+                                        type: 'text',
+                                        text: message.content
+                                    }
+                                }
+                            })
+                        } />
+                    <SystemMessage
+                        text={'End of conversation'} />
+
+                    <form onSubmit={this.handleSendMessage} id="my-form" style={{ display: 'flex' }}>
+                        <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none', width: '43rem' }} />
+                        <Button
+                            color='white'
+                            backgroundColor='black'
+                            text='Send' />
+                    </form>
+                </div>
+                <div className="width_100">
+                    <div className="chat_right">
+                        <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
+                    </div>
+                    <button type="button" className="chat_button" onClick={() => {
+                        this.props.history.push(`guide/profile/${this.state.guide.num}/${this.state.traveler.num}`);
+                    }}>프로필 보러가기</button>
+                </div>
             </div>
         );
     }

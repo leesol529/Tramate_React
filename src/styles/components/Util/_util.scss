@@ -266,16 +266,18 @@
   }
 
   .chat_left{
-    position:sticky;
-    top:0px;
     display: block; 
     overflow: hidden; 
-    height: 100px; 
-    width: 100px;
-    border-radius: 50px;
+    height: 200px; 
+    width: 200px;
+    border-radius: 100px;
+    margin:0 auto;
 
     .chat_image{
-        width: 100px;
+      position: sticky;
+      top:0;
+      left:0;
+        width: 200px;
         display: block; /* Otherwise it keeps some space around baseline */ 
         min-width: 100%; /* Scale up to fill container width */ 
         min-height: 100%; /* Scale up to fill container height */ 
@@ -286,15 +288,32 @@
 .chat_right{
   display: block; 
   overflow: hidden; 
-  height: 100px; 
-  width: 100px;
-  border-radius: 50px;
+  height: 200px; 
+  width: 200px;
+  border-radius: 100px;
+  margin:0 auto;
 
   .chat_image{
-      width: 100px;
+      width: 200px;
       display: block; /* Otherwise it keeps some space around baseline */ 
       min-width: 100%; /* Scale up to fill container width */ 
       min-height: 100%; /* Scale up to fill container height */ 
       -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
   }
+}
+.chat_flexbox{
+  display: flex;
+  align-items: center;
+}
+.width_100{
+  width:33.3%;
+  text-align: center;
+}
+.chat_button{
+  border:none;
+  padding:1.5rem;
+  background:$point2;
+  border-radius: 0.5rem;
+  color:white;
+  margin-top:1rem;
 }
