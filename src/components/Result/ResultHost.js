@@ -50,6 +50,7 @@ class ResultHost extends React.Component {
     render() {
         return (
             <div className="result_component">
+                <br />
                 <div>
                     <div className="thumbnail-wrapper">
                         <div className="thumbnail">
@@ -57,12 +58,17 @@ class ResultHost extends React.Component {
                         </div>
                     </div>
                     <div className="result_textalign_center">
-                        {this.props.guide.name}
+                        <br />
+                        {this.props.guide.name}<br />
+                        <button type="button" className="go_to_profile" onClick={() => {
+                            this.props.history.push(`/guide/profile/${this.props.guide.num}/${this.state.tnum}`);
+                        }} >프로필 보러가기</button>
                     </div>
 
                     <br />
                     지역: {this.props.guide.spot}<br />
-                    {this.props.guide.content}
+                    {this.props.guide.content}<br />
+
 
                 </div>
             </div>
