@@ -2,6 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        width: '40%',
+        height: '50%',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
 export default class NewSchedule extends React.Component {
 
     constructor(props) {
@@ -143,11 +156,14 @@ export default class NewSchedule extends React.Component {
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
+                    style={customStyles}
                     onRequestClose={this.closeModal}
                     contentLabel="Example Modal">
                     <form onSubmit={this.closeModal}>
-                        <textarea name="reason" onChange={this.handleOnChange} />
-                        <button type="submit">이유 전송하기</button>
+                        <textarea name="reason" onChange={this.handleOnChange} placeholder="Please type in the reason" className="reason_textarea" /><br />
+                        <div className="reason_div">
+                            <button type="submit" className="reason_button">이유 전송하기</button>
+                        </div>
                     </form>
                 </Modal>
             </div>

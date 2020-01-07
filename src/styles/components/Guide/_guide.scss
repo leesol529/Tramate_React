@@ -4,3 +4,23 @@
 @import './guideChoice';
 @import './guideChoiceForm';
 @import './guideSchedule';
+
+.reason_textarea{
+    margin:0 auto;
+    width:55rem;
+    height:15rem;
+    border-radius: 1rem;
+    font-size:$m-size;
+    padding:1rem;
+}
+.reason_button{
+    color:white;
+    background:$point;
+    height:3rem;
+    border:none;
+    width:18rem;
+    font-size: $m-size;
+    margin-top:2rem;
+    border-radius:1rem;
+
+}
