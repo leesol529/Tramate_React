@@ -50,7 +50,6 @@ class ResultHost extends React.Component {
     render() {
         return (
             <div className="result_component">
-                <br />
                 <div>
                     <div className="thumbnail-wrapper">
                         <div className="thumbnail">
