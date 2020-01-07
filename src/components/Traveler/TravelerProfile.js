@@ -71,7 +71,7 @@ export default class TravlerProfile extends React.Component{
         return(
             <div className="boss-guideprofile">
                 <div className="main-photo">
-                    <img src={img} className="guide-profile-image" alt=""/>
+                    <img src={`http://192.168.0.89:9000/image/${img}`} className="guide-profile-image" alt=""/>
                 </div>
                 {/* 세로줄 */}
                 <div className="vertical-line1">
