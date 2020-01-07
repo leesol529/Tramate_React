@@ -53,18 +53,21 @@ class AttractionForm extends React.Component {
             this.state = {
                 gnum: this.state.gnum,
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.setState({
                 gnum: this.state.gnum,
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             });
 
             let attraction = {
                 gnum: Number(this.state.gnum),
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
 
             this.setState({
@@ -77,18 +80,21 @@ class AttractionForm extends React.Component {
             this.state = {
                 gnum: this.state.gnum,
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.setState({
                 gnum: this.state.gnum,
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             });
 
             let attraction = {
                 gnum: Number(this.state.gnum),
                 name: this.state.name,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.props.onDeleteAttraction(attraction);
 

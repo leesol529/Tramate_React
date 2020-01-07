@@ -112,12 +112,12 @@ export default class Chat extends React.Component {
     render() {
         return (
             <div className="chat_flexbox">
-                <div className="width_100">
+                <div className="width_100_l">
                     <div className="chat_left">
                         <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" /><br />
                     </div>
                     <button type="button" className="chat_button" onClick={() => {
-                        this.props.history.push(`traveler/profile/${this.state.guide.num}/${this.state.traveler.num}`);
+                        this.props.history.push(`/traveler/profile/${this.state.guide.num}/${this.state.traveler.num}`);
                     }}>프로필 보러가기</button>
                 </div>
                 <div style={{ width: '33.3%', margin: '0 auto' }}>
@@ -167,19 +167,20 @@ export default class Chat extends React.Component {
                         text={'End of conversation'} />
 
                     <form onSubmit={this.handleSendMessage} id="my-form" style={{ display: 'flex' }}>
-                        <input type="text" name="content" ref="content" onChange={this.handleOnChange} placeholder='Input Message' style={{ border: 'none', width: '43rem' }} />
+                        <input type="text" name="content" ref="content" onChange={this.handleOnChange} 
+                               placeholder='Input Message' className="messageBox"/>
                         <Button
                             color='white'
                             backgroundColor='black'
                             text='Send' />
                     </form>
                 </div>
-                <div className="width_100">
+                <div className="width_100_r">
                     <div className="chat_right">
                         <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
                     </div>
                     <button type="button" className="chat_button" onClick={() => {
-                        this.props.history.push(`guide/profile/${this.state.guide.num}/${this.state.traveler.num}`);
+                        this.props.history.push(`/guide/profile/${this.state.guide.num}/${this.state.traveler.num}`);
                     }}>프로필 보러가기</button>
                 </div>
             </div>

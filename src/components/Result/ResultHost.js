@@ -65,10 +65,8 @@ class ResultHost extends React.Component {
                     </div>
 
                     <br />
-                    지역: {this.props.guide.spot}<br />
-                    {this.props.guide.content}<br />
-
-
+                    지역: {this.props.guide.spot}
+                    <div className="result_host_introduce">{this.props.guide.content}</div>
                 </div>
             </div>
         );

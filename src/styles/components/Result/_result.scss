@@ -47,3 +47,11 @@
      color:$point2;
      font-size:$l-size;
  }
+
+ .result_host_introduce{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+    height: 40px;
+ }

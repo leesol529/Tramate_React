@@ -9,7 +9,7 @@ const customStyles = {
         right: 'auto',
         bottom: 'auto',
         width: '45%',
-        height: '45%',
+        height: '32%',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
     }
@@ -19,7 +19,7 @@ export default class FixedSchedule extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            traveler: {},
+            guide: {},
             att: 0,
             act: 0,
             res: 0,
@@ -29,13 +29,13 @@ export default class FixedSchedule extends React.Component{
         this.closeModal = this.closeModal.bind(this);
     }
 
-    getTraveler = () => {
-        let url = "http://192.168.0.89:9000/traveler/select";
+    getGuide = () => {
+        let url = "http://192.168.0.89:9000/guide/select";
         let data = new FormData();
-        data.append("num", this.props.schedule[0].tnum);
+        data.append("num", this.props.schedule[0].gnum);
         axios.post(url, data).then((res)=>{
             this.setState({
-                traveler: res.data
+                guide: res.data
             });
         });
     }
@@ -73,7 +73,7 @@ export default class FixedSchedule extends React.Component{
     }
 
     componentDidMount(){
-        this.getTraveler();
+        this.getGuide();
         this.count();
         console.log(this.props.schedule[0]);
     }
@@ -82,9 +82,9 @@ export default class FixedSchedule extends React.Component{
         return(
             <div className="schedule_traveler_info">
                 <div className="container2">
-                    <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`} 
+                    <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} 
                          className="schedule_traveler_pic" alt="travelerProfilePic" />
-                    <p className="title">{this.state.traveler.name}</p>
+                    <p className="title">{this.state.guide.name}</p>
                     <p className="info">
                         <b>{this.state.att}</b> attractions<br/>
                         <b>{this.state.act}</b> activities<br/>

@@ -55,20 +55,23 @@ class ActivityForm extends React.Component {
                 gnum: this.state.gnum,
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.setState({
                 gnum: this.state.gnum,
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             });
 
             let activity = {
                 gnum: Number(this.state.gnum),
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
 
             this.setState({
@@ -82,20 +85,23 @@ class ActivityForm extends React.Component {
                 gnum: this.state.gnum,
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.setState({
                 gnum: this.state.gnum,
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             });
 
             let activity = {
                 gnum: Number(this.state.gnum),
                 type: this.state.type,
                 price: this.state.price,
-                content: this.state.content
+                content: this.state.content,
+                img: this.state.img
             };
             this.props.onDeleteActivity(activity);
 

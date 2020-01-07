@@ -1,7 +1,8 @@
 import React from 'react';
-import ScheduleCheck from '../Util/ScheduleCheck';
+//import ScheduleCheck from '../Util/ScheduleCheck';
 import FixedSchedule from './FixedSchedule';
 import NewSchedule from './NewSchedule';
+import FinishedSchedule from './FinishedSchedule'
 import axios from 'axios';
 
 class GuideSchedule extends React.Component {
@@ -12,8 +13,10 @@ class GuideSchedule extends React.Component {
             gnum: this.props.match.params.gnum,
             fixed: [],
             new: [],
+            finishied: [],
             fixedSchedule: [],
-            newSchedule: []
+            newSchedule: [],
+            finishedSchedule: []
         }
     }
 
@@ -83,10 +86,41 @@ class GuideSchedule extends React.Component {
         }).catch((err) => {
             console.log("예약 대기중인 스케줄 가져오기 실패");
         });
-
-
     }
 
+    getFinishedSchedule = () => {
+        let data = new FormData();
+        data.append("gnum", this.state.gnum);
+
+        //예약 대기중인 스케줄 가져오기 
+        axios.post(
+            "http://192.168.0.89:9000/guide/schedule/finished",
+            data
+        ).then((res) => {
+            this.setState({
+                finishied: res.data
+            });
+            if (this.state.finishied.length > 0) {
+                this.state.finishied.map((finishiedOne, idx) => {
+                    this.setState({
+                        newSchedule: [
+                            ...this.state.finishedSchedule,
+                            <FinishedSchedule key={idx + 100} schedule={finishiedOne}
+                                history={this.props.history} />
+                        ]
+                    })
+                })
+            } else if (this.state.new.length === 0) {
+                this.setState({
+                    newSchedule: [
+                        <h3> No finished schedules </h3>
+                    ]
+                })
+            }
+        }).catch((err) => {
+            console.log("완료된 스케줄 가져오기 실패");
+        });
+    }
 
 
     componentDidMount() {
@@ -110,6 +144,13 @@ class GuideSchedule extends React.Component {
                 <h2 className="schedule_title"> New Schedule </h2>
                 <div className="schedule_super_div">
                     {this.state.newSchedule}
+                </div>
+
+                {/* 완료된 스케줄 */}
+                <hr />
+                <h2 className="schedule_title"> Finished Schedule </h2>
+                <div className="schedule_super_div">
+                    {this.state.finishedSchedule}
                 </div>
             </div>
         );

@@ -176,6 +176,7 @@ class Header extends React.Component {
                             <form className="form1">
                                 <input className="un " type="text" align="center" placeholder="Username" type="text" name="id" onChange={this.handleOnChange} />
                                 <input className="pass" type="password" align="center" placeholder="Password" type="password" name="pass" onChange={this.handleOnChange} />
+                                <br/>
                                 <a className="submit" align="center" onClick={this.closeModal}>Sign in</a>
                                 <p className="forgot" align="center"><a href="#">Forgot Password?</a></p>
                             </form>
