@@ -38,7 +38,7 @@ export default class GuideRate extends React.Component {
             alert('Traveler로 로그인 이후에 댓글을 달아주세요');
         } else {
 
-            axios.post('http://localhost:9000/guide/rate', {
+            axios.post('http://192.168.0.89:9000/guide/rate', {
                 gnum: this.state.gnum,
                 tnum: this.state.tnum,
                 rate: this.state.rating,
@@ -59,7 +59,7 @@ export default class GuideRate extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/reply/to/guide",
+            url: "http://192.168.0.89:9000/reply/to/guide",
             data: data
         }).then((responseData) => {
             this.setState({
@@ -74,7 +74,7 @@ export default class GuideRate extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/select",
+            url: "http://192.168.0.89:9000/guide/select",
             data: data1
         }).then((responseData) => {
             this.setState({

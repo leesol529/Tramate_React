@@ -26,7 +26,7 @@ class ActivityForm extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/choice/gnum",
+            url: "http://192.168.0.89:9000/guide/choice/gnum",
             data: data
         }).then((responseData) => {
             gnum = responseData.data;
@@ -123,7 +123,7 @@ class ActivityForm extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/choice/activity_img",
+            url: "http://192.168.0.89:9000/guide/choice/activity_img",
             data: data,
             headers: { "Content-Type": "multipart/form-data" }
         }).then((responseData) => {

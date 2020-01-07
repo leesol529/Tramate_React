@@ -25,7 +25,7 @@ export default class GuideChoice extends React.Component {
         e.preventDefault();
 
         axios.post(
-            "http://localhost:9000/guide/choice/attraction_input",
+            "http://192.168.0.89:9000/guide/choice/attraction_input",
             store.getState().attractions).then((responseData) => {
                 console.log('attraction insert 성공');
             }).catch((error) => {
@@ -33,7 +33,7 @@ export default class GuideChoice extends React.Component {
             });
 
         axios.post(
-            "http://localhost:9000/guide/choice/activity_input",
+            "http://192.168.0.89:9000/guide/choice/activity_input",
             store.getState().activities).then((responseData) => {
                 console.log('activity insert 성공');
             }).catch((error) => {
@@ -41,7 +41,7 @@ export default class GuideChoice extends React.Component {
             });
 
         axios.post(
-            "http://localhost:9000/guide/choice/restaurant_input",
+            "http://192.168.0.89:9000/guide/choice/restaurant_input",
             store.getState().restaurants).then((responseData) => {
                 console.log('restaurant insert 성공');
             }).catch((error) => {

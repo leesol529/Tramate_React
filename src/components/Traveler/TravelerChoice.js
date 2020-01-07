@@ -27,7 +27,7 @@ class TravelerChoice extends React.Component {
     }
 
     getGuide = async() => {
-        let url5 = "http://localhost:9000/guide/select";
+        let url5 = "http://192.168.0.89:9000/guide/select";
         let data = new FormData();
         data.append("num", this.state.gnum)
         await axios.post(url5, data).then((res)=>{
@@ -40,7 +40,7 @@ class TravelerChoice extends React.Component {
 
     componentWillMount = () => {
 
-        let url1 = "http://localhost:9000/traveler/choice/activity?gnum=" + this.state.gnum;
+        let url1 = "http://192.168.0.89:9000/traveler/choice/activity?gnum=" + this.state.gnum;
         axios.get(url1).then((responseData) => {
             this.setState({
                 activity: responseData.data
@@ -51,7 +51,7 @@ class TravelerChoice extends React.Component {
             console.log("**Traveler choice activity get 오류**");
         });
 
-        let url2 = "http://localhost:9000/traveler/choice/restaurant?gnum=" + this.state.gnum;
+        let url2 = "http://192.168.0.89:9000/traveler/choice/restaurant?gnum=" + this.state.gnum;
         axios.get(url2).then((responseData) => {
             this.setState({
                 restaurant: responseData.data
@@ -60,7 +60,7 @@ class TravelerChoice extends React.Component {
             console.log("**Traveler choice restaurant get 오류**");
         });
 
-        let url3 = "http://localhost:9000/traveler/choice/spot?gnum=" + this.state.gnum;
+        let url3 = "http://192.168.0.89:9000/traveler/choice/spot?gnum=" + this.state.gnum;
         axios.get(url3).then((responseData) => {
             this.setState({
                 spot: responseData.data
@@ -77,7 +77,7 @@ class TravelerChoice extends React.Component {
 
         //calendar에 insert
         axios.post(
-            "http://localhost:9000/calendar/insert", 
+            "http://192.168.0.89:9000/calendar/insert", 
             store.getState().calendars).then((responseData) => {
             console.log('calendar insert success');
         }).catch((error) => {
@@ -86,7 +86,7 @@ class TravelerChoice extends React.Component {
         console.log(this.props.calendars);
         //att,act,res의 result에서 저장한 schedules의 내용을 db 저장하는 axios
         axios.post(
-            "http://localhost:9000/traveler/choice", 
+            "http://192.168.0.89:9000/traveler/choice", 
             store.getState().schedules).then((responseData) => {
             console.log('schedule insert success');
         }).catch((error) => {
@@ -129,7 +129,7 @@ class TravelerChoice extends React.Component {
             <div className="super">
                 <div className="tChoice_super">
                     <div className="gPic_div">
-                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} className="tChoice_gPic" alt="guideProfilePic" />
+                    <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} className="tChoice_gPic" alt="guideProfilePic" />
                     </div>
                     <h2 className="tChoice_title"> 
                         가이드 {this.state.guide.name}의 목록 중 하고싶은 것을 선택해주세요 

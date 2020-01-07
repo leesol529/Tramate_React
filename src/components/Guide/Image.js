@@ -10,7 +10,7 @@ export default class Image extends React.Component {
 
     render() {
         return (
-            <Avatar src={`http://localhost:9000/image/${this.props.img}`} />
+            <Avatar src={`http://192.168.0.89:9000/image/${this.props.img}`} />
         );
     }
 }

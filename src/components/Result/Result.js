@@ -30,7 +30,7 @@ class Result extends React.Component {
         //spot에 관련한 가이드 5명을 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/guideRandomRelatedSpot/",
+            url: "http://192.168.0.89:9000/guideRandomRelatedSpot/",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((guide) => {
@@ -48,7 +48,7 @@ class Result extends React.Component {
         //spot에 관련한 관광명소 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/spotRandomRelatedSpot/",
+            url: "http://192.168.0.89:9000/spotRandomRelatedSpot/",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((attraction) => {
@@ -64,7 +64,7 @@ class Result extends React.Component {
         //spot에 관련한 Activity 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/activityRandomRelatedSpot/",
+            url: "http://192.168.0.89:9000/activityRandomRelatedSpot/",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((activity) => {
@@ -79,7 +79,7 @@ class Result extends React.Component {
         //spot에 관련한 Restaurant 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/restaurantRandomRelatedSpot/",
+            url: "http://192.168.0.89:9000/restaurantRandomRelatedSpot/",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((restaurant) => {

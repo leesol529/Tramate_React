@@ -79,7 +79,7 @@ class RestaurantResult extends React.Component{
                         <td className="tChoice_input tChoice_center">
                             <div className="thumbnail-wrapper">
                                 <div className="thumbnail">
-                                    <img src={`http://localhost:9000/image/${this.props.res.img}`} 
+                                    <img src={`http://192.168.0.89:9000/image/${this.props.res.img}`} 
                                     className="tChoice_img" 
                                     alt="result_img"/>
                                 </div>

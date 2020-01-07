@@ -21,7 +21,7 @@ class GuideSchedule extends React.Component {
         let data = new FormData();
         data.append("gnum", this.state.gnum);
         axios.post(
-            "http://localhost:9000/guide/schedule/fixed",
+            "http://192.168.0.89:9000/guide/schedule/fixed",
             data
         ).then((res) => {
             this.setState({
@@ -57,7 +57,7 @@ class GuideSchedule extends React.Component {
 
         //예약 대기중인 스케줄 가져오기 
         axios.post(
-            "http://localhost:9000/guide/schedule/new",
+            "http://192.168.0.89:9000/guide/schedule/new",
             data
         ).then((res) => {
             this.setState({

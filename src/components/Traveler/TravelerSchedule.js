@@ -25,7 +25,7 @@ class TravelerSchedule extends React.Component{
         let data = new FormData();
         data.append("tnum", this.state.tnum);
         axios.post(
-            "http://localhost:9000/traveler/schedule/fixed",
+            "http://192.168.0.89:9000/traveler/schedule/fixed",
             data
         ).then((res)=>{
             this.setState({
@@ -62,7 +62,7 @@ class TravelerSchedule extends React.Component{
 
         //예약 대기중인 스케줄 가져오기 
         axios.post(
-            "http://localhost:9000/traveler/schedule/new",
+            "http://192.168.0.89:9000/traveler/schedule/new",
             data
         ).then((res)=>{
             this.setState({
@@ -98,7 +98,7 @@ class TravelerSchedule extends React.Component{
 
         //거절된 스케줄 가져오기 
         axios.post(
-            "http://localhost:9000/traveler/schedule/no",
+            "http://192.168.0.89:9000/traveler/schedule/no",
             data
         ).then((res)=>{
             this.setState({

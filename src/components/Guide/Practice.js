@@ -26,7 +26,7 @@ export default class Practice extends React.Component {
         myarr.push(data1);
         myarr.push(data2);
 
-        axios.post('http://localhost:9000/practicelist', myarr).then((responseData) => {
+        axios.post('http://192.168.0.89:9000/practicelist', myarr).then((responseData) => {
             console.log('성공');
         }).catch((error) => {
             console.log('실패');

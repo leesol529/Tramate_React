@@ -25,9 +25,9 @@ export default class TravelerScheduleDetail extends React.Component{
     getDetail = () => {
         let url;
         if(this.props.match.params.info==="fixed"){
-            url = "http://localhost:9000/guide/schedule/detail";
+            url = "http://192.168.0.89:9000/guide/schedule/detail";
         } else if(this.props.match.params.info==="wait"){
-            url = "http://localhost:9000/traveler/waiting_schedule/detail";
+            url = "http://192.168.0.89:9000/traveler/waiting_schedule/detail";
         }
         console.log(url);
         let data = new FormData();
@@ -51,7 +51,7 @@ export default class TravelerScheduleDetail extends React.Component{
                 
                 if(schedule.type===1){
                     axios.post(
-                        "http://localhost:9000/spot/data",
+                        "http://192.168.0.89:9000/spot/data",
                         data
                     ).then((res)=>{
                         this.setState({
@@ -71,7 +71,7 @@ export default class TravelerScheduleDetail extends React.Component{
                     });
                 } else if(schedule.type===2){
                     axios.post(
-                        "http://localhost:9000/activity/data",
+                        "http://192.168.0.89:9000/activity/data",
                         data
                     ).then((res)=>{
                         this.setState({
@@ -91,7 +91,7 @@ export default class TravelerScheduleDetail extends React.Component{
                     });
                 } else if(schedule.type===3){
                     axios.post(
-                        "http://localhost:9000/restaurant/data",
+                        "http://192.168.0.89:9000/restaurant/data",
                         data
                     ).then((res)=>{
                         this.setState({
@@ -117,7 +117,7 @@ export default class TravelerScheduleDetail extends React.Component{
             console.log("스케줄 세부정보 가져오기 실패");
         });
 
-        let url2 = "http://localhost:9000/guide/select"
+        let url2 = "http://192.168.0.89:9000/guide/select"
         let data2 = new FormData();
         data2.append("num", this.props.match.params.gnum);
 
@@ -154,7 +154,7 @@ export default class TravelerScheduleDetail extends React.Component{
                     </b>
                     </div>
                     <div className="schedule_detail_img">
-                        <img src={`http://localhost:9000/image/${this.state.guide.img}`} 
+                        <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} 
                             alt="traveler_portrait" />
                     </div>
                 </div>

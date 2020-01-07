@@ -17,7 +17,7 @@ export default class GuideRateList extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/traveler/select",
+            url: "http://192.168.0.89:9000/traveler/select",
             data: data
         }).then((responseData) => {
             this.setState({

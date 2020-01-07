@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
     //목록 가져올 메소드
     Gdata = () => {
         //spring에서 json파일 결과물 나오는 url
-        var url = "http://localhost:9000/guide/select";//spring 주소가 9000임. 9000에서 가져오라는 의미.
+        var url = "http://192.168.0.89:9000/guide/select";//spring 주소가 9000임. 9000에서 가져오라는 의미.
         let data = new FormData();
         data.append("num", this.props.gnum);
         axios.post(url, data).then((responseData) => {
@@ -41,7 +41,7 @@ export default class Profile extends React.Component {
 
     /* GuideRate 별 댓글 갯수 가져오는 메소드 */
     GRate = () => {
-        var url = "http://localhost:9000/guiderate/select";
+        var url = "http://192.168.0.89:9000/guiderate/select";
         let GRatedata = new FormData();
         GRatedata.append("gnum", this.props.gnum);
         axios.post(url, GRatedata).then((responseData) => {

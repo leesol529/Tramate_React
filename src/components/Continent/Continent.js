@@ -28,7 +28,7 @@ export default class Continent extends React.Component {
         //spot에 관련한 가이드 5명을 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/randomlist/continent",
+            url: "http://192.168.0.89:9000/guide/randomlist/continent",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((guide) => {
@@ -44,7 +44,7 @@ export default class Continent extends React.Component {
         //spot에 관련한 관광명소 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/attraction/randomlist/continent",
+            url: "http://192.168.0.89:9000/attraction/randomlist/continent",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((attraction) => {
@@ -60,7 +60,7 @@ export default class Continent extends React.Component {
         //spot에 관련한 Activity 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/activity/randomlist/continent",
+            url: "http://192.168.0.89:9000/activity/randomlist/continent",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((activity) => {
@@ -75,7 +75,7 @@ export default class Continent extends React.Component {
         //spot에 관련한 Restaurant 5개 랜덤으로 불러오기
         axios({
             method: "post",
-            url: "http://localhost:9000/restaurant/randomlist/continent",
+            url: "http://192.168.0.89:9000/restaurant/randomlist/continent",
             data: data
         }).then((responseData) => {
             responseData.data.forEach((restaurant) => {

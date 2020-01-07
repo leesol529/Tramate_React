@@ -16,7 +16,7 @@ class ResultHost extends React.Component {
     componentWillMount = () => {
         axios
             .get(
-                'http://localhost:9000/image/' + this.props.guide.img,
+                'http://192.168.0.89:9000/image/' + this.props.guide.img,
                 { responseType: 'arraybuffer' },
             )
             .then(response => {
@@ -34,7 +34,7 @@ class ResultHost extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/traveler/getNumById",
+            url: "http://192.168.0.89:9000/traveler/getNumById",
             data: data
         }).then((responseData) => {
             this.setState({

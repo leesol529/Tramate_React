@@ -25,7 +25,7 @@ export default class TravlerIntroduce extends React.Component{
 
         Tdata=()=>{
             //spring에서 json 결과물 나오는 url
-            var url="http://localhost:9000/traveler/select";
+            var url="http://192.168.0.89:9000/traveler/select";
             let data = new FormData();
             data.append("num", this.props.tnum);
 
@@ -42,7 +42,7 @@ export default class TravlerIntroduce extends React.Component{
 
         /* TravelerRate 별 댓글 갯수 가져오는 메소드 */
         TRate=()=>{
-        var url="http://localhost:9000/travelerrate/select";
+        var url="http://192.168.0.89:9000/travelerrate/select";
         let TRatedata = new FormData();
         TRatedata.append("tnum",this.props.tnum);
         Axios.post(url, TRatedata).then((responseData)=>{

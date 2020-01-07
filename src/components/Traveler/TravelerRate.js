@@ -37,7 +37,7 @@ export default class TravelerRate extends React.Component {
             alert('Guide로 로그인 한 후에 댓글을 달아주세요');
         } else {
 
-            axios.post('http://localhost:9000/traveler/rate', {
+            axios.post('http://192.168.0.89:9000/traveler/rate', {
                 gnum: this.state.gnum,
                 tnum: this.state.tnum,
                 rate: this.state.rating,
@@ -58,7 +58,7 @@ export default class TravelerRate extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/reply/to/traveler",
+            url: "http://192.168.0.89:9000/reply/to/traveler",
             data: data
         }).then((responseData) => {
             this.setState({
@@ -73,7 +73,7 @@ export default class TravelerRate extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/traveler/select",
+            url: "http://192.168.0.89:9000/traveler/select",
             data: data1
         }).then((responseData) => {
             this.setState({

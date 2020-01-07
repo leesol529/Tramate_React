@@ -46,7 +46,7 @@ export default class TravlerLogin extends React.Component {
 
 		axios({
 			method: "post",
-			url: "http://localhost:9000/traveler/imageupload",
+			url: "http://192.168.0.89:9000/traveler/imageupload",
 			data: data,
 			headers: { "Content-Type": "multipart/form-data" }
 		}).then((responseData) => {
@@ -60,7 +60,7 @@ export default class TravlerLogin extends React.Component {
 		e.preventDefault();
 
 		//db에 traveler 가입정보 저장 
-		var url = "http://localhost:9000/traveler/join";
+		var url = "http://192.168.0.89:9000/traveler/join";
 		axios.post(url, {
 			name: this.state.name,
 			nat: this.state.nat,

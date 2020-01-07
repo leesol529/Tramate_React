@@ -15,7 +15,7 @@ export default class NewSchedule extends React.Component {
     }
 
     getTraveler = () => {
-        let url = "http://localhost:9000/traveler/select";
+        let url = "http://192.168.0.89:9000/traveler/select";
         let data = new FormData();
         data.append("num", this.props.schedule[0].tnum);
         axios.post(url, data).then((res) => {
@@ -54,7 +54,7 @@ export default class NewSchedule extends React.Component {
         let data = new FormData();
         data.append("num", this.props.schedule[0].num);
         axios.post(
-            "http://localhost:9000/guide/accept",
+            "http://192.168.0.89:9000/guide/accept",
             data
         ).then((res) => {
             console.log("accept success");
@@ -69,7 +69,7 @@ export default class NewSchedule extends React.Component {
         let data = new FormData();
         data.append("num", this.props.schedule[0].num);
         axios.post(
-            "http://localhost:9000/guide/decline",
+            "http://192.168.0.89:9000/guide/decline",
             data
         ).then((res) => {
             console.log("decline success");
@@ -89,7 +89,7 @@ export default class NewSchedule extends React.Component {
         return (
             <div className="schedule_traveler_info">
                 <div className="container">
-                    <img src={`http://localhost:9000/image/${this.state.traveler.img}`}
+                    <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`}
                         className="schedule_traveler_pic" alt="travelerProfilePic" />
                     <p className="title">{this.state.traveler.name}</p>
                     <p className="info">

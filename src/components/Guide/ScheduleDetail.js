@@ -23,7 +23,7 @@ export default class ScheduleDetail extends React.Component {
     }
 
     getDetail = () => {
-        let url = "http://localhost:9000/guide/schedule/detail";
+        let url = "http://192.168.0.89:9000/guide/schedule/detail";
         let data = new FormData();
         data.append("gnum", this.props.match.params.gnum);
         data.append("tnum", this.props.match.params.tnum);
@@ -45,7 +45,7 @@ export default class ScheduleDetail extends React.Component {
 
                 if (schedule.type === 1) {
                     axios.post(
-                        "http://localhost:9000/spot/data",
+                        "http://192.168.0.89:9000/spot/data",
                         data
                     ).then((res) => {
                         this.setState({
@@ -65,7 +65,7 @@ export default class ScheduleDetail extends React.Component {
                     });
                 } else if (schedule.type === 2) {
                     axios.post(
-                        "http://localhost:9000/activity/data",
+                        "http://192.168.0.89:9000/activity/data",
                         data
                     ).then((res) => {
                         this.setState({
@@ -85,7 +85,7 @@ export default class ScheduleDetail extends React.Component {
                     });
                 } else if (schedule.type === 3) {
                     axios.post(
-                        "http://localhost:9000/restaurant/data",
+                        "http://192.168.0.89:9000/restaurant/data",
                         data
                     ).then((res) => {
                         this.setState({
@@ -111,7 +111,7 @@ export default class ScheduleDetail extends React.Component {
             console.log("스케줄 세부정보 가져오기 실패");
         });
 
-        let url2 = "http://localhost:9000/traveler/select"
+        let url2 = "http://192.168.0.89:9000/traveler/select"
         let data2 = new FormData();
         data2.append("num", this.props.match.params.tnum);
 
@@ -148,7 +148,7 @@ export default class ScheduleDetail extends React.Component {
                         </b>
                     </div>
                     <div className="schedule_detail_img">
-                        <img src={`http://localhost:9000/image/${this.state.traveler.img}`}
+                        <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`}
                             alt="traveler_portrait" />
                     </div>
                 </div>

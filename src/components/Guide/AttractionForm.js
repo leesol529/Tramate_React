@@ -26,7 +26,7 @@ class AttractionForm extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/choice/gnum",
+            url: "http://192.168.0.89:9000/guide/choice/gnum",
             data: data
         }).then((responseData) => {
             gnum = responseData.data;
@@ -116,7 +116,7 @@ class AttractionForm extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/choice/attraction_img",
+            url: "http://192.168.0.89:9000/guide/choice/attraction_img",
             data: data,
             headers: { "Content-Type": "multipart/form-data" }
         }).then((responseData) => {

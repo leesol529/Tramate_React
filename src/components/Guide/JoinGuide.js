@@ -48,7 +48,7 @@ export default class GuideLogin extends React.Component {
 
 		axios({
 			method: "post",
-			url: "http://localhost:9000/guide/imageupload",
+			url: "http://192.168.0.89:9000/guide/imageupload",
 			data: data,
 			headers: { "Content-Type": "multipart/form-data" }
 		}).then((responseData) => {
@@ -62,7 +62,7 @@ export default class GuideLogin extends React.Component {
 		e.preventDefault();
 
 		//db에 traveler 가입정보 저장 
-		var url = "http://localhost:9000/guide/join";
+		var url = "http://192.168.0.89:9000/guide/join";
 		axios.post(url, {
 			name: this.state.name,
 			nat: this.state.nat,

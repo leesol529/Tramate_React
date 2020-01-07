@@ -42,7 +42,7 @@ export default class Chat extends React.Component {
 
         e.preventDefault();
 
-        axios.post('http://localhost:9000/chat/insert', {
+        axios.post('http://192.168.0.89:9000/chat/insert', {
             gnum: this.state.gnum,
             tnum: this.state.tnum,
             comefrom: this.state.comefrom,
@@ -64,7 +64,7 @@ export default class Chat extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/chat/list",
+            url: "http://192.168.0.89:9000/chat/list",
             data: data
         }).then((responseData) => {
             this.setState({
@@ -84,7 +84,7 @@ export default class Chat extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/traveler/select",
+            url: "http://192.168.0.89:9000/traveler/select",
             data: traveler
         }).then((responseData) => {
             this.setState({
@@ -96,7 +96,7 @@ export default class Chat extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/guide/select",
+            url: "http://192.168.0.89:9000/guide/select",
             data: guide
         }).then((responseData) => {
             this.setState({
@@ -166,11 +166,11 @@ export default class Chat extends React.Component {
                 </form>
                 <div className="sticky_left">
                     <div className="chat_left">
-                        <img src={`http://localhost:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" />
+                        <img src={`http://192.168.0.89:9000/image/${this.state.traveler.img}`} className="chat_image" alt="" />
                     </div>
                 </div>
                 <div className="chat_right">
-                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
+                    <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} className="chat_image" alt="" />
                 </div>
 
             </div>

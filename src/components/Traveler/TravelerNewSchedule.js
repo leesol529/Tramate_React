@@ -15,7 +15,7 @@ export default class NewSchedule extends React.Component{
     }
 
     getGuide = () => {
-        let url = "http://localhost:9000/guide/select";
+        let url = "http://192.168.0.89:9000/guide/select";
         let data = new FormData();
         data.append("num", this.props.schedule[0].gnum);
         axios.post(url, data).then((res)=>{
@@ -67,7 +67,7 @@ export default class NewSchedule extends React.Component{
         return(
             <div className="schedule_traveler_info">
                 <div className="container">
-                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} 
+                    <img src={`http://192.168.0.89:9000/image/${this.state.guide.img}`} 
                          className="schedule_traveler_pic" alt="travelerProfilePic" />
                     <p className="title">{this.state.guide.name}</p>
                     <p className="info">

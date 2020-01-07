@@ -18,14 +18,14 @@ export default class Login extends React.Component {
 
         axios({
             method: "post",
-            url: "http://localhost:9000/user/login",
+            url: "http://192.168.0.89:9000/user/login",
             data: data
         }).then((responseData) => {
             if (responseData.data === 1) {
                 alert("login as Guide");
                 axios({
                     method: 'post',
-                    url: 'http://localhost:9000/guide/choice/gnum',
+                    url: 'http://192.168.0.89:9000/guide/choice/gnum',
                     data: data
                 }).then((res) => {
                     localStorage.setItem("gnum", res.data);
@@ -39,7 +39,7 @@ export default class Login extends React.Component {
                 alert("traveler로 로그인");
                 axios({
                     method: 'post',
-                    url: 'http://localhost:9000/traveler/getNumById',
+                    url: 'http://192.168.0.89:9000/traveler/getNumById',
                     data: data
                 }).then((res) => {
                     localStorage.setItem("tnum", res.data);
