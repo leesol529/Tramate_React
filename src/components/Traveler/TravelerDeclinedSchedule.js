@@ -1,5 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        width: '45%',
+        height: '45%',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 export default class FixedSchedule extends React.Component{
     constructor(props){
@@ -8,8 +22,11 @@ export default class FixedSchedule extends React.Component{
             traveler: {},
             att: 0,
             act: 0,
-            res: 0
+            res: 0,
+            modalIsOpen: false
         }
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     getTraveler = () => {
@@ -47,23 +64,24 @@ export default class FixedSchedule extends React.Component{
         })
     }
 
-    handleChat=()=>{
-        this.props.history.push(`/chat/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}`);
+    openModal() {
+        this.setState({ modalIsOpen: true });
     }
 
-    handleDetail=()=>{
-        this.props.history.push(`/guide/schedule/detail/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}`);
+    closeModal() {
+        this.setState({ modalIsOpen: false });
     }
 
     componentDidMount(){
         this.getTraveler();
         this.count();
+        console.log(this.props.schedule[0]);
     }
 
     render(){
         return(
             <div className="schedule_traveler_info">
-                <div className="container">
+                <div className="container2">
                     <img src={`http://localhost:9000/image/${this.state.traveler.img}`} 
                          className="schedule_traveler_pic" alt="travelerProfilePic" />
                     <p className="title">{this.state.traveler.name}</p>
@@ -75,14 +93,27 @@ export default class FixedSchedule extends React.Component{
                         End: {this.props.schedule[0].enddate}
                     </p>
                     <div className="overlay"></div>
-                    <div className="button1"
-                         onClick={this.handleDetail}>
-                        <p> Details </p>
+                    <div className="button3"
+                         onClick={this.openModal}>
+                        <p> 거절 사유 확인 </p>
                     </div>
-                    <div className="button2" 
-                         onClick={this.handleChat}>
-                        <p> Chat </p>
-                    </div>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        style={customStyles}
+                        onRequestClose={this.closeModal}
+                        contentLabel="Example Modal">
+                    <form>
+                        <textarea name="reason" onChange={this.handleOnChange} className="reason_textarea"
+                                  defaultValue={this.props.schedule[0].reason}/><br />
+                        <div className="reason_div">
+                            <button type="button" className="reason_button"
+                                    onClick={this.closeModal}>
+                                닫기 
+                            </button>
+                        </div>
+                    </form>
+                </Modal>
                 </div>
             </div>
         );

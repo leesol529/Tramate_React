@@ -45,7 +45,7 @@
     border-radius: 20px;
   }
   
-  .container:hover .overlay {
+  .container:hover .overlay, .container2:hover .overlay {
     display: block;
     background: rgba(0, 0, 0, .3);
   }
@@ -71,7 +71,7 @@
     transition: top .5s ease;
   }
   
-  .container:hover .title {
+  .container:hover .title, .container2:hover .title {
     top: 10px;
   }
 
@@ -94,7 +94,7 @@
     }
   }
 
-  .container:hover .info{
+  .container:hover .info, .container2:hover .info{
       opacity: 1;
   }
   
@@ -144,16 +144,39 @@
     cursor: pointer;
   }
 
+  .container2 {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 20px 0;
+    img{
+        border-radius: 20px;
+    }
+  }
+
   .button3 {
     position: absolute;
-    width: 90px;
-    left: 100px;
+    width: 150px;
+    left: 25px;
     top: 230px;
     text-align: center;
     opacity: 0;
     transition: opacity .5s ease;
   }
+  
+  .button3 p {
+    width: 150px;
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+    color: white;
+    background: $point;
+    border-radius: 1rem;
+    z-index: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-  .container:hover .button1, .container:hover .button2 {
+  .container:hover .button1, .container:hover .button2, .container2:hover .button3 {
     opacity: 1;
   }

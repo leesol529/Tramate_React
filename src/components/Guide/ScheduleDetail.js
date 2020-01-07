@@ -147,7 +147,7 @@ export default class ScheduleDetail extends React.Component {
                     with {this.state.traveler.name}
                         </b>
                     </div>
-                    <div class="schedule_detail_img">
+                    <div className="schedule_detail_img">
                         <img src={`http://localhost:9000/image/${this.state.traveler.img}`}
                             alt="traveler_portrait" />
                     </div>

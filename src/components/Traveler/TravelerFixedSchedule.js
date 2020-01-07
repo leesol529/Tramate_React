@@ -12,7 +12,7 @@ export default class FixedSchedule extends React.Component{
         }
     }
 
-    getTraveler = () => {
+    getGuide = () => {
         let url = "http://localhost:9000/guide/select";
         let data = new FormData();
         data.append("num", this.props.schedule[0].gnum);
@@ -52,11 +52,11 @@ export default class FixedSchedule extends React.Component{
     }
 
     handleDetail=()=>{
-        this.props.history.push(`/traveler/schedule/detail/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}`);
+        this.props.history.push(`/traveler/schedule/detail/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}/${this.props.info}`);
     }
 
     componentDidMount(){
-        this.getTraveler();
+        this.getGuide();
         this.count();
     }
 

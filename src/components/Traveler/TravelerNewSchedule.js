@@ -6,7 +6,7 @@ export default class NewSchedule extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            traveler: {},
+            guide: {},
             att: 0,
             act: 0,
             res: 0
@@ -14,13 +14,13 @@ export default class NewSchedule extends React.Component{
         
     }
 
-    getTraveler = () => {
-        let url = "http://localhost:9000/traveler/select";
+    getGuide = () => {
+        let url = "http://localhost:9000/guide/select";
         let data = new FormData();
-        data.append("num", this.props.schedule[0].tnum);
+        data.append("num", this.props.schedule[0].gnum);
         axios.post(url, data).then((res)=>{
             this.setState({
-                traveler: res.data
+                guide: res.data
             });
         });
     }
@@ -49,38 +49,16 @@ export default class NewSchedule extends React.Component{
         })
     }
 
-    handleAccept=()=>{
-        console.log(this.props.schedule[0].gnum);
-        let data = new FormData();
-        data.append("num", this.props.schedule[0].num);
-        axios.post(
-            "http://localhost:9000/guide/accept",
-            data
-        ).then((res)=>{
-            console.log("accept success");
-            window.location.reload();
-        }).catch((err)=>{
-            console.log("accept fail");
-        });
+    handleChat=()=>{
+        this.props.history.push(`/chat/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}`);
     }
 
-    handleDecline=()=>{
-        console.log(this.props.schedule[0].gnum);
-        let data = new FormData();
-        data.append("num", this.props.schedule[0].num);
-        axios.post(
-            "http://localhost:9000/guide/decline",
-            data
-        ).then((res)=>{
-            console.log("decline success");
-            window.location.reload();
-        }).catch((err)=>{
-            console.log("decline fail");
-        });
+    handleDetail=()=>{
+        this.props.history.push(`/traveler/schedule/detail/${this.props.schedule[0].gnum}/${this.props.schedule[0].tnum}/${this.props.info}`);
     }
 
     componentDidMount(){
-        this.getTraveler();
+        this.getGuide();
         this.count();
         
     }
@@ -89,9 +67,9 @@ export default class NewSchedule extends React.Component{
         return(
             <div className="schedule_traveler_info">
                 <div className="container">
-                    <img src={`http://localhost:9000/image/${this.state.traveler.img}`} 
+                    <img src={`http://localhost:9000/image/${this.state.guide.img}`} 
                          className="schedule_traveler_pic" alt="travelerProfilePic" />
-                    <p className="title">{this.state.traveler.name}</p>
+                    <p className="title">{this.state.guide.name}</p>
                     <p className="info">
                         <b>{this.state.att}</b> attractions<br/>
                         <b>{this.state.act}</b> activities<br/>
@@ -100,8 +78,8 @@ export default class NewSchedule extends React.Component{
                         End: {this.props.schedule[0].enddate}
                     </p>
                     <div className="overlay"></div>
-                    <div className="button1" onClick={this.handleDecline}><p> Decline </p></div>
-                    <div className="button2" onClick={this.handleAccept}><p> Accept </p></div>
+                    <div className="button1" onClick={this.handleDetail}><p> Detail </p></div>
+                    <div className="button2" onClick={this.handleChat}><p> Chat </p></div>
                 </div>
             </div>
         );

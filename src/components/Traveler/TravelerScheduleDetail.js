@@ -18,16 +18,22 @@ export default class TravelerScheduleDetail extends React.Component{
             att: [],
             act: [],
             res: [],
-            traveler: ""
+            guide: ""
         };
     }
 
     getDetail = () => {
-        let url = "http://localhost:9000/guide/schedule/detail";
+        let url;
+        if(this.props.match.params.info==="fixed"){
+            url = "http://localhost:9000/guide/schedule/detail";
+        } else if(this.props.match.params.info==="wait"){
+            url = "http://localhost:9000/traveler/waiting_schedule/detail";
+        }
+        console.log(url);
         let data = new FormData();
         data.append("gnum", this.props.match.params.gnum);
         data.append("tnum", this.props.match.params.tnum);
-
+        
         axios.post(
             url,
             data
@@ -37,7 +43,7 @@ export default class TravelerScheduleDetail extends React.Component{
                 startdate: res.data[0].startdate,
                 enddate: res.data[0].enddate
             });
-            
+
             //att, act, res 개별 정보 가져오기 
             this.state.schedule.map((schedule)=>{
                 let data = new FormData();
@@ -111,17 +117,17 @@ export default class TravelerScheduleDetail extends React.Component{
             console.log("스케줄 세부정보 가져오기 실패");
         });
 
-        let url2 = "http://localhost:9000/traveler/select"
+        let url2 = "http://localhost:9000/guide/select"
         let data2 = new FormData();
-        data2.append("num", this.props.match.params.tnum);
+        data2.append("num", this.props.match.params.gnum);
 
         axios.post(url2, data2).then((res)=>{
             this.setState({
-                traveler: res.data
+                guide: res.data
             });
             console.log(res.data);
         }).catch((err)=>{
-            console.log("traveler 정보 가져오기 실패");
+            console.log("guide 정보 가져오기 실패");
         })
     }
 
@@ -144,11 +150,11 @@ export default class TravelerScheduleDetail extends React.Component{
                     {this.state.att.length} attractions,  
                     {this.state.act.length} activities,
                     {this.state.res.length} restaurants in total
-                    with {this.state.traveler.name}
+                    with {this.state.guide.name}
                     </b>
                     </div>
-                    <div class="schedule_detail_img">
-                        <img src={`http://localhost:9000/image/${this.state.traveler.img}`} 
+                    <div className="schedule_detail_img">
+                        <img src={`http://localhost:9000/image/${this.state.guide.img}`} 
                             alt="traveler_portrait" />
                     </div>
                 </div>

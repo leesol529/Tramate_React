@@ -63,7 +63,7 @@ const AppRouter = () => (
         <Route path="/guide/schedule/:gnum" component={GuideSchedule} exact={true} />
         <Route path="/traveler/schedule/:tnum" component={TravelerSchedule} exact={true} />
         <Route path="/guide/schedule/detail/:gnum/:tnum" component={ScheduleDetail} />
-        <Route path="/traveler/schedule/detail/:gnum/:tnum" component={TravelerScheduleDetail} />
+        <Route path="/traveler/schedule/detail/:gnum/:tnum/:info" component={TravelerScheduleDetail} />
       </Switch>
     </div>
   </BrowserRouter>

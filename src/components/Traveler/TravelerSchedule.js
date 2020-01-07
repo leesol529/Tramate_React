@@ -15,7 +15,9 @@ class TravelerSchedule extends React.Component{
             declined: [],
             fixedSchedule: [],
             newSchedule: [],
-            declinedSchedule: []
+            declinedSchedule: [],
+            acceptFixed: "fixed",
+            acceptWaiting: "wait",
         }
     }
 
@@ -36,7 +38,8 @@ class TravelerSchedule extends React.Component{
                         fixedSchedule: [
                             ...this.state.fixedSchedule,
                             <FixedSchedule key={idx} schedule={fixedOne}
-                                           history={this.props.history}/>
+                                           history={this.props.history}
+                                           info={this.state.acceptFixed}/>
                         ]
                     })
                 })
@@ -72,7 +75,8 @@ class TravelerSchedule extends React.Component{
                         newSchedule: [
                             ...this.state.newSchedule,
                             <NewSchedule key={idx+100} schedule={newOne}
-                                         history={this.props.history}/>
+                                         history={this.props.history}
+                                         info={this.state.acceptWaiting}/>
                         ]
                     })
                 })
@@ -106,7 +110,7 @@ class TravelerSchedule extends React.Component{
                         declinedSchedule: [
                             ...this.state.declinedSchedule,
                             <DeclinedSchedule key={idx+200} schedule={declinedOne}
-                                         history={this.props.history}/>
+                                              history={this.props.history}/>
                         ]
                     })
                 })
