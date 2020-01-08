@@ -22,7 +22,8 @@ class TravelerChoice extends React.Component {
             startdate: this.props.calendars.startdate,
             enddate: this.props.calendars.enddate,
             image: null,
-            guide: ""
+            guide: "",
+            result: false
         }
     }
 
@@ -108,21 +109,24 @@ class TravelerChoice extends React.Component {
                                               gnum={this.state.gnum}
                                               tnum={this.state.tnum}
                                               idx={[i+1]}
-                                              key={i}/>)
+                                              key={i}
+                                              result={this.state.result}/>)
         }
         for(let i=0; i<this.state.activity.length; i++){
             activity.push(<ActivityResult act={this.state.activity[i]}
                                           gnum={this.state.gnum}
                                           tnum={this.state.tnum}
                                           idx={[i+1]}
-                                          key={i}/>)
+                                          key={i}
+                                          result={this.state.result}/>)
         }
         for(let i=0; i<this.state.restaurant.length; i++){
             restaurant.push(<RestaurantResult res={this.state.restaurant[i]}
                                               gnum={this.state.gnum}
                                               tnum={this.state.tnum}
                                               idx={[i+1]}
-                                              key={i}/>)
+                                              key={i}
+                                              result={this.state.result}/>)
         }
 
         return (

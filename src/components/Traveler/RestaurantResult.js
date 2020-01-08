@@ -63,13 +63,30 @@ class RestaurantResult extends React.Component{
         }
     } 
 
+    handleClick = () =>{
+        this.props.history.push(`/guide/profile/${this.props.res.gnum}`)
+    }
+
     render(){
+        let input;
+        let img;
+        if(!this.props.result){
+            input = <input type="checkbox" onClick={this.onCheck} />
+        }
+        
+        if(!this.props.result){
+            img = <img src={`http://192.168.0.89:9000/image/${this.props.res.img}`}
+                    className="tChoice_img" alt="result_img"/>
+        } else {
+            img = <img src={`http://192.168.0.89:9000/image/${this.props.res.img}`}
+                    className="tChoice_img" alt="result_img" onClick={this.handleClick}/>
+        }
         return(
             <table className="tChoice_table" id="choiceFrm">
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" onClick={this.onCheck}/>
+                            {input}
                             Restaurant{this.props.idx}
                         </th>
                     </tr>
@@ -79,9 +96,7 @@ class RestaurantResult extends React.Component{
                         <td className="tChoice_input tChoice_center">
                             <div className="thumbnail-wrapper">
                                 <div className="thumbnail">
-                                    <img src={`http://192.168.0.89:9000/image/${this.props.res.img}`} 
-                                    className="tChoice_img" 
-                                    alt="result_img"/>
+                                    {img}
                                 </div>
                             </div>
                         </td>

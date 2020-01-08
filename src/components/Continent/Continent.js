@@ -13,7 +13,8 @@ export default class Continent extends React.Component {
             guide: [],
             attraction: [],
             activity: [],
-            restaurant: []
+            restaurant: [],
+            result: true
         }
     }
     checkState = () => {
@@ -36,6 +37,7 @@ export default class Continent extends React.Component {
                     guide: this.state.guide.concat(guide)
                 })
             });
+            console.log(this.state.guide);
         }).catch((error) => {
             console.log(error);
         });
@@ -104,7 +106,7 @@ export default class Continent extends React.Component {
                 <p className="result_introduce">유명한 광광지는 물론 현지 가이드만 아는 숨은 관광명소도 즐겨보아요. </p>
                 <div className="result_flexbox">
                     {this.state.attraction.map((att) => {
-                        return <AttractionResult key={att.num} att={att} />
+                        return <AttractionResult key={att.num} att={att} result={this.state.result} history={this.props.history}/>
                     })}
                 </div>
                 <hr className="hr_margin" />
@@ -112,7 +114,7 @@ export default class Continent extends React.Component {
                 <p className="result_introduce">각 여행지 특성에 맞는 액티비티를 소개해드립니다. 색다른 체험을 해보는건 어떠신가요?</p>
                 <div className="result_flexbox">
                     {this.state.activity.map((act) => {
-                        return <ActivityResult key={act.num} act={act} />
+                        return <ActivityResult key={act.num} act={act} result={this.state.result} history={this.props.history}/>
                     })}
                 </div>
                 <hr className="hr_margin" />
@@ -120,7 +122,7 @@ export default class Continent extends React.Component {
                 <p className="result_introduce">금강산도 식후경이라고 했나요? 맛있는 현지 음식을 경험해보세요. 분명 맛있을 겁니다.</p>
                 <div className="result_flexbox">
                     {this.state.restaurant.map((res) => {
-                        return <RestaurantResult key={res.num} res={res} />
+                        return <RestaurantResult key={res.num} res={res} result={this.state.result} history={this.props.history}/>
                     })}
                 </div>
             </div >
