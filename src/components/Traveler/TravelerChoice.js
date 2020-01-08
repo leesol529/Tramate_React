@@ -94,7 +94,7 @@ class TravelerChoice extends React.Component {
             console.log('schedule insert fail');
         });
        
-        this.props.history.push(`/traveler/schedule/${this.state.tnum}`);
+        this.props.history.push(`/traveler/profile/${this.state.tnum}`);
 
     }
 
