@@ -98,7 +98,9 @@ export default class Profile extends React.Component{
                         <img src={spot} className="check-boss-place" alt=""/>
                         <p className="guidePlace">
                         {/* <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link> */}
-                        <Link to={`/traveler/choice/${this.state.guideData.num}/${localStorage.getItem('tnum')}`} className="goSchedule2">가이드 신청하기</Link>
+                        {user==="guide"?
+                            <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link>
+                            :<Link to={`/traveler/choice/${this.state.guideData.num}/${localStorage.getItem('tnum')}`} className="goSchedule2">가이드</Link>}
                         </p>
                     </div>
 
