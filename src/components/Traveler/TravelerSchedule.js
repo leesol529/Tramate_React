@@ -46,7 +46,7 @@ class TravelerSchedule extends React.Component{
             } else if(this.state.fixed.length===0){
                 this.setState({
                     fixedSchedule: [
-                        <h3> No fixed schedules </h3>
+                        <h3> 예약 완료된 스케줄이 없습니다 </h3>
                     ]
                 })
             }
@@ -117,7 +117,7 @@ class TravelerSchedule extends React.Component{
             }else if(this.state.declinedSchedule.length===0){
                 this.setState({
                     declinedSchedule: [
-                        <h3> 거절된 스케줄이 없습니다 </h3>
+                        <h3> 예약 거절된 스케줄이 없습니다 </h3>
                     ]
                 })
             }
@@ -141,7 +141,7 @@ class TravelerSchedule extends React.Component{
                 <div className="schedule_super_div">
                     {this.state.fixedSchedule}
                 </div>
-
+                <br/>
 
                 {/* 예약 대기 스케줄 */}
                 <hr/>
@@ -149,6 +149,7 @@ class TravelerSchedule extends React.Component{
                 <div className="schedule_super_div">
                     {this.state.newSchedule}
                 </div>
+                <br/>
                 <hr/>
                 <h2 className="schedule_title"> 예약 거절 된 스케줄 </h2>
                 <div className="schedule_super_div">

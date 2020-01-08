@@ -2,7 +2,7 @@ import React from 'react';
 //import ScheduleCheck from '../Util/ScheduleCheck';
 import FixedSchedule from './FixedSchedule';
 import NewSchedule from './NewSchedule';
-import FinishedSchedule from './FinishedSchedule'
+import FinishedSchedule from './FinishedSchedule';
 import axios from 'axios';
 
 class GuideSchedule extends React.Component {
@@ -140,18 +140,19 @@ class GuideSchedule extends React.Component {
 
 
                 {/* 예약 대기 스케줄 */}
+                <br/>
                 <hr />
                 <h2 className="schedule_title"> New Schedule </h2>
                 <div className="schedule_super_div">
                     {this.state.newSchedule}
                 </div>
-
+                <br/>
                 {/* 완료된 스케줄 */}
-                <hr />
+                {/* <hr />
                 <h2 className="schedule_title"> Finished Schedule </h2>
                 <div className="schedule_super_div">
                     {this.state.finishedSchedule}
-                </div>
+                </div> */}
             </div>
         );
     }

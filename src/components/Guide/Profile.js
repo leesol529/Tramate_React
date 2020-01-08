@@ -100,7 +100,7 @@ export default class Profile extends React.Component{
                         {/* <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link> */}
                         {user==="guide"?
                             <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link>
-                            :<Link to={`/traveler/choice/${this.state.guideData.num}/${localStorage.getItem('tnum')}`} className="goSchedule2">가이드</Link>}
+                            :<Link to={`/traveler/choice/${this.state.guideData.num}/${localStorage.getItem('tnum')}`} className="goSchedule2">가이드 신청하기</Link>}
                         </p>
                     </div>
 

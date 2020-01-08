@@ -63,7 +63,7 @@ export default class TravlerProfile extends React.Component{
         const email=this.state.travelerData.email;
         const mobile=this.state.travelerData.mobile;
         const user=localStorage.getItem("user");
-        const schedule=<Link to={`/traveler/schedule/${localStorage.getItem('tnum')}`} className="goSchedule">스케줄 보러가기</Link>;
+        const schedule=<Link to={`/traveler/schedule/${this.props.tnum}`} className="goSchedule">스케줄 보러가기</Link>;
         const noschedule=null;
         const travelerschedule=user?schedule:noschedule;
 

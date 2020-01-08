@@ -8,8 +8,8 @@ const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        width: '40%',
-        height: '50%',
+        width: '45%',
+        height: '45%',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
     }
