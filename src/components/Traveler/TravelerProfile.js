@@ -4,6 +4,7 @@ import check1 from '../../img/checked.svg';
 import uncheck1 from '../../img/unchecked.svg';
 import chat1 from '../../img/chat.png';
 import calendar from '../../img/calendar.png';
+import spot from '../../img/spot.png';
 import {Link} from 'react-router-dom';
 
 
@@ -91,6 +92,13 @@ export default class TravlerProfile extends React.Component{
                         {travelerschedule}
                     </div>
 
+                    {/* 관광 장소 확인하기
+                    <div className="wrap1-guidePlace">
+                        <img src={spot} className="check-boss-place" alt=""/>
+                        <p className="guidePlace">
+                        
+                        </p>
+                    </div> */}
 
                     <div className="wrap1-checked-af">
                         <img src={check1} className="check-boss" alt=""/>

@@ -66,7 +66,7 @@ export default class Profile extends React.Component{
         const email=this.state.guideData.email;
         const mobile=this.state.guideData.mobile;
         const user=localStorage.getItem("user");
-        const goSchedule1 = <Link to={`/guide/schedule/${localStorage.getItem('gnum')}`} className="goSchedule">스케쥴 보러가기</Link>;
+        const goSchedule1 = <Link to={`/guide/schedule/${this.state.guideData.num}`} className="goSchedule">스케쥴 보러가기</Link>;
         const noSchedule=null;
         const guideSchedule=user?goSchedule1:noSchedule;
 
@@ -97,7 +97,8 @@ export default class Profile extends React.Component{
                     <div className="wrap1-guidePlace">
                         <img src={spot} className="check-boss-place" alt=""/>
                         <p className="guidePlace">
-                        <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link>
+                        {/* <Link to={`/guide/choice/${localStorage.getItem('gnum')}`} className="goSchedule2">가이드 장소 추가</Link> */}
+                        <Link to={`/traveler/choice/${this.state.guideData.num}/${localStorage.getItem('tnum')}`} className="goSchedule2">가이드 신청하기</Link>
                         </p>
                     </div>
 
